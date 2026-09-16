@@ -1,0 +1,30 @@
+{
+  "dataset": {
+    "schema_examples": 478,
+    "train_1_2": 1510,
+    "original_train_1_2": 302,
+    "paraphrased_test_1_2": 276,
+    "qwen_subset": 80
+  },
+  "final_model": {
+    "description": "Qwen 1.5B few-shot rewriting + hierarchical schema-path policy + schema cue state features + lexical action masking",
+    "overall_exact_match": 0.45,
+    "overall_f1": 0.625,
+    "hop_1_exact_match": 0.7,
+    "hop_1_f1": 0.7666666666666666,
+    "hop_2_exact_match": 0.36666666666666664,
+    "hop_2_f1": 0.5777777777777776
+  },
+  "action_space": {
+    "rewrite_actions": [
+      "keep_original",
+      "entity_normalization",
+      "relation_normalization",
+      "full_normalization",
+      "aggressive_rewrite"
+    ],
+    "one_hop_schema_paths": 23,
+    "two_hop_schema_paths": 78,
+    "schema_cue_features": 27
+  }
+}

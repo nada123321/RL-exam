@@ -1,0 +1,562 @@
+{
+  "1|||:|||:|||e|||n|||t|||i|||t|||y|||_|||s|||h|||i|||f|||t|||:|||:|||F|||i|||n|||d||| |||d|||r|||u|||g|||s||| |||w|||h|||o|||s|||e||| |||n|||a|||m|||e||| |||e|||n|||d|||s||| |||w|||i|||t|||h||| |||'|||o|||n|||e|||'||| |||t|||h|||a|||t||| |||a|||r|||e||| |||u|||s|||e|||d||| |||t|||o||| |||t|||r|||e|||a|||t||| |||t|||h|||e||| |||'|||h|||y|||p|||e|||r|||t|||e|||n|||s|||i|||o|||n|||'|||.||| |||W|||h|||a|||t||| |||g|||e|||n|||e|||t|||i|||c||| |||f|||a|||c|||t|||o|||r|||s||| |||d|||o||| |||t|||h|||e|||y||| |||d|||o|||w|||n|||r|||e|||g|||u|||l|||a|||t|||e|||?": {
+    "0": "Find drugs whose name ends with 'one' that are used to treat the 'hypertension'. What genetic factors do they downregulate?",
+    "1": "Find compounds whose name ends with 'one' that are used to treat 'hypertension'. What genes do these compounds downregulate?",
+    "2": "Find compounds whose name ends with 'one' that are used to treat 'hypertension'. What genes do these compounds downregulate?",
+    "3": "Find compounds whose name ends with 'one' that are used to treat 'hypertension'. What genes do these compounds downregulate?",
+    "4": "Find compounds whose name ends with 'one' that are used to treat 'hypertension'. What genes do these compounds downregulate?"
+  },
+  "1|||:|||:|||r|||e|||l|||a|||t|||i|||o|||n|||_|||s|||h|||i|||f|||t|||:|||:|||F|||i|||n|||d||| |||c|||o|||m|||p|||o|||u|||n|||d|||s||| |||w|||h|||o|||s|||e||| |||n|||a|||m|||e||| |||e|||n|||d|||s||| |||w|||i|||t|||h||| |||'|||o|||n|||e|||'||| |||t|||h|||a|||t||| |||a|||r|||e||| |||u|||s|||e|||d||| |||f|||o|||r||| |||t|||h|||e||| |||'|||h|||y|||p|||e|||r|||t|||e|||n|||s|||i|||o|||n|||'|||.||| |||W|||h|||a|||t||| |||g|||e|||n|||e|||s||| |||d|||o||| |||t|||h|||e|||y||| |||d|||o|||w|||n|||r|||e|||g|||u|||l|||a|||t|||e|||?": {
+    "0": "Find compounds whose name ends with 'one' that are used for the 'hypertension'. What genes do they downregulate?",
+    "1": "Find compounds whose name ends with 'one' that are used for hypertension. What genes do these compounds downregulate?",
+    "2": "Find compounds whose name ends with 'one' that are used for hypertension. What genes do these compounds downregulate?",
+    "3": "Find compounds whose name ends with 'one' that are used for hypertension. What genes do these compounds downregulate?",
+    "4": "Find compounds whose name ends with 'one' that are used for hypertension. Identify which genes these compounds downregulate."
+  },
+  "1|||:|||:|||e|||n|||t|||i|||t|||y|||_|||r|||e|||l|||a|||t|||i|||o|||n|||_|||s|||h|||i|||f|||t|||:|||:|||F|||i|||n|||d||| |||d|||r|||u|||g|||s||| |||w|||h|||o|||s|||e||| |||n|||a|||m|||e||| |||e|||n|||d|||s||| |||w|||i|||t|||h||| |||'|||o|||n|||e|||'||| |||t|||h|||a|||t||| |||a|||r|||e||| |||u|||s|||e|||d||| |||f|||o|||r||| |||t|||h|||e||| |||'|||h|||y|||p|||e|||r|||t|||e|||n|||s|||i|||o|||n|||'|||.||| |||W|||h|||a|||t||| |||g|||e|||n|||e|||t|||i|||c||| |||f|||a|||c|||t|||o|||r|||s||| |||d|||o||| |||t|||h|||e|||y||| |||d|||o|||w|||n|||r|||e|||g|||u|||l|||a|||t|||e|||?": {
+    "0": "Find drugs whose name ends with 'one' that are used for the 'hypertension'. What genetic factors do they downregulate?",
+    "1": "Find compounds whose name ends with 'one' that are used for 'hypertension'. What genes do these compounds downregulate?",
+    "2": "Find compounds whose name ends with 'one' that are used for hypertension. What genes do these compounds downregulate?",
+    "3": "Find compounds whose name ends with 'one' that are used for 'hypertension'. What genes do these compounds downregulate?",
+    "4": "Find compounds whose name ends with 'one' that are used for 'hypertension'. What genes do these compounds downregulate?"
+  },
+  "1|||:|||:|||h|||a|||r|||d|||_|||s|||h|||i|||f|||t|||:|||:|||F|||i|||n|||d||| |||m|||e|||d|||i|||c|||a|||t|||i|||o|||n|||s||| |||w|||h|||o|||s|||e||| |||n|||a|||m|||e||| |||e|||n|||d|||s||| |||w|||i|||t|||h||| |||'|||o|||n|||e|||'||| |||t|||h|||a|||t||| |||a|||r|||e||| |||u|||s|||e|||d||| |||t|||o||| |||i|||s||| |||p|||r|||e|||s|||c|||r|||i|||b|||e|||d||| |||f|||o|||r||| |||t|||h|||e||| |||'|||h|||y|||p|||e|||r|||t|||e|||n|||s|||i|||o|||n|||'|||.||| |||W|||h|||a|||t||| |||p|||r|||o|||t|||e|||i|||n|||s||| |||d|||o||| |||t|||h|||e|||y||| |||d|||o|||w|||n|||r|||e|||g|||u|||l|||a|||t|||e|||?": {
+    "0": "Find medications whose name ends with 'one' that are used to is prescribed for the 'hypertension'. What proteins do they downregulate?",
+    "1": "Find compounds whose name ends with 'one' that are used to treat 'hypertension'. What genes do they downregulate?",
+    "2": "Find drugs whose name ends with 'one' that are used for hypertension. Identify which proteins these drugs downregulate.",
+    "3": "Find drugs whose name ends with 'one' that are used for hypertension. Identify which proteins these drugs downregulate.",
+    "4": "Find drugs whose name ends with 'one' that are used to treat hypertension. Identify which proteins these drugs downregulate."
+  },
+  "6|||:|||:|||e|||n|||t|||i|||t|||y|||_|||s|||h|||i|||f|||t|||:|||:|||W|||h|||a|||t||| |||a|||r|||e||| |||t|||h|||e||| |||d|||i|||s|||t|||i|||n|||c|||t||| |||a|||n|||a|||t|||o|||m|||i|||c|||a|||l||| |||l|||o|||c|||a|||t|||i|||o|||n|||s||| |||w|||h|||o|||s|||e||| |||n|||a|||m|||e||| |||i|||n|||c|||l|||u|||d|||e||| |||'|||s|||y|||s|||t|||e|||m|||'||| |||a|||s|||s|||o|||c|||i|||a|||t|||e|||d||| |||w|||i|||t|||h||| |||g|||e|||n|||e|||t|||i|||c||| |||f|||a|||c|||t|||o|||r|||s||| |||i|||n||| |||c|||e|||l|||l|||u|||l|||a|||r||| |||c|||o|||m|||p|||o|||n|||e|||n|||t||| |||w|||i|||t|||h||| |||i|||d|||e|||n|||t|||i|||f|||i|||e|||r||| |||'|||G|||O|||:|||0|||0|||3|||4|||6|||7|||7|||'||| |||o|||r||| |||w|||i|||t|||h||| |||n|||a|||m|||e||| |||'|||n|||u|||c|||l|||e|||a|||r||| |||c|||h|||r|||o|||m|||o|||s|||o|||m|||e|||,||| |||t|||e|||l|||o|||m|||e|||r|||i|||c||| |||r|||e|||g|||i|||o|||n|||'|||?": {
+    "0": "What are the distinct anatomical locations whose name include 'system' associated with genetic factors in cellular component with identifier 'GO:0034677' or with name 'nuclear chromosome, telomeric region'?",
+    "1": "Find distinct anatomical locations with names containing 'system', associated with genetic factors in the cellular component GO:0034677 or with the name 'nuclear chromosome, telomeric region'.",
+    "2": "Find distinct anatomical locations with names containing 'system' that are associated with genetic factors in the cellular component GO:0034677 or have the name 'nuclear chromosome, telomeric region'.",
+    "3": "What are the distinct anatomical locations whose name include 'system' associated with genetic factors in cellular component with identifier 'GO:0034677' or with name 'nuclear chromosome, telomeric region'?",
+    "4": "Find distinct anatomical locations with names containing 'system' that are associated with genetic factors in either the cellular component GO:0034677 or the nuclear chromosome, telomeric region."
+  },
+  "6|||:|||:|||r|||e|||l|||a|||t|||i|||o|||n|||_|||s|||h|||i|||f|||t|||:|||:|||W|||h|||a|||t||| |||a|||r|||e||| |||t|||h|||e||| |||d|||i|||s|||t|||i|||n|||c|||t||| |||a|||n|||a|||t|||o|||m|||i|||c|||a|||l||| |||l|||o|||c|||a|||t|||i|||o|||n|||s||| |||w|||h|||o|||s|||e||| |||n|||a|||m|||e||| |||i|||n|||c|||l|||u|||d|||e||| |||'|||s|||y|||s|||t|||e|||m|||'||| |||a|||s|||s|||o|||c|||i|||a|||t|||e|||d||| |||w|||i|||t|||h||| |||g|||e|||n|||e|||s||| |||i|||n||| |||c|||e|||l|||l|||u|||l|||a|||r||| |||c|||o|||m|||p|||o|||n|||e|||n|||t||| |||w|||i|||t|||h||| |||i|||d|||e|||n|||t|||i|||f|||i|||e|||r||| |||'|||G|||O|||:|||0|||0|||3|||4|||6|||7|||7|||'||| |||o|||r||| |||w|||i|||t|||h||| |||n|||a|||m|||e||| |||'|||n|||u|||c|||l|||e|||a|||r||| |||c|||h|||r|||o|||m|||o|||s|||o|||m|||e|||,||| |||t|||e|||l|||o|||m|||e|||r|||i|||c||| |||r|||e|||g|||i|||o|||n|||'|||?": {
+    "0": "What are the distinct anatomical locations whose name include 'system' associated with genes in cellular component with identifier 'GO:0034677' or with name 'nuclear chromosome, telomeric region'?",
+    "1": "Find distinct anatomical locations with names containing 'system' that are associated with genes in the cellular component GO:0034677 or have the name 'nuclear chromosome, telomeric region'.",
+    "2": "Find distinct anatomical locations whose name includes 'system' and are associated with genes in the cellular component GO:0034677 or have the name 'nuclear chromosome, telomeric region'.",
+    "3": "Find distinct anatomical locations that have an identifier containing 'system' and are associated with genes in the cellular component GO:0034677 or with the name 'nuclear chromosome, telomeric region'.",
+    "4": "Find distinct anatomical locations with names containing 'system' that are associated with genes located in the cellular component GO:0034677 or have the name 'nuclear chromosome, telomeric region'."
+  },
+  "6|||:|||:|||e|||n|||t|||i|||t|||y|||_|||r|||e|||l|||a|||t|||i|||o|||n|||_|||s|||h|||i|||f|||t|||:|||:|||W|||h|||a|||t||| |||a|||r|||e||| |||t|||h|||e||| |||d|||i|||s|||t|||i|||n|||c|||t||| |||a|||n|||a|||t|||o|||m|||i|||c|||a|||l||| |||l|||o|||c|||a|||t|||i|||o|||n|||s||| |||w|||h|||o|||s|||e||| |||n|||a|||m|||e||| |||i|||n|||c|||l|||u|||d|||e||| |||'|||s|||y|||s|||t|||e|||m|||'||| |||a|||s|||s|||o|||c|||i|||a|||t|||e|||d||| |||w|||i|||t|||h||| |||g|||e|||n|||e|||t|||i|||c||| |||f|||a|||c|||t|||o|||r|||s||| |||i|||n||| |||c|||e|||l|||l|||u|||l|||a|||r||| |||c|||o|||m|||p|||o|||n|||e|||n|||t||| |||w|||i|||t|||h||| |||i|||d|||e|||n|||t|||i|||f|||i|||e|||r||| |||'|||G|||O|||:|||0|||0|||3|||4|||6|||7|||7|||'||| |||o|||r||| |||w|||i|||t|||h||| |||n|||a|||m|||e||| |||'|||n|||u|||c|||l|||e|||a|||r||| |||c|||h|||r|||o|||m|||o|||s|||o|||m|||e|||,||| |||t|||e|||l|||o|||m|||e|||r|||i|||c||| |||r|||e|||g|||i|||o|||n|||'|||?": {
+    "0": "What are the distinct anatomical locations whose name include 'system' associated with genetic factors in cellular component with identifier 'GO:0034677' or with name 'nuclear chromosome, telomeric region'?",
+    "1": "Find distinct anatomical locations with names containing 'system', associated with genetic factors in the cellular component GO:0034677 or with the name 'nuclear chromosome, telomeric region'.",
+    "2": "Find distinct anatomical locations with names containing 'system' that are associated with genetic factors in the cellular component GO:0034677 or have the name 'nuclear chromosome, telomeric region'.",
+    "3": "What are the distinct anatomical locations whose name include 'system' associated with genetic factors in cellular component with identifier 'GO:0034677' or with name 'nuclear chromosome, telomeric region'?",
+    "4": "Find distinct anatomical locations with names containing 'system' that are associated with genetic factors in either the cellular component GO:0034677 or the nuclear chromosome, telomeric region."
+  },
+  "6|||:|||:|||h|||a|||r|||d|||_|||s|||h|||i|||f|||t|||:|||:|||W|||h|||a|||t||| |||a|||r|||e||| |||t|||h|||e||| |||d|||i|||s|||t|||i|||n|||c|||t||| |||a|||n|||a|||t|||o|||m|||i|||c|||a|||l||| |||l|||o|||c|||a|||t|||i|||o|||n|||s||| |||w|||h|||o|||s|||e||| |||n|||a|||m|||e||| |||i|||n|||c|||l|||u|||d|||e||| |||'|||s|||y|||s|||t|||e|||m|||'||| |||a|||s|||s|||o|||c|||i|||a|||t|||e|||d||| |||w|||i|||t|||h||| |||p|||r|||o|||t|||e|||i|||n|||s||| |||i|||n||| |||c|||e|||l|||l|||u|||l|||a|||r||| |||c|||o|||m|||p|||o|||n|||e|||n|||t||| |||w|||i|||t|||h||| |||i|||d|||e|||n|||t|||i|||f|||i|||e|||r||| |||'|||G|||O|||:|||0|||0|||3|||4|||6|||7|||7|||'||| |||o|||r||| |||w|||i|||t|||h||| |||n|||a|||m|||e||| |||'|||n|||u|||c|||l|||e|||a|||r||| |||c|||h|||r|||o|||m|||o|||s|||o|||m|||e|||,||| |||t|||e|||l|||o|||m|||e|||r|||i|||c||| |||r|||e|||g|||i|||o|||n|||'|||?": {
+    "0": "What are the distinct anatomical locations whose name include 'system' associated with proteins in cellular component with identifier 'GO:0034677' or with name 'nuclear chromosome, telomeric region'?",
+    "1": "Find distinct anatomical locations with names containing 'system' that are associated with proteins in the cellular component GO:0034677 or with the name 'nuclear chromosome, telomeric region'.",
+    "2": "Find distinct anatomical locations whose name includes 'system' and are associated with proteins in the cellular component GO:0034677 or have the name 'nuclear chromosome, telomeric region'.",
+    "3": "What are the distinct anatomical locations whose name include 'system' associated with proteins in cellular component with identifier 'GO:0034677' or with name 'nuclear chromosome, telomeric region'?",
+    "4": "Find distinct anatomical locations with names containing 'system' that are associated with proteins in the cellular component GO:0034677 or have the name 'nuclear chromosome, telomeric region'."
+  },
+  "1|||4|||:|||:|||e|||n|||t|||i|||t|||y|||_|||s|||h|||i|||f|||t|||:|||:|||W|||h|||i|||c|||h||| |||b|||i|||o|||l|||o|||g|||i|||c|||a|||l||| |||p|||r|||o|||c|||e|||s|||s||| |||h|||a|||s||| |||t|||h|||e||| |||f|||e|||w|||e|||s|||t||| |||p|||a|||r|||t|||i|||c|||i|||p|||a|||t|||i|||n|||g||| |||g|||e|||n|||e|||t|||i|||c||| |||f|||a|||c|||t|||o|||r|||s|||,||| |||b|||r|||e|||a|||k|||i|||n|||g||| |||t|||i|||e|||s||| |||a|||l|||p|||h|||a|||b|||e|||t|||i|||c|||a|||l|||l|||y||| |||b|||y||| |||b|||i|||o|||l|||o|||g|||i|||c|||a|||l||| |||p|||r|||o|||c|||e|||s|||s||| |||n|||a|||m|||e|||?": {
+    "0": "Which biological process has the fewest participating genetic factors, breaking ties alphabetically by biological process name?",
+    "1": "Which biological processes have the least number of genes participating, tied alphabetically?",
+    "2": "Which biological processes have the least number of genes participating, tied alphabetically?",
+    "3": "Which biological processes have the least number of genes participating, tied alphabetically?",
+    "4": "Which biological processes have the least number of genes participating, tied alphabetically?"
+  },
+  "1|||4|||:|||:|||r|||e|||l|||a|||t|||i|||o|||n|||_|||s|||h|||i|||f|||t|||:|||:|||W|||h|||i|||c|||h||| |||b|||i|||o|||l|||o|||g|||i|||c|||a|||l||| |||p|||r|||o|||c|||e|||s|||s||| |||h|||a|||s||| |||t|||h|||e||| |||f|||e|||w|||e|||s|||t||| |||p|||a|||r|||t|||i|||c|||i|||p|||a|||t|||i|||n|||g||| |||g|||e|||n|||e|||s|||,||| |||b|||r|||e|||a|||k|||i|||n|||g||| |||t|||i|||e|||s||| |||a|||l|||p|||h|||a|||b|||e|||t|||i|||c|||a|||l|||l|||y||| |||b|||y||| |||b|||i|||o|||l|||o|||g|||i|||c|||a|||l||| |||p|||r|||o|||c|||e|||s|||s||| |||n|||a|||m|||e|||?": {
+    "0": "Which biological process has the fewest participating genes, breaking ties alphabetically by biological process name?",
+    "1": "Which biological processes have the least number of genes participating, tied alphabetically?",
+    "2": "Which biological processes have the least number of genes participating, tied alphabetically?",
+    "3": "Which biological processes have the least number of genes participating, tied alphabetically?",
+    "4": "Which biological processes have the least number of genes participating, tied alphabetically?"
+  },
+  "1|||4|||:|||:|||e|||n|||t|||i|||t|||y|||_|||r|||e|||l|||a|||t|||i|||o|||n|||_|||s|||h|||i|||f|||t|||:|||:|||W|||h|||i|||c|||h||| |||b|||i|||o|||l|||o|||g|||i|||c|||a|||l||| |||p|||r|||o|||c|||e|||s|||s||| |||h|||a|||s||| |||t|||h|||e||| |||f|||e|||w|||e|||s|||t||| |||p|||a|||r|||t|||i|||c|||i|||p|||a|||t|||i|||n|||g||| |||g|||e|||n|||e|||t|||i|||c||| |||f|||a|||c|||t|||o|||r|||s|||,||| |||b|||r|||e|||a|||k|||i|||n|||g||| |||t|||i|||e|||s||| |||a|||l|||p|||h|||a|||b|||e|||t|||i|||c|||a|||l|||l|||y||| |||b|||y||| |||b|||i|||o|||l|||o|||g|||i|||c|||a|||l||| |||p|||r|||o|||c|||e|||s|||s||| |||n|||a|||m|||e|||?": {
+    "0": "Which biological process has the fewest participating genetic factors, breaking ties alphabetically by biological process name?",
+    "1": "Which biological processes have the least number of genes participating, tied alphabetically?",
+    "2": "Which biological processes have the least number of genes participating, tied alphabetically?",
+    "3": "Which biological processes have the least number of genes participating, tied alphabetically?",
+    "4": "Which biological processes have the least number of genes participating, tied alphabetically?"
+  },
+  "1|||4|||:|||:|||h|||a|||r|||d|||_|||s|||h|||i|||f|||t|||:|||:|||W|||h|||i|||c|||h||| |||b|||i|||o|||l|||o|||g|||i|||c|||a|||l||| |||m|||e|||c|||h|||a|||n|||i|||s|||m||| |||h|||a|||s||| |||t|||h|||e||| |||f|||e|||w|||e|||s|||t||| |||p|||a|||r|||t|||i|||c|||i|||p|||a|||t|||i|||n|||g||| |||p|||r|||o|||t|||e|||i|||n|||s|||,||| |||b|||r|||e|||a|||k|||i|||n|||g||| |||t|||i|||e|||s||| |||a|||l|||p|||h|||a|||b|||e|||t|||i|||c|||a|||l|||l|||y||| |||b|||y||| |||b|||i|||o|||l|||o|||g|||i|||c|||a|||l||| |||m|||e|||c|||h|||a|||n|||i|||s|||m||| |||n|||a|||m|||e|||?": {
+    "0": "Which biological mechanism has the fewest participating proteins, breaking ties alphabetically by biological mechanism name?",
+    "1": "Which biological processes have the least number of participating genes, breaking ties alphabetically?",
+    "2": "Which biological processes have the least number of participating proteins, breaking ties alphabetically?",
+    "3": "Which biological mechanism has the fewest participating proteins, breaking ties alphabetically by biological mechanism name?",
+    "4": "Which biological mechanism has the fewest participating proteins, breaking ties alphabetically by biological mechanism name?"
+  },
+  "1|||5|||:|||:|||e|||n|||t|||i|||t|||y|||_|||s|||h|||i|||f|||t|||:|||:|||W|||h|||i|||c|||h||| |||p|||h|||a|||r|||m|||a|||c|||o|||l|||o|||g|||i|||c||| |||c|||l|||a|||s|||s||| |||h|||a|||s||| |||t|||h|||e||| |||m|||i|||n|||i|||m|||u|||m||| |||n|||u|||m|||b|||e|||r||| |||o|||f||| |||d|||r|||u|||g|||s||| |||(|||b|||r|||e|||a|||k|||i|||n|||g||| |||t|||i|||e|||s||| |||a|||l|||p|||h|||a|||b|||e|||t|||i|||c|||a|||l|||l|||y||| |||a|||c|||c|||o|||r|||d|||i|||n|||g||| |||t|||o||| |||p|||h|||a|||r|||m|||a|||c|||o|||l|||o|||g|||i|||c||| |||c|||l|||a|||s|||s||| |||n|||a|||m|||e|||)|||,||| |||a|||n|||d||| |||w|||h|||a|||t||| |||i|||s||| |||t|||h|||e||| |||c|||o|||u|||n|||t|||?": {
+    "0": "Which pharmacologic class has the minimum number of drugs (breaking ties alphabetically according to pharmacologic class name), and what is the count?",
+    "1": "Find the pharmacologic class with the fewest number of drugs, breaking ties by alphabetical order of the class name.",
+    "2": "Find the pharmacologic class with the fewest number of drugs, breaking ties by alphabetical order of the class name.",
+    "3": "Find the pharmacologic class with the fewest number of drugs, breaking ties by alphabetical order of the class name.",
+    "4": "Find the pharmacologic class with the least number of drugs, sorted alphabetically by its name."
+  },
+  "1|||5|||:|||:|||r|||e|||l|||a|||t|||i|||o|||n|||_|||s|||h|||i|||f|||t|||:|||:|||W|||h|||i|||c|||h||| |||p|||h|||a|||r|||m|||a|||c|||o|||l|||o|||g|||i|||c||| |||c|||l|||a|||s|||s||| |||h|||a|||s||| |||t|||h|||e||| |||m|||i|||n|||i|||m|||u|||m||| |||n|||u|||m|||b|||e|||r||| |||o|||f||| |||c|||o|||m|||p|||o|||u|||n|||d|||s||| |||(|||b|||r|||e|||a|||k|||i|||n|||g||| |||t|||i|||e|||s||| |||a|||l|||p|||h|||a|||b|||e|||t|||i|||c|||a|||l|||l|||y||| |||a|||c|||c|||o|||r|||d|||i|||n|||g||| |||t|||o||| |||p|||h|||a|||r|||m|||a|||c|||o|||l|||o|||g|||i|||c||| |||c|||l|||a|||s|||s||| |||n|||a|||m|||e|||)|||,||| |||a|||n|||d||| |||w|||h|||a|||t||| |||i|||s||| |||t|||h|||e||| |||c|||o|||u|||n|||t|||?": {
+    "0": "Which pharmacologic class has the minimum number of compounds (breaking ties alphabetically according to pharmacologic class name), and what is the count?",
+    "1": "Find the pharmacologic class with the fewest compounds, breaking ties by alphabetical order of the class name.",
+    "2": "Find the pharmacologic class with the fewest compounds, breaking ties by alphabetical order of the class name.",
+    "3": "Find the pharmacologic class with the fewest compounds, breaking ties by alphabetical order of the class name.",
+    "4": "Find the pharmacologic class with the fewest compounds, breaking ties by alphabetical order of the class name."
+  },
+  "1|||5|||:|||:|||e|||n|||t|||i|||t|||y|||_|||r|||e|||l|||a|||t|||i|||o|||n|||_|||s|||h|||i|||f|||t|||:|||:|||W|||h|||i|||c|||h||| |||p|||h|||a|||r|||m|||a|||c|||o|||l|||o|||g|||i|||c||| |||c|||l|||a|||s|||s||| |||h|||a|||s||| |||t|||h|||e||| |||m|||i|||n|||i|||m|||u|||m||| |||n|||u|||m|||b|||e|||r||| |||o|||f||| |||d|||r|||u|||g|||s||| |||(|||b|||r|||e|||a|||k|||i|||n|||g||| |||t|||i|||e|||s||| |||a|||l|||p|||h|||a|||b|||e|||t|||i|||c|||a|||l|||l|||y||| |||a|||c|||c|||o|||r|||d|||i|||n|||g||| |||t|||o||| |||p|||h|||a|||r|||m|||a|||c|||o|||l|||o|||g|||i|||c||| |||c|||l|||a|||s|||s||| |||n|||a|||m|||e|||)|||,||| |||a|||n|||d||| |||w|||h|||a|||t||| |||i|||s||| |||t|||h|||e||| |||c|||o|||u|||n|||t|||?": {
+    "0": "Which pharmacologic class has the minimum number of drugs (breaking ties alphabetically according to pharmacologic class name), and what is the count?",
+    "1": "Find the pharmacologic class with the fewest number of drugs, breaking ties by alphabetical order of the class name.",
+    "2": "Find the pharmacologic class with the fewest number of drugs, breaking ties by alphabetical order of the class name.",
+    "3": "Find the pharmacologic class with the fewest number of drugs, breaking ties by alphabetical order of the class name.",
+    "4": "Find the pharmacologic class with the least number of drugs, sorted alphabetically by its name."
+  },
+  "1|||5|||:|||:|||h|||a|||r|||d|||_|||s|||h|||i|||f|||t|||:|||:|||W|||h|||i|||c|||h||| |||p|||h|||a|||r|||m|||a|||c|||o|||l|||o|||g|||i|||c||| |||c|||l|||a|||s|||s||| |||h|||a|||s||| |||t|||h|||e||| |||m|||i|||n|||i|||m|||u|||m||| |||n|||u|||m|||b|||e|||r||| |||o|||f||| |||m|||e|||d|||i|||c|||a|||t|||i|||o|||n|||s||| |||(|||b|||r|||e|||a|||k|||i|||n|||g||| |||t|||i|||e|||s||| |||a|||l|||p|||h|||a|||b|||e|||t|||i|||c|||a|||l|||l|||y||| |||a|||c|||c|||o|||r|||d|||i|||n|||g||| |||t|||o||| |||p|||h|||a|||r|||m|||a|||c|||o|||l|||o|||g|||i|||c||| |||c|||l|||a|||s|||s||| |||n|||a|||m|||e|||)|||,||| |||a|||n|||d||| |||w|||h|||a|||t||| |||i|||s||| |||t|||h|||e||| |||c|||o|||u|||n|||t|||?": {
+    "0": "Which pharmacologic class has the minimum number of medications (breaking ties alphabetically according to pharmacologic class name), and what is the count?",
+    "1": "Find the pharmacologic class with the least number of medications, sorted alphabetically by its name.",
+    "2": "Find the pharmacologic class with the fewest number of medications, breaking ties by alphabetical order of the class name.",
+    "3": "Find the pharmacologic class with the least number of medications, sorted alphabetically by its name.",
+    "4": "Find the pharmacologic class with the least number of medications, sorted alphabetically by its name."
+  },
+  "1|||6|||:|||:|||e|||n|||t|||i|||t|||y|||_|||s|||h|||i|||f|||t|||:|||:|||L|||i|||s|||t||| |||c|||l|||i|||n|||i|||c|||a|||l||| |||s|||y|||m|||p|||t|||o|||m|||s||| |||w|||h|||o|||s|||e||| |||n|||a|||m|||e||| |||c|||o|||n|||t|||a|||i|||n|||s||| |||'|||P|||a|||i|||n|||'|||.||| |||W|||h|||i|||c|||h||| |||a|||r|||e||| |||a|||s|||s|||o|||c|||i|||a|||t|||e|||d||| |||w|||i|||t|||h||| |||i|||l|||l|||n|||e|||s|||s|||e|||s||| |||t|||h|||a|||t||| |||l|||o|||c|||a|||l|||i|||z|||e||| |||t|||o||| |||'|||l|||i|||v|||e|||r|||'|||?": {
+    "0": "List clinical symptoms whose name contains 'Pain'. Which are associated with illnesses that localize to 'liver'?",
+    "1": "List clinical symptoms whose name includes 'Pain'. Which are associated with diseases localized to 'liver'?",
+    "2": "List clinical symptoms whose name contains 'Pain'. Which are associated with illnesses that localize to 'liver'?",
+    "3": "List clinical symptoms whose name includes 'Pain'. Which are associated with illnesses localized to 'liver'?",
+    "4": "List clinical symptoms whose name includes 'Pain'. Which are associated with illnesses localized to 'liver'?"
+  },
+  "1|||6|||:|||:|||r|||e|||l|||a|||t|||i|||o|||n|||_|||s|||h|||i|||f|||t|||:|||:|||L|||i|||s|||t||| |||s|||y|||m|||p|||t|||o|||m|||s||| |||w|||h|||o|||s|||e||| |||n|||a|||m|||e||| |||c|||o|||n|||t|||a|||i|||n|||s||| |||'|||P|||a|||i|||n|||'|||.||| |||W|||h|||i|||c|||h||| |||a|||r|||e||| |||a|||s|||s|||o|||c|||i|||a|||t|||e|||d||| |||w|||i|||t|||h||| |||d|||i|||s|||e|||a|||s|||e|||s||| |||t|||h|||a|||t||| |||l|||o|||c|||a|||l|||i|||z|||e||| |||t|||o||| |||'|||l|||i|||v|||e|||r|||'|||?": {
+    "0": "List symptoms whose name contains 'Pain'. Which are associated with diseases that localize to 'liver'?",
+    "1": "List symptoms whose name contains 'Pain'. Which are associated with diseases that localize to 'liver'?",
+    "2": "List symptoms whose name contains 'Pain'. Which are associated with diseases that localize to 'liver'?",
+    "3": "List symptoms whose name contains 'Pain'. Which are associated with diseases that localize to 'liver'?",
+    "4": "List symptoms whose name contains 'Pain'. Which are associated with diseases that localize to 'liver'?"
+  },
+  "1|||6|||:|||:|||e|||n|||t|||i|||t|||y|||_|||r|||e|||l|||a|||t|||i|||o|||n|||_|||s|||h|||i|||f|||t|||:|||:|||L|||i|||s|||t||| |||c|||l|||i|||n|||i|||c|||a|||l||| |||s|||y|||m|||p|||t|||o|||m|||s||| |||w|||h|||o|||s|||e||| |||n|||a|||m|||e||| |||c|||o|||n|||t|||a|||i|||n|||s||| |||'|||P|||a|||i|||n|||'|||.||| |||W|||h|||i|||c|||h||| |||a|||r|||e||| |||a|||s|||s|||o|||c|||i|||a|||t|||e|||d||| |||w|||i|||t|||h||| |||i|||l|||l|||n|||e|||s|||s|||e|||s||| |||t|||h|||a|||t||| |||l|||o|||c|||a|||l|||i|||z|||e||| |||t|||o||| |||'|||l|||i|||v|||e|||r|||'|||?": {
+    "0": "List clinical symptoms whose name contains 'Pain'. Which are associated with illnesses that localize to 'liver'?",
+    "1": "List clinical symptoms whose name includes 'Pain'. Which are associated with diseases localized to 'liver'?",
+    "2": "List clinical symptoms whose name contains 'Pain'. Which are associated with illnesses that localize to 'liver'?",
+    "3": "List clinical symptoms whose name includes 'Pain'. Which are associated with illnesses localized to 'liver'?",
+    "4": "List clinical symptoms whose name includes 'Pain'. Which are associated with illnesses localized to 'liver'?"
+  },
+  "1|||6|||:|||:|||h|||a|||r|||d|||_|||s|||h|||i|||f|||t|||:|||:|||L|||i|||s|||t||| |||s|||y|||m|||p|||t|||o|||m|||s||| |||w|||h|||o|||s|||e||| |||n|||a|||m|||e||| |||c|||o|||n|||t|||a|||i|||n|||s||| |||'|||P|||a|||i|||n|||'|||.||| |||W|||h|||i|||c|||h||| |||a|||r|||e||| |||a|||s|||s|||o|||c|||i|||a|||t|||e|||d||| |||w|||i|||t|||h||| |||m|||e|||d|||i|||c|||a|||l||| |||c|||o|||n|||d|||i|||t|||i|||o|||n|||s||| |||t|||h|||a|||t||| |||l|||o|||c|||a|||l|||i|||z|||e||| |||t|||o||| |||'|||l|||i|||v|||e|||r|||'|||?": {
+    "0": "List symptoms whose name contains 'Pain'. Which are associated with medical conditions that localize to 'liver'?",
+    "1": "List symptoms whose name contains 'Pain'. Which are associated with medical conditions that localize to 'liver'?",
+    "2": "List symptoms whose name contains 'Pain'. Which are associated with medical conditions that localize to 'liver'?",
+    "3": "List symptoms whose name contains 'Pain'. Which are associated with medical conditions that localize to 'liver'?",
+    "4": "List symptoms whose name contains 'Pain'. Which are associated with medical conditions that localize to 'liver'?"
+  },
+  "1|||7|||:|||:|||e|||n|||t|||i|||t|||y|||_|||s|||h|||i|||f|||t|||:|||:|||L|||i|||s|||t||| |||g|||e|||n|||e|||t|||i|||c||| |||f|||a|||c|||t|||o|||r|||s||| |||o|||n||| |||c|||h|||r|||o|||m|||o|||s|||o|||m|||e||| |||'|||Y|||'||| |||t|||h|||a|||t||| |||a|||r|||e||| |||c|||o|||-|||e|||x|||p|||r|||e|||s|||s|||e|||d||| |||i|||n||| |||t|||h|||e||| |||l|||u|||n|||g||| |||a|||n|||d||| |||s|||e|||n|||s|||e||| |||o|||r|||g|||a|||n|||.": {
+    "0": "List genetic factors on chromosome 'Y' that are co-expressed in the lung and sense organ.",
+    "1": "List genes on chromosome 'Y' that are co-expressed in the lung and sensory organs.",
+    "2": "List genes on chromosome 'Y' that are expressed in both the lung and sensory organs.",
+    "3": "List genes on chromosome 'Y' that are expressed in both lungs and sensory organs.",
+    "4": "List genes on chromosome 'Y' that are co-expressed in the lung and sensory organs."
+  },
+  "1|||7|||:|||:|||r|||e|||l|||a|||t|||i|||o|||n|||_|||s|||h|||i|||f|||t|||:|||:|||L|||i|||s|||t||| |||g|||e|||n|||e|||s||| |||o|||n||| |||c|||h|||r|||o|||m|||o|||s|||o|||m|||e||| |||'|||Y|||'||| |||t|||h|||a|||t||| |||a|||r|||e||| |||c|||o|||-|||e|||x|||p|||r|||e|||s|||s|||e|||d||| |||i|||n||| |||t|||h|||e||| |||l|||u|||n|||g||| |||a|||n|||d||| |||s|||e|||n|||s|||e||| |||o|||r|||g|||a|||n|||.": {
+    "0": "List genes on chromosome 'Y' that are co-expressed in the lung and sense organ.",
+    "1": "List genes located on chromosome 'Y' that are co-expressed in the lung and sensory organs.",
+    "2": "List genes located on chromosome 'Y' that are co-expressed in the lung and sensory organs.",
+    "3": "List genes located on chromosome 'Y' that are co-expressed in the lung and sensory organs.",
+    "4": "List genes located on chromosome 'Y' that are co-expressed in both the lung and sensory organs."
+  },
+  "1|||7|||:|||:|||e|||n|||t|||i|||t|||y|||_|||r|||e|||l|||a|||t|||i|||o|||n|||_|||s|||h|||i|||f|||t|||:|||:|||L|||i|||s|||t||| |||g|||e|||n|||e|||t|||i|||c||| |||f|||a|||c|||t|||o|||r|||s||| |||o|||n||| |||c|||h|||r|||o|||m|||o|||s|||o|||m|||e||| |||'|||Y|||'||| |||t|||h|||a|||t||| |||a|||r|||e||| |||c|||o|||-|||e|||x|||p|||r|||e|||s|||s|||e|||d||| |||i|||n||| |||t|||h|||e||| |||l|||u|||n|||g||| |||a|||n|||d||| |||s|||e|||n|||s|||e||| |||o|||r|||g|||a|||n|||.": {
+    "0": "List genetic factors on chromosome 'Y' that are co-expressed in the lung and sense organ.",
+    "1": "List genes on chromosome 'Y' that are co-expressed in the lung and sensory organs.",
+    "2": "List genes on chromosome 'Y' that are expressed in both the lung and sensory organs.",
+    "3": "List genes on chromosome 'Y' that are expressed in both lungs and sensory organs.",
+    "4": "List genes on chromosome 'Y' that are co-expressed in the lung and sensory organs."
+  },
+  "1|||7|||:|||:|||h|||a|||r|||d|||_|||s|||h|||i|||f|||t|||:|||:|||L|||i|||s|||t||| |||p|||r|||o|||t|||e|||i|||n|||s||| |||o|||n||| |||c|||h|||r|||o|||m|||o|||s|||o|||m|||e||| |||'|||Y|||'||| |||t|||h|||a|||t||| |||a|||r|||e||| |||c|||o|||-|||e|||x|||p|||r|||e|||s|||s|||e|||d||| |||i|||n||| |||t|||h|||e||| |||l|||u|||n|||g||| |||a|||n|||d||| |||s|||e|||n|||s|||e||| |||o|||r|||g|||a|||n|||.": {
+    "0": "List proteins on chromosome 'Y' that are co-expressed in the lung and sense organ.",
+    "1": "List genes located on chromosome 'Y' that are co-expressed in the lung and sensory organs.",
+    "2": "List genes located on chromosome 'Y' that are co-expressed in the lung and sensory organs.",
+    "3": "List genes located on chromosome 'Y' that are co-expressed in the lung and sensory organs.",
+    "4": "List proteins located on chromosome 'Y' that are co-expressed in the lung and sensory organs."
+  },
+  "2|||2|||:|||:|||e|||n|||t|||i|||t|||y|||_|||s|||h|||i|||f|||t|||:|||:|||L|||o|||o|||k||| |||f|||o|||r||| |||c|||o|||m|||p|||u|||n|||d|||s||| |||w|||h|||o|||s|||e||| |||n|||a|||m|||e||| |||e|||n|||d|||s||| |||w|||i|||t|||h||| |||'|||n|||i|||n|||'||| |||a|||n|||d||| |||w|||h|||i|||c|||h||| |||d|||o|||w|||n|||r|||e|||g|||u|||l|||a|||t|||e||| |||t|||h|||e||| |||g|||e|||n|||e|||t|||i|||c||| |||f|||a|||c|||t|||o|||r|||s||| |||p|||a|||r|||t|||i|||c|||i|||p|||a|||t|||i|||n|||g||| |||t|||h|||e||| |||b|||i|||o|||l|||o|||g|||i|||c|||a|||l||| |||p|||r|||o|||c|||e|||s|||s||| |||'|||e|||n|||d|||o|||c|||y|||t|||o|||s|||i|||s|||'||| |||o|||r||| |||'|||v|||i|||r|||a|||l||| |||p|||r|||o|||c|||e|||s|||s|||'|||.": {
+    "0": "Look for compunds whose name ends with 'nin' and which downregulate the genetic factors participating the biological process 'endocytosis' or 'viral process'.",
+    "1": "Look for compunds whose name ends with 'nin' and which downregulate the genetic factors participating the biological process 'endocytosis' or 'viral process'.",
+    "2": "Look for compunds whose name ends with 'nin' and which downregulate the genetic factors participating the biological process 'endocytosis' or 'viral process'.",
+    "3": "Look for compunds whose name ends with 'nin' and which downregulate the genetic factors participating the biological process 'endocytosis' or 'viral process'.",
+    "4": "Look for compunds whose name ends with 'nin' and which downregulate the genetic factors participating the biological process 'endocytosis' or 'viral process'."
+  },
+  "2|||2|||:|||:|||r|||e|||l|||a|||t|||i|||o|||n|||_|||s|||h|||i|||f|||t|||:|||:|||L|||o|||o|||k||| |||f|||o|||r||| |||c|||o|||m|||p|||u|||n|||d|||s||| |||w|||h|||o|||s|||e||| |||n|||a|||m|||e||| |||e|||n|||d|||s||| |||w|||i|||t|||h||| |||'|||n|||i|||n|||'||| |||a|||n|||d||| |||w|||h|||i|||c|||h||| |||d|||o|||w|||n|||r|||e|||g|||u|||l|||a|||t|||e||| |||t|||h|||e||| |||g|||e|||n|||e|||s||| |||p|||a|||r|||t|||i|||c|||i|||p|||a|||t|||i|||n|||g||| |||t|||h|||e||| |||b|||i|||o|||l|||o|||g|||i|||c|||a|||l||| |||p|||r|||o|||c|||e|||s|||s||| |||'|||e|||n|||d|||o|||c|||y|||t|||o|||s|||i|||s|||'||| |||o|||r||| |||'|||v|||i|||r|||a|||l||| |||p|||r|||o|||c|||e|||s|||s|||'|||.": {
+    "0": "Look for compunds whose name ends with 'nin' and which downregulate the genes participating the biological process 'endocytosis' or 'viral process'.",
+    "1": "Find compounds whose name ends with 'nin' and which downregulate genes involved in the biological processes 'endocytosis' or 'viral process'.",
+    "2": "Find compounds whose name ends with 'nin' and which downregulate genes involved in the biological processes 'endocytosis' or 'viral process'.",
+    "3": "Look for compunds whose name ends with 'nin' and which downregulate the genes participating the biological process 'endocytosis' or 'viral process'.",
+    "4": "Find compounds whose name ends with 'nin' and which downregulate genes involved in the biological processes 'endocytosis' or 'viral process'."
+  },
+  "2|||2|||:|||:|||e|||n|||t|||i|||t|||y|||_|||r|||e|||l|||a|||t|||i|||o|||n|||_|||s|||h|||i|||f|||t|||:|||:|||L|||o|||o|||k||| |||f|||o|||r||| |||c|||o|||m|||p|||u|||n|||d|||s||| |||w|||h|||o|||s|||e||| |||n|||a|||m|||e||| |||e|||n|||d|||s||| |||w|||i|||t|||h||| |||'|||n|||i|||n|||'||| |||a|||n|||d||| |||w|||h|||i|||c|||h||| |||d|||o|||w|||n|||r|||e|||g|||u|||l|||a|||t|||e||| |||t|||h|||e||| |||g|||e|||n|||e|||t|||i|||c||| |||f|||a|||c|||t|||o|||r|||s||| |||p|||a|||r|||t|||i|||c|||i|||p|||a|||t|||i|||n|||g||| |||t|||h|||e||| |||b|||i|||o|||l|||o|||g|||i|||c|||a|||l||| |||p|||r|||o|||c|||e|||s|||s||| |||'|||e|||n|||d|||o|||c|||y|||t|||o|||s|||i|||s|||'||| |||o|||r||| |||'|||v|||i|||r|||a|||l||| |||p|||r|||o|||c|||e|||s|||s|||'|||.": {
+    "0": "Look for compunds whose name ends with 'nin' and which downregulate the genetic factors participating the biological process 'endocytosis' or 'viral process'.",
+    "1": "Look for compunds whose name ends with 'nin' and which downregulate the genetic factors participating the biological process 'endocytosis' or 'viral process'.",
+    "2": "Look for compunds whose name ends with 'nin' and which downregulate the genetic factors participating the biological process 'endocytosis' or 'viral process'.",
+    "3": "Look for compunds whose name ends with 'nin' and which downregulate the genetic factors participating the biological process 'endocytosis' or 'viral process'.",
+    "4": "Look for compunds whose name ends with 'nin' and which downregulate the genetic factors participating the biological process 'endocytosis' or 'viral process'."
+  },
+  "2|||2|||:|||:|||h|||a|||r|||d|||_|||s|||h|||i|||f|||t|||:|||:|||L|||o|||o|||k||| |||f|||o|||r||| |||c|||o|||m|||p|||u|||n|||d|||s||| |||w|||h|||o|||s|||e||| |||n|||a|||m|||e||| |||e|||n|||d|||s||| |||w|||i|||t|||h||| |||'|||n|||i|||n|||'||| |||a|||n|||d||| |||w|||h|||i|||c|||h||| |||d|||o|||w|||n|||r|||e|||g|||u|||l|||a|||t|||e||| |||t|||h|||e||| |||p|||r|||o|||t|||e|||i|||n|||s||| |||p|||a|||r|||t|||i|||c|||i|||p|||a|||t|||i|||n|||g||| |||t|||h|||e||| |||b|||i|||o|||l|||o|||g|||i|||c|||a|||l||| |||m|||e|||c|||h|||a|||n|||i|||s|||m||| |||'|||e|||n|||d|||o|||c|||y|||t|||o|||s|||i|||s|||'||| |||o|||r||| |||'|||v|||i|||r|||a|||l||| |||p|||r|||o|||c|||e|||s|||s|||'|||.": {
+    "0": "Look for compunds whose name ends with 'nin' and which downregulate the proteins participating the biological mechanism 'endocytosis' or 'viral process'.",
+    "1": "Find compounds whose name ends with 'nin' and which downregulate proteins involved in the biological mechanisms 'endocytosis' or 'viral process'.",
+    "2": "Find compounds whose name ends with 'nin' and which downregulate proteins involved in the biological mechanisms 'endocytosis' or 'viral process'.",
+    "3": "Find compounds whose name ends with 'nin' and which downregulate proteins involved in the biological mechanisms 'endocytosis' or 'viral process'.",
+    "4": "Find compounds whose name ends with 'nin' and which downregulate proteins involved in the biological mechanisms of 'endocytosis' or 'viral process'."
+  },
+  "2|||3|||:|||:|||e|||n|||t|||i|||t|||y|||_|||s|||h|||i|||f|||t|||:|||:|||W|||h|||i|||c|||h||| |||i|||l|||l|||n|||e|||s|||s||| |||a|||s|||s|||o|||c|||i|||a|||t|||e|||d||| |||w|||i|||t|||h||| |||g|||e|||n|||e|||t|||i|||c||| |||f|||a|||c|||t|||o|||r|||s||| |||i|||s||| |||l|||i|||n|||k|||e|||d||| |||t|||o||| |||t|||h|||e||| |||h|||i|||g|||h|||e|||s|||t||| |||n|||u|||m|||b|||e|||r||| |||o|||f||| |||b|||i|||o|||l|||o|||g|||i|||c|||a|||l||| |||r|||o|||u|||t|||e|||s||| |||(|||b|||r|||e|||a|||k|||i|||n|||g||| |||t|||i|||e|||s||| |||a|||l|||p|||h|||a|||b|||e|||t|||i|||c|||a|||l|||l|||y||| |||a|||c|||c|||o|||r|||d|||i|||n|||g||| |||t|||o||| |||i|||l|||l|||n|||e|||s|||s||| |||n|||a|||m|||e|||)|||,||| |||a|||n|||d||| |||w|||h|||a|||t||| |||i|||s||| |||t|||h|||a|||t||| |||n|||u|||m|||b|||e|||r|||?": {
+    "0": "Which illness associated with genetic factors is linked to the highest number of biological routes (breaking ties alphabetically according to illness name), and what is that number?",
+    "1": "Which diseases associated with genetic factors have the most pathways, sorted alphabetically by disease name?",
+    "2": "Which illness associated with genetic factors is linked to the highest number of biological routes (breaking ties alphabetically according to illness name), and what is that number?",
+    "3": "Which diseases associated with genetic factors have the most pathways, sorted alphabetically by disease name?",
+    "4": "Which diseases associated with genetic factors have the most pathways (ties broken alphabetically by disease name)?"
+  },
+  "2|||3|||:|||:|||r|||e|||l|||a|||t|||i|||o|||n|||_|||s|||h|||i|||f|||t|||:|||:|||W|||h|||i|||c|||h||| |||d|||i|||s|||e|||a|||s|||e||| |||a|||s|||s|||o|||c|||i|||a|||t|||e|||d||| |||w|||i|||t|||h||| |||g|||e|||n|||e|||s||| |||i|||s||| |||l|||i|||n|||k|||e|||d||| |||t|||o||| |||t|||h|||e||| |||h|||i|||g|||h|||e|||s|||t||| |||n|||u|||m|||b|||e|||r||| |||o|||f||| |||p|||a|||t|||h|||w|||a|||y|||s||| |||(|||b|||r|||e|||a|||k|||i|||n|||g||| |||t|||i|||e|||s||| |||a|||l|||p|||h|||a|||b|||e|||t|||i|||c|||a|||l|||l|||y||| |||a|||c|||c|||o|||r|||d|||i|||n|||g||| |||t|||o||| |||d|||i|||s|||e|||a|||s|||e||| |||n|||a|||m|||e|||)|||,||| |||a|||n|||d||| |||w|||h|||a|||t||| |||i|||s||| |||t|||h|||a|||t||| |||n|||u|||m|||b|||e|||r|||?": {
+    "0": "Which disease associated with genes is linked to the highest number of pathways (breaking ties alphabetically according to disease name), and what is that number?",
+    "1": "Which diseases have the most pathways associated with them, sorted alphabetically by disease name?",
+    "2": "Which disease associated with genes is linked to the highest number of pathways (breaking ties alphabetically according to disease name), and what is that number?",
+    "3": "Which disease associated with genes is linked to the highest number of pathways (breaking ties alphabetically according to disease name), and what is that number?",
+    "4": "Which diseases have the most pathways associated with them, sorted alphabetically by disease name?"
+  },
+  "2|||3|||:|||:|||e|||n|||t|||i|||t|||y|||_|||r|||e|||l|||a|||t|||i|||o|||n|||_|||s|||h|||i|||f|||t|||:|||:|||W|||h|||i|||c|||h||| |||i|||l|||l|||n|||e|||s|||s||| |||a|||s|||s|||o|||c|||i|||a|||t|||e|||d||| |||w|||i|||t|||h||| |||g|||e|||n|||e|||t|||i|||c||| |||f|||a|||c|||t|||o|||r|||s||| |||i|||s||| |||l|||i|||n|||k|||e|||d||| |||t|||o||| |||t|||h|||e||| |||h|||i|||g|||h|||e|||s|||t||| |||n|||u|||m|||b|||e|||r||| |||o|||f||| |||b|||i|||o|||l|||o|||g|||i|||c|||a|||l||| |||r|||o|||u|||t|||e|||s||| |||(|||b|||r|||e|||a|||k|||i|||n|||g||| |||t|||i|||e|||s||| |||a|||l|||p|||h|||a|||b|||e|||t|||i|||c|||a|||l|||l|||y||| |||a|||c|||c|||o|||r|||d|||i|||n|||g||| |||t|||o||| |||i|||l|||l|||n|||e|||s|||s||| |||n|||a|||m|||e|||)|||,||| |||a|||n|||d||| |||w|||h|||a|||t||| |||i|||s||| |||t|||h|||a|||t||| |||n|||u|||m|||b|||e|||r|||?": {
+    "0": "Which illness associated with genetic factors is linked to the highest number of biological routes (breaking ties alphabetically according to illness name), and what is that number?",
+    "1": "Which diseases associated with genetic factors have the most pathways, sorted alphabetically by disease name?",
+    "2": "Which illness associated with genetic factors is linked to the highest number of biological routes (breaking ties alphabetically according to illness name), and what is that number?",
+    "3": "Which diseases associated with genetic factors have the most pathways, sorted alphabetically by disease name?",
+    "4": "Which diseases associated with genetic factors have the most pathways (ties broken alphabetically by disease name)?"
+  },
+  "2|||3|||:|||:|||h|||a|||r|||d|||_|||s|||h|||i|||f|||t|||:|||:|||W|||h|||i|||c|||h||| |||m|||e|||d|||i|||c|||a|||l||| |||c|||o|||n|||d|||i|||t|||i|||o|||n||| |||a|||s|||s|||o|||c|||i|||a|||t|||e|||d||| |||w|||i|||t|||h||| |||p|||r|||o|||t|||e|||i|||n|||s||| |||i|||s||| |||l|||i|||n|||k|||e|||d||| |||t|||o||| |||t|||h|||e||| |||h|||i|||g|||h|||e|||s|||t||| |||n|||u|||m|||b|||e|||r||| |||o|||f||| |||s|||i|||g|||n|||a|||l|||i|||n|||g||| |||c|||a|||s|||c|||a|||d|||e|||s||| |||(|||b|||r|||e|||a|||k|||i|||n|||g||| |||t|||i|||e|||s||| |||a|||l|||p|||h|||a|||b|||e|||t|||i|||c|||a|||l|||l|||y||| |||a|||c|||c|||o|||r|||d|||i|||n|||g||| |||t|||o||| |||m|||e|||d|||i|||c|||a|||l||| |||c|||o|||n|||d|||i|||t|||i|||o|||n||| |||n|||a|||m|||e|||)|||,||| |||a|||n|||d||| |||w|||h|||a|||t||| |||i|||s||| |||t|||h|||a|||t||| |||n|||u|||m|||b|||e|||r|||?": {
+    "0": "Which medical condition associated with proteins is linked to the highest number of signaling cascades (breaking ties alphabetically according to medical condition name), and what is that number?",
+    "1": "Which medical condition associated with proteins is linked to the highest number of signaling cascades (breaking ties alphabetically according to medical condition name), and what is that number?",
+    "2": "Which medical condition associated with proteins is linked to the highest number of signaling cascades (breaking ties alphabetically according to medical condition name), and what is that number?",
+    "3": "Which medical condition associated with proteins is linked to the highest number of signaling cascades (breaking ties alphabetically according to medical condition name), and what is that number?",
+    "4": "Which medical condition associated with proteins is linked to the highest number of signaling cascades (breaking ties alphabetically according to medical condition name), and what is that number?"
+  },
+  "3|||1|||:|||:|||e|||n|||t|||i|||t|||y|||_|||s|||h|||i|||f|||t|||:|||:|||L|||i|||s|||t||| |||i|||l|||l|||n|||e|||s|||s|||e|||s||| |||t|||h|||a|||t||| |||r|||e|||s|||e|||m|||b|||l|||e||| |||t|||h|||e||| |||i|||l|||l|||n|||e|||s|||s||| |||w|||h|||o|||s|||e||| |||i|||d|||e|||n|||t|||i|||f|||i|||e|||r||| |||i|||s||| |||'|||D|||O|||I|||D|||:|||1|||7|||9|||3|||'|||.||| |||S|||k|||i|||p||| |||f|||i|||r|||s|||t||| |||t|||w|||o||| |||i|||l|||l|||n|||e|||s|||s|||e|||s|||.": {
+    "0": "List illnesses that resemble the illness whose identifier is 'DOID:1793'. Skip first two illnesses.",
+    "1": "List illnesses that resemble the illness whose identifier is 'DOID:1793'. Skip first two illnesses.",
+    "2": "List illnesses that resemble the illness whose identifier is 'DOID:1793'. Skip first two illnesses.",
+    "3": "List illnesses that resemble the illness whose identifier is 'DOID:1793'. Skip first two illnesses.",
+    "4": "List illnesses that resemble the illness whose identifier is 'DOID:1793'. Skip first two illnesses."
+  },
+  "3|||1|||:|||:|||r|||e|||l|||a|||t|||i|||o|||n|||_|||s|||h|||i|||f|||t|||:|||:|||L|||i|||s|||t||| |||d|||i|||s|||e|||a|||s|||e|||s||| |||t|||h|||a|||t||| |||r|||e|||s|||e|||m|||b|||l|||e||| |||t|||h|||e||| |||d|||i|||s|||e|||a|||s|||e||| |||w|||h|||o|||s|||e||| |||i|||d|||e|||n|||t|||i|||f|||i|||e|||r||| |||i|||s||| |||'|||D|||O|||I|||D|||:|||1|||7|||9|||3|||'|||.||| |||S|||k|||i|||p||| |||f|||i|||r|||s|||t||| |||t|||w|||o||| |||d|||i|||s|||e|||a|||s|||e|||s|||.": {
+    "0": "List diseases that resemble the disease whose identifier is 'DOID:1793'. Skip first two diseases.",
+    "1": "List diseases that resemble the disease whose identifier is 'DOID:1793'. Skip first two diseases.",
+    "2": "List diseases that resemble the disease whose identifier is 'DOID:1793'. Skip first two diseases.",
+    "3": "List diseases that resemble the disease whose identifier is 'DOID:1793'. Skip first two diseases.",
+    "4": "List diseases that resemble the disease whose identifier is 'DOID:1793'. Skip first two diseases."
+  },
+  "3|||1|||:|||:|||e|||n|||t|||i|||t|||y|||_|||r|||e|||l|||a|||t|||i|||o|||n|||_|||s|||h|||i|||f|||t|||:|||:|||L|||i|||s|||t||| |||i|||l|||l|||n|||e|||s|||s|||e|||s||| |||t|||h|||a|||t||| |||r|||e|||s|||e|||m|||b|||l|||e||| |||t|||h|||e||| |||i|||l|||l|||n|||e|||s|||s||| |||w|||h|||o|||s|||e||| |||i|||d|||e|||n|||t|||i|||f|||i|||e|||r||| |||i|||s||| |||'|||D|||O|||I|||D|||:|||1|||7|||9|||3|||'|||.||| |||S|||k|||i|||p||| |||f|||i|||r|||s|||t||| |||t|||w|||o||| |||i|||l|||l|||n|||e|||s|||s|||e|||s|||.": {
+    "0": "List illnesses that resemble the illness whose identifier is 'DOID:1793'. Skip first two illnesses.",
+    "1": "List illnesses that resemble the illness whose identifier is 'DOID:1793'. Skip first two illnesses.",
+    "2": "List illnesses that resemble the illness whose identifier is 'DOID:1793'. Skip first two illnesses.",
+    "3": "List illnesses that resemble the illness whose identifier is 'DOID:1793'. Skip first two illnesses.",
+    "4": "List illnesses that resemble the illness whose identifier is 'DOID:1793'. Skip first two illnesses."
+  },
+  "3|||1|||:|||:|||h|||a|||r|||d|||_|||s|||h|||i|||f|||t|||:|||:|||L|||i|||s|||t||| |||m|||e|||d|||i|||c|||a|||l||| |||c|||o|||n|||d|||i|||t|||i|||o|||n|||s||| |||t|||h|||a|||t||| |||r|||e|||s|||e|||m|||b|||l|||e||| |||t|||h|||e||| |||m|||e|||d|||i|||c|||a|||l||| |||c|||o|||n|||d|||i|||t|||i|||o|||n||| |||w|||h|||o|||s|||e||| |||i|||d|||e|||n|||t|||i|||f|||i|||e|||r||| |||i|||s||| |||'|||D|||O|||I|||D|||:|||1|||7|||9|||3|||'|||.||| |||S|||k|||i|||p||| |||f|||i|||r|||s|||t||| |||t|||w|||o||| |||m|||e|||d|||i|||c|||a|||l||| |||c|||o|||n|||d|||i|||t|||i|||o|||n|||s|||.": {
+    "0": "List medical conditions that resemble the medical condition whose identifier is 'DOID:1793'. Skip first two medical conditions.",
+    "1": "List medical conditions that resemble the medical condition whose identifier is 'DOID:1793'. Skip first two medical conditions.",
+    "2": "List medical conditions that resemble the medical condition whose identifier is 'DOID:1793'. Skip first two medical conditions.",
+    "3": "List medical conditions that resemble the medical condition whose identifier is 'DOID:1793'. Skip first two medical conditions.",
+    "4": "List medical conditions that resemble the medical condition whose identifier is 'DOID:1793'. Skip first two medical conditions."
+  },
+  "3|||4|||:|||:|||e|||n|||t|||i|||t|||y|||_|||s|||h|||i|||f|||t|||:|||:|||W|||h|||i|||c|||h||| |||g|||e|||n|||e|||t|||i|||c||| |||f|||a|||c|||t|||o|||r|||s||| |||d|||o||| |||n|||o|||t||| |||i|||n|||t|||e|||r|||a|||c|||t||| |||w|||i|||t|||h||| |||o|||t|||h|||e|||r||| |||g|||e|||n|||e|||t|||i|||c||| |||f|||a|||c|||t|||o|||r|||s||| |||o|||n||| |||c|||h|||r|||o|||m|||o|||s|||o|||m|||e||| |||'|||X|||'|||?||| |||R|||e|||t|||u|||r|||n||| |||t|||h|||e||| |||g|||e|||n|||e|||t|||i|||c||| |||f|||a|||c|||t|||o|||r||| |||n|||a|||m|||e|||.": {
+    "0": "Which genetic factors do not interact with other genetic factors on chromosome 'X'? Return the genetic factor name.",
+    "1": "Which genes do not interact with other genes on chromosome 'X'? Return the gene name.",
+    "2": "Which genes do not interact with other genes on chromosome 'X'? Return gene name.",
+    "3": "Which genes do not interact with other genes on chromosome 'X'?",
+    "4": "Which genes do not interact with other genes on chromosome 'X'?"
+  },
+  "3|||4|||:|||:|||r|||e|||l|||a|||t|||i|||o|||n|||_|||s|||h|||i|||f|||t|||:|||:|||W|||h|||i|||c|||h||| |||g|||e|||n|||e|||s||| |||d|||o||| |||n|||o|||t||| |||i|||n|||t|||e|||r|||a|||c|||t||| |||w|||i|||t|||h||| |||o|||t|||h|||e|||r||| |||g|||e|||n|||e|||s||| |||o|||n||| |||c|||h|||r|||o|||m|||o|||s|||o|||m|||e||| |||'|||X|||'|||?||| |||R|||e|||t|||u|||r|||n||| |||t|||h|||e||| |||g|||e|||n|||e||| |||n|||a|||m|||e|||.": {
+    "0": "Which genes do not interact with other genes on chromosome 'X'? Return the gene name.",
+    "1": "Which genes have no interactions with other genes on chromosome 'X'? Return the gene name.",
+    "2": "Which genes have no interactions with other genes on chromosome 'X'? Return the gene name.",
+    "3": "Which genes have no interactions with other genes on chromosome 'X'? Return the gene name.",
+    "4": "Which genes have no interactions with other genes on chromosome 'X'? Return the gene name."
+  },
+  "3|||4|||:|||:|||e|||n|||t|||i|||t|||y|||_|||r|||e|||l|||a|||t|||i|||o|||n|||_|||s|||h|||i|||f|||t|||:|||:|||W|||h|||i|||c|||h||| |||g|||e|||n|||e|||t|||i|||c||| |||f|||a|||c|||t|||o|||r|||s||| |||d|||o||| |||n|||o|||t||| |||i|||n|||t|||e|||r|||a|||c|||t||| |||w|||i|||t|||h||| |||o|||t|||h|||e|||r||| |||g|||e|||n|||e|||t|||i|||c||| |||f|||a|||c|||t|||o|||r|||s||| |||o|||n||| |||c|||h|||r|||o|||m|||o|||s|||o|||m|||e||| |||'|||X|||'|||?||| |||R|||e|||t|||u|||r|||n||| |||t|||h|||e||| |||g|||e|||n|||e|||t|||i|||c||| |||f|||a|||c|||t|||o|||r||| |||n|||a|||m|||e|||.": {
+    "0": "Which genetic factors do not interact with other genetic factors on chromosome 'X'? Return the genetic factor name.",
+    "1": "Which genes do not interact with other genes on chromosome 'X'? Return the gene name.",
+    "2": "Which genes do not interact with other genes on chromosome 'X'? Return gene name.",
+    "3": "Which genes do not interact with other genes on chromosome 'X'?",
+    "4": "Which genes do not interact with other genes on chromosome 'X'?"
+  },
+  "3|||4|||:|||:|||h|||a|||r|||d|||_|||s|||h|||i|||f|||t|||:|||:|||W|||h|||i|||c|||h||| |||p|||r|||o|||t|||e|||i|||n|||s||| |||d|||o||| |||n|||o|||t||| |||i|||n|||t|||e|||r|||a|||c|||t||| |||w|||i|||t|||h||| |||o|||t|||h|||e|||r||| |||p|||r|||o|||t|||e|||i|||n|||s||| |||o|||n||| |||c|||h|||r|||o|||m|||o|||s|||o|||m|||e||| |||'|||X|||'|||?||| |||R|||e|||t|||u|||r|||n||| |||t|||h|||e||| |||p|||r|||o|||t|||e|||i|||n||| |||n|||a|||m|||e|||.": {
+    "0": "Which proteins do not interact with other proteins on chromosome 'X'? Return the protein name.",
+    "1": "Which genes do not have interactions with other genes on chromosome 'X'? Return the gene name.",
+    "2": "Which genes do not have interactions with other genes on chromosome 'X'? Return the gene name.",
+    "3": "Which genes do not have interactions with other genes on chromosome 'X'? Return the gene name.",
+    "4": "Which proteins do not interact with other proteins on chromosome 'X'? Return the protein name."
+  },
+  "3|||5|||:|||:|||e|||n|||t|||i|||t|||y|||_|||s|||h|||i|||f|||t|||:|||:|||L|||i|||s|||t||| |||g|||e|||n|||e|||t|||i|||c||| |||f|||a|||c|||t|||o|||r|||s||| |||p|||a|||r|||t|||i|||c|||i|||p|||a|||t|||i|||n|||g||| |||i|||n||| |||t|||h|||e||| |||b|||i|||o|||l|||o|||g|||i|||c|||a|||l||| |||p|||r|||o|||c|||e|||s|||s||| |||'|||f|||e|||m|||a|||l|||e||| |||s|||e|||x||| |||d|||i|||f|||f|||e|||r|||e|||n|||t|||i|||a|||t|||i|||o|||n|||'||| |||t|||h|||a|||t||| |||a|||r|||e||| |||a|||s|||s|||o|||c|||i|||a|||t|||e|||d||| |||w|||i|||t|||h||| |||'|||a|||z|||o|||o|||s|||p|||e|||r|||m|||i|||a|||'|||.": {
+    "0": "List genetic factors participating in the biological process 'female sex differentiation' that are associated with 'azoospermia'.",
+    "1": "List genetic factors participating in the biological process 'female sex differentiation' that are associated with 'azoospermia'.",
+    "2": "List genes involved in the biological process 'female sex differentiation' that are associated with 'azoospermia'.",
+    "3": "List genes involved in the biological process 'female sex differentiation' that are associated with 'azoospermia'.",
+    "4": "List genetic factors participating in the biological process 'female sex differentiation' that are associated with 'azoospermia'."
+  },
+  "3|||5|||:|||:|||r|||e|||l|||a|||t|||i|||o|||n|||_|||s|||h|||i|||f|||t|||:|||:|||L|||i|||s|||t||| |||g|||e|||n|||e|||s||| |||p|||a|||r|||t|||i|||c|||i|||p|||a|||t|||i|||n|||g||| |||i|||n||| |||t|||h|||e||| |||b|||i|||o|||l|||o|||g|||i|||c|||a|||l||| |||p|||r|||o|||c|||e|||s|||s||| |||'|||f|||e|||m|||a|||l|||e||| |||s|||e|||x||| |||d|||i|||f|||f|||e|||r|||e|||n|||t|||i|||a|||t|||i|||o|||n|||'||| |||t|||h|||a|||t||| |||a|||r|||e||| |||a|||s|||s|||o|||c|||i|||a|||t|||e|||d||| |||w|||i|||t|||h||| |||'|||a|||z|||o|||o|||s|||p|||e|||r|||m|||i|||a|||'|||.": {
+    "0": "List genes participating in the biological process 'female sex differentiation' that are associated with 'azoospermia'.",
+    "1": "List genes that participate in the biological process 'female sex differentiation' and are associated with 'azoospermia'.",
+    "2": "List genes that participate in the biological process 'female sex differentiation' and are associated with 'azoospermia'.",
+    "3": "List genes that participate in the biological process 'female sex differentiation' and are associated with 'azoospermia'.",
+    "4": "List genes that participate in the biological process 'female sex differentiation' and are associated with 'azoospermia'."
+  },
+  "3|||5|||:|||:|||e|||n|||t|||i|||t|||y|||_|||r|||e|||l|||a|||t|||i|||o|||n|||_|||s|||h|||i|||f|||t|||:|||:|||L|||i|||s|||t||| |||g|||e|||n|||e|||t|||i|||c||| |||f|||a|||c|||t|||o|||r|||s||| |||p|||a|||r|||t|||i|||c|||i|||p|||a|||t|||i|||n|||g||| |||i|||n||| |||t|||h|||e||| |||b|||i|||o|||l|||o|||g|||i|||c|||a|||l||| |||p|||r|||o|||c|||e|||s|||s||| |||'|||f|||e|||m|||a|||l|||e||| |||s|||e|||x||| |||d|||i|||f|||f|||e|||r|||e|||n|||t|||i|||a|||t|||i|||o|||n|||'||| |||t|||h|||a|||t||| |||a|||r|||e||| |||a|||s|||s|||o|||c|||i|||a|||t|||e|||d||| |||w|||i|||t|||h||| |||'|||a|||z|||o|||o|||s|||p|||e|||r|||m|||i|||a|||'|||.": {
+    "0": "List genetic factors participating in the biological process 'female sex differentiation' that are associated with 'azoospermia'.",
+    "1": "List genetic factors participating in the biological process 'female sex differentiation' that are associated with 'azoospermia'.",
+    "2": "List genes involved in the biological process 'female sex differentiation' that are associated with 'azoospermia'.",
+    "3": "List genes involved in the biological process 'female sex differentiation' that are associated with 'azoospermia'.",
+    "4": "List genetic factors participating in the biological process 'female sex differentiation' that are associated with 'azoospermia'."
+  },
+  "3|||5|||:|||:|||h|||a|||r|||d|||_|||s|||h|||i|||f|||t|||:|||:|||L|||i|||s|||t||| |||p|||r|||o|||t|||e|||i|||n|||s||| |||p|||a|||r|||t|||i|||c|||i|||p|||a|||t|||i|||n|||g||| |||i|||n||| |||t|||h|||e||| |||b|||i|||o|||l|||o|||g|||i|||c|||a|||l||| |||m|||e|||c|||h|||a|||n|||i|||s|||m||| |||'|||f|||e|||m|||a|||l|||e||| |||s|||e|||x||| |||d|||i|||f|||f|||e|||r|||e|||n|||t|||i|||a|||t|||i|||o|||n|||'||| |||t|||h|||a|||t||| |||a|||r|||e||| |||a|||s|||s|||o|||c|||i|||a|||t|||e|||d||| |||w|||i|||t|||h||| |||'|||a|||z|||o|||o|||s|||p|||e|||r|||m|||i|||a|||'|||.": {
+    "0": "List proteins participating in the biological mechanism 'female sex differentiation' that are associated with 'azoospermia'.",
+    "1": "List proteins participating in the biological mechanism 'female sex differentiation' that are associated with 'azoospermia'.",
+    "2": "List genes involved in the biological process 'female sex differentiation' that are associated with 'azoospermia'.",
+    "3": "List genes involved in the biological process 'female sex differentiation' that are associated with 'azoospermia'.",
+    "4": "List proteins participating in the biological mechanism 'female sex differentiation' that are associated with 'azoospermia'."
+  },
+  "3|||6|||:|||:|||e|||n|||t|||i|||t|||y|||_|||s|||h|||i|||f|||t|||:|||:|||F|||i|||n|||d||| |||a|||l|||l||| |||g|||e|||n|||e|||t|||i|||c||| |||f|||a|||c|||t|||o|||r|||s||| |||t|||h|||a|||t||| |||a|||r|||e||| |||d|||o|||w|||n|||r|||e|||g|||u|||l|||a|||t|||e|||d||| |||i|||n||| |||'|||s|||y|||s|||t|||e|||m|||i|||c||| |||s|||c|||l|||e|||r|||o|||d|||e|||r|||m|||a|||'|||.": {
+    "0": "Find all genetic factors that are downregulated in 'systemic scleroderma'.",
+    "1": "Find genes that are downregulated in 'systemic scleroderma'.",
+    "2": "Find genes that are downregulated in 'systemic scleroderma'.",
+    "3": "Find genes that are downregulated in 'systemic scleroderma'.",
+    "4": "Find genes that are downregulated in 'systemic scleroderma'."
+  },
+  "3|||6|||:|||:|||r|||e|||l|||a|||t|||i|||o|||n|||_|||s|||h|||i|||f|||t|||:|||:|||F|||i|||n|||d||| |||a|||l|||l||| |||g|||e|||n|||e|||s||| |||t|||h|||a|||t||| |||a|||r|||e||| |||d|||o|||w|||n|||r|||e|||g|||u|||l|||a|||t|||e|||d||| |||i|||n||| |||'|||s|||y|||s|||t|||e|||m|||i|||c||| |||s|||c|||l|||e|||r|||o|||d|||e|||r|||m|||a|||'|||.": {
+    "0": "Find all genes that are downregulated in 'systemic scleroderma'.",
+    "1": "Find all genes that are downregulated in 'systemic scleroderma'.",
+    "2": "Find all genes that are downregulated in 'systemic scleroderma'.",
+    "3": "Find all genes that are downregulated in 'systemic scleroderma'.",
+    "4": "Find all genes that are downregulated in 'systemic scleroderma'."
+  },
+  "3|||6|||:|||:|||e|||n|||t|||i|||t|||y|||_|||r|||e|||l|||a|||t|||i|||o|||n|||_|||s|||h|||i|||f|||t|||:|||:|||F|||i|||n|||d||| |||a|||l|||l||| |||g|||e|||n|||e|||t|||i|||c||| |||f|||a|||c|||t|||o|||r|||s||| |||t|||h|||a|||t||| |||a|||r|||e||| |||d|||o|||w|||n|||r|||e|||g|||u|||l|||a|||t|||e|||d||| |||i|||n||| |||'|||s|||y|||s|||t|||e|||m|||i|||c||| |||s|||c|||l|||e|||r|||o|||d|||e|||r|||m|||a|||'|||.": {
+    "0": "Find all genetic factors that are downregulated in 'systemic scleroderma'.",
+    "1": "Find genes that are downregulated in 'systemic scleroderma'.",
+    "2": "Find genes that are downregulated in 'systemic scleroderma'.",
+    "3": "Find genes that are downregulated in 'systemic scleroderma'.",
+    "4": "Find genes that are downregulated in 'systemic scleroderma'."
+  },
+  "3|||6|||:|||:|||h|||a|||r|||d|||_|||s|||h|||i|||f|||t|||:|||:|||F|||i|||n|||d||| |||a|||l|||l||| |||p|||r|||o|||t|||e|||i|||n|||s||| |||t|||h|||a|||t||| |||a|||r|||e||| |||d|||o|||w|||n|||r|||e|||g|||u|||l|||a|||t|||e|||d||| |||i|||n||| |||'|||s|||y|||s|||t|||e|||m|||i|||c||| |||s|||c|||l|||e|||r|||o|||d|||e|||r|||m|||a|||'|||.": {
+    "0": "Find all proteins that are downregulated in 'systemic scleroderma'.",
+    "1": "Find genes that are downregulated in 'systemic scleroderma'.",
+    "2": "Find genes that are downregulated in 'systemic scleroderma'.",
+    "3": "Find genes that are downregulated in 'systemic scleroderma'.",
+    "4": "Find all genes that are downregulated in 'systemic scleroderma'."
+  },
+  "4|||1|||:|||:|||e|||n|||t|||i|||t|||y|||_|||s|||h|||i|||f|||t|||:|||:|||W|||h|||a|||t||| |||d|||i|||s|||t|||i|||n|||c|||t||| |||b|||i|||o|||l|||o|||g|||i|||c|||a|||l||| |||r|||o|||u|||t|||e|||s||| |||d|||o||| |||g|||e|||n|||e|||t|||i|||c||| |||f|||a|||c|||t|||o|||r|||s||| |||t|||h|||a|||t||| |||i|||n|||t|||e|||r|||a|||c|||t||| |||w|||i|||t|||h||| |||g|||e|||n|||e|||t|||i|||c||| |||f|||a|||c|||t|||o|||r||| |||'|||B|||R|||C|||A|||1|||'||| |||p|||a|||r|||t|||i|||c|||i|||p|||a|||t|||e||| |||i|||n|||?": {
+    "0": "What distinct biological routes do genetic factors that interact with genetic factor 'BRCA1' participate in?",
+    "1": "What pathways do genes that interact with 'BRCA1' participate in?",
+    "2": "What pathways do genes interacting with 'BRCA1' participate in?",
+    "3": "What pathways do genes that interact with 'BRCA1' participate in?",
+    "4": "What distinct biological routes do genetic factors that interact with genetic factor 'BRCA1' participate in?"
+  },
+  "4|||1|||:|||:|||r|||e|||l|||a|||t|||i|||o|||n|||_|||s|||h|||i|||f|||t|||:|||:|||W|||h|||a|||t||| |||d|||i|||s|||t|||i|||n|||c|||t||| |||p|||a|||t|||h|||w|||a|||y|||s||| |||d|||o||| |||g|||e|||n|||e|||s||| |||t|||h|||a|||t||| |||i|||n|||t|||e|||r|||a|||c|||t||| |||w|||i|||t|||h||| |||g|||e|||n|||e||| |||'|||B|||R|||C|||A|||1|||'||| |||t|||a|||k|||e||| |||p|||a|||r|||t||| |||i|||n|||?": {
+    "0": "What distinct pathways do genes that interact with gene 'BRCA1' take part in?",
+    "1": "What distinct pathways do genes that interact with gene 'BRCA1' take part in?",
+    "2": "What distinct pathways do genes that interact with gene 'BRCA1' take part in?",
+    "3": "What distinct pathways do genes that interact with gene 'BRCA1' take part in?",
+    "4": "What distinct pathways do genes that interact with gene 'BRCA1' take part in?"
+  },
+  "4|||1|||:|||:|||e|||n|||t|||i|||t|||y|||_|||r|||e|||l|||a|||t|||i|||o|||n|||_|||s|||h|||i|||f|||t|||:|||:|||W|||h|||a|||t||| |||d|||i|||s|||t|||i|||n|||c|||t||| |||b|||i|||o|||l|||o|||g|||i|||c|||a|||l||| |||r|||o|||u|||t|||e|||s||| |||d|||o||| |||g|||e|||n|||e|||t|||i|||c||| |||f|||a|||c|||t|||o|||r|||s||| |||t|||h|||a|||t||| |||i|||n|||t|||e|||r|||a|||c|||t||| |||w|||i|||t|||h||| |||g|||e|||n|||e|||t|||i|||c||| |||f|||a|||c|||t|||o|||r||| |||'|||B|||R|||C|||A|||1|||'||| |||t|||a|||k|||e||| |||p|||a|||r|||t||| |||i|||n|||?": {
+    "0": "What distinct biological routes do genetic factors that interact with genetic factor 'BRCA1' take part in?",
+    "1": "What pathways do genetic factors interacting with 'BRCA1' participate in?",
+    "2": "What distinct biological routes do genetic factors that interact with genetic factor 'BRCA1' take part in?",
+    "3": "What pathways do genes that interact with 'BRCA1' participate in?",
+    "4": "What distinct biological routes do genetic factors that interact with genetic factor 'BRCA1' take part in?"
+  },
+  "4|||1|||:|||:|||h|||a|||r|||d|||_|||s|||h|||i|||f|||t|||:|||:|||W|||h|||a|||t||| |||d|||i|||s|||t|||i|||n|||c|||t||| |||s|||i|||g|||n|||a|||l|||i|||n|||g||| |||c|||a|||s|||c|||a|||d|||e|||s||| |||d|||o||| |||p|||r|||o|||t|||e|||i|||n|||s||| |||t|||h|||a|||t||| |||i|||n|||t|||e|||r|||a|||c|||t||| |||w|||i|||t|||h||| |||p|||r|||o|||t|||e|||i|||n||| |||'|||B|||R|||C|||A|||1|||'||| |||a|||r|||e||| |||i|||n|||v|||o|||l|||v|||e|||d||| |||i|||n|||?": {
+    "0": "What distinct signaling cascades do proteins that interact with protein 'BRCA1' are involved in?",
+    "1": "What distinct signaling cascades do proteins that interact with protein 'BRCA1' are involved in?",
+    "2": "What distinct signaling cascades do proteins that interact with protein 'BRCA1' are involved in?",
+    "3": "What distinct signaling cascades do proteins that interact with protein 'BRCA1' are involved in?",
+    "4": "What distinct signaling cascades do proteins that interact with protein 'BRCA1' are involved in?"
+  },
+  "4|||2|||:|||:|||e|||n|||t|||i|||t|||y|||_|||s|||h|||i|||f|||t|||:|||:|||W|||h|||i|||c|||h||| |||g|||e|||n|||e|||t|||i|||c||| |||f|||a|||c|||t|||o|||r|||s||| |||p|||a|||r|||t|||i|||c|||i|||p|||a|||t|||e||| |||i|||n||| |||b|||o|||t|||h||| |||t|||h|||e||| |||'|||D|||N|||A||| |||R|||e|||p|||a|||i|||r|||'||| |||a|||n|||d||| |||'|||C|||e|||l|||l||| |||C|||y|||c|||l|||e|||'||| |||b|||i|||o|||l|||o|||g|||i|||c|||a|||l||| |||r|||o|||u|||t|||e|||s|||?": {
+    "0": "Which genetic factors participate in both the 'DNA Repair' and 'Cell Cycle' biological routes?",
+    "1": "Which genes are involved in both the 'DNA repair' and 'cell cycle' biological processes?",
+    "2": "Which genes are involved in both the 'DNA repair' and 'cell cycle' biological processes?",
+    "3": "Which genes are involved in both the 'DNA repair' and 'cell cycle' biological processes?",
+    "4": "Which genes are involved in both the 'DNA repair' and 'cell cycle' biological processes?"
+  },
+  "4|||2|||:|||:|||r|||e|||l|||a|||t|||i|||o|||n|||_|||s|||h|||i|||f|||t|||:|||:|||W|||h|||i|||c|||h||| |||g|||e|||n|||e|||s||| |||t|||a|||k|||e||| |||p|||a|||r|||t||| |||i|||n||| |||b|||o|||t|||h||| |||t|||h|||e||| |||'|||D|||N|||A||| |||R|||e|||p|||a|||i|||r|||'||| |||a|||n|||d||| |||'|||C|||e|||l|||l||| |||C|||y|||c|||l|||e|||'||| |||p|||a|||t|||h|||w|||a|||y|||s|||?": {
+    "0": "Which genes take part in both the 'DNA Repair' and 'Cell Cycle' pathways?",
+    "1": "Which genes are involved in both the 'DNA repair' and 'cell cycle' processes?",
+    "2": "Which genes are involved in both the 'DNA repair' and 'cell cycle' processes?",
+    "3": "Which genes are involved in both the 'DNA repair' and 'cell cycle' processes?",
+    "4": "Which genes are involved in both the 'DNA repair' and 'cell cycle' biological processes?"
+  },
+  "4|||2|||:|||:|||e|||n|||t|||i|||t|||y|||_|||r|||e|||l|||a|||t|||i|||o|||n|||_|||s|||h|||i|||f|||t|||:|||:|||W|||h|||i|||c|||h||| |||g|||e|||n|||e|||t|||i|||c||| |||f|||a|||c|||t|||o|||r|||s||| |||t|||a|||k|||e||| |||p|||a|||r|||t||| |||i|||n||| |||b|||o|||t|||h||| |||t|||h|||e||| |||'|||D|||N|||A||| |||R|||e|||p|||a|||i|||r|||'||| |||a|||n|||d||| |||'|||C|||e|||l|||l||| |||C|||y|||c|||l|||e|||'||| |||b|||i|||o|||l|||o|||g|||i|||c|||a|||l||| |||r|||o|||u|||t|||e|||s|||?": {
+    "0": "Which genetic factors take part in both the 'DNA Repair' and 'Cell Cycle' biological routes?",
+    "1": "Which genes are involved in both the 'DNA repair' and 'cell cycle' biological processes?",
+    "2": "Which genes are involved in both the 'DNA repair' and 'cell cycle' biological processes?",
+    "3": "Which genes are involved in both the 'DNA repair' and 'cell cycle' biological processes?",
+    "4": "Which genes are involved in both the 'DNA repair' and 'cell cycle' biological processes?"
+  },
+  "4|||2|||:|||:|||h|||a|||r|||d|||_|||s|||h|||i|||f|||t|||:|||:|||W|||h|||i|||c|||h||| |||p|||r|||o|||t|||e|||i|||n|||s||| |||a|||r|||e||| |||i|||n|||v|||o|||l|||v|||e|||d||| |||i|||n||| |||b|||o|||t|||h||| |||t|||h|||e||| |||'|||D|||N|||A||| |||R|||e|||p|||a|||i|||r|||'||| |||a|||n|||d||| |||'|||C|||e|||l|||l||| |||C|||y|||c|||l|||e|||'||| |||s|||i|||g|||n|||a|||l|||i|||n|||g||| |||c|||a|||s|||c|||a|||d|||e|||s|||?": {
+    "0": "Which proteins are involved in both the 'DNA Repair' and 'Cell Cycle' signaling cascades?",
+    "1": "What genes participate in both the 'DNA repair' and 'cell cycle' signaling pathways?",
+    "2": "What genes participate in both the 'DNA repair' and 'cell cycle' signaling pathways?",
+    "3": "Which genes participate in both the 'DNA repair' and 'cell cycle' signaling pathways?",
+    "4": "Which genes participate in both the 'DNA repair' and 'cell cycle' signaling pathways?"
+  },
+  "4|||3|||:|||:|||e|||n|||t|||i|||t|||y|||_|||s|||h|||i|||f|||t|||:|||:|||I|||d|||e|||n|||t|||i|||f|||y||| |||g|||e|||n|||e|||t|||i|||c||| |||f|||a|||c|||t|||o|||r|||s||| |||t|||h|||a|||t||| |||i|||n|||t|||e|||r|||a|||c|||t||| |||w|||i|||t|||h||| |||'|||M|||Y|||C|||'||| |||a|||n|||d||| |||p|||a|||r|||t|||i|||c|||i|||p|||a|||t|||e||| |||i|||n||| |||e|||i|||t|||h|||e|||r||| |||'|||C|||e|||l|||l||| |||C|||y|||c|||l|||e|||'||| |||o|||r||| |||'|||W|||n|||t||| |||S|||i|||g|||n|||a|||l|||i|||n|||g|||'||| |||b|||i|||o|||l|||o|||g|||i|||c|||a|||l||| |||r|||o|||u|||t|||e|||s|||.": {
+    "0": "Identify genetic factors that interact with 'MYC' and participate in either 'Cell Cycle' or 'Wnt Signaling' biological routes.",
+    "1": "Identify genetic factors that interact with 'MYC' and participate in either 'Cell Cycle' or 'Wnt Signaling' biological processes.",
+    "2": "Identify genes that interact with 'MYC' and participate in either 'Cell Cycle' or 'Wnt Signaling' biological processes.",
+    "3": "Identify genes that interact with 'MYC' and participate in either 'Cell Cycle' or 'Wnt Signaling' biological processes.",
+    "4": "Identify genes that interact with 'MYC' and participate in either 'Cell Cycle' or 'Wnt Signaling' pathways."
+  },
+  "4|||3|||:|||:|||r|||e|||l|||a|||t|||i|||o|||n|||_|||s|||h|||i|||f|||t|||:|||:|||I|||d|||e|||n|||t|||i|||f|||y||| |||g|||e|||n|||e|||s||| |||t|||h|||a|||t||| |||i|||n|||t|||e|||r|||a|||c|||t||| |||w|||i|||t|||h||| |||'|||M|||Y|||C|||'||| |||a|||n|||d||| |||t|||a|||k|||e||| |||p|||a|||r|||t||| |||i|||n||| |||e|||i|||t|||h|||e|||r||| |||'|||C|||e|||l|||l||| |||C|||y|||c|||l|||e|||'||| |||o|||r||| |||'|||W|||n|||t||| |||S|||i|||g|||n|||a|||l|||i|||n|||g|||'||| |||p|||a|||t|||h|||w|||a|||y|||s|||.": {
+    "0": "Identify genes that interact with 'MYC' and take part in either 'Cell Cycle' or 'Wnt Signaling' pathways.",
+    "1": "Identify genes that interact with 'MYC' and take part in either 'Cell Cycle' or 'Wnt Signaling' pathways.",
+    "2": "Identify genes that interact with 'MYC' and participate in either 'Cell Cycle' or 'Wnt Signaling' processes.",
+    "3": "Identify genes that interact with 'MYC' and participate in either 'Cell Cycle' or 'Wnt Signaling' processes.",
+    "4": "Identify genes that interact with 'MYC' and take part in either 'Cell Cycle' or 'Wnt Signaling' pathways."
+  },
+  "4|||3|||:|||:|||e|||n|||t|||i|||t|||y|||_|||r|||e|||l|||a|||t|||i|||o|||n|||_|||s|||h|||i|||f|||t|||:|||:|||I|||d|||e|||n|||t|||i|||f|||y||| |||g|||e|||n|||e|||t|||i|||c||| |||f|||a|||c|||t|||o|||r|||s||| |||t|||h|||a|||t||| |||i|||n|||t|||e|||r|||a|||c|||t||| |||w|||i|||t|||h||| |||'|||M|||Y|||C|||'||| |||a|||n|||d||| |||t|||a|||k|||e||| |||p|||a|||r|||t||| |||i|||n||| |||e|||i|||t|||h|||e|||r||| |||'|||C|||e|||l|||l||| |||C|||y|||c|||l|||e|||'||| |||o|||r||| |||'|||W|||n|||t||| |||S|||i|||g|||n|||a|||l|||i|||n|||g|||'||| |||b|||i|||o|||l|||o|||g|||i|||c|||a|||l||| |||r|||o|||u|||t|||e|||s|||.": {
+    "0": "Identify genetic factors that interact with 'MYC' and take part in either 'Cell Cycle' or 'Wnt Signaling' biological routes.",
+    "1": "Identify genetic factors that interact with 'MYC' and participate in either 'Cell Cycle' or 'Wnt Signaling'.",
+    "2": "Identify genes that interact with 'MYC' and participate in either 'Cell Cycle' or 'Wnt Signaling' biological processes.",
+    "3": "Identify genes that interact with 'MYC' and participate in either 'Cell Cycle' or 'Wnt Signaling' biological processes.",
+    "4": "Identify genes that interact with 'MYC' and participate in either 'Cell Cycle' or 'Wnt Signaling' pathways."
+  },
+  "4|||3|||:|||:|||h|||a|||r|||d|||_|||s|||h|||i|||f|||t|||:|||:|||I|||d|||e|||n|||t|||i|||f|||y||| |||p|||r|||o|||t|||e|||i|||n|||s||| |||t|||h|||a|||t||| |||i|||n|||t|||e|||r|||a|||c|||t||| |||w|||i|||t|||h||| |||'|||M|||Y|||C|||'||| |||a|||n|||d||| |||a|||r|||e||| |||i|||n|||v|||o|||l|||v|||e|||d||| |||i|||n||| |||e|||i|||t|||h|||e|||r||| |||'|||C|||e|||l|||l||| |||C|||y|||c|||l|||e|||'||| |||o|||r||| |||'|||W|||n|||t||| |||S|||i|||g|||n|||a|||l|||i|||n|||g|||'||| |||s|||i|||g|||n|||a|||l|||i|||n|||g||| |||c|||a|||s|||c|||a|||d|||e|||s|||.": {
+    "0": "Identify proteins that interact with 'MYC' and are involved in either 'Cell Cycle' or 'Wnt Signaling' signaling cascades.",
+    "1": "Identify proteins that interact with 'MYC' and are involved in either 'Cell Cycle' or 'Wnt Signaling' signaling cascades.",
+    "2": "Identify proteins that interact with 'MYC' and are involved in either 'Cell Cycle' or 'Wnt Signaling' signaling cascades.",
+    "3": "Identify proteins that interact with 'MYC' and are involved in either 'Cell Cycle' or 'Wnt Signaling' signaling cascades.",
+    "4": "Identify proteins that interact with 'MYC' and are involved in either 'Cell Cycle' or 'Wnt Signaling' signaling cascades."
+  },
+  "4|||9|||:|||:|||e|||n|||t|||i|||t|||y|||_|||s|||h|||i|||f|||t|||:|||:|||W|||h|||a|||t||| |||a|||r|||e||| |||t|||h|||e||| |||d|||i|||s|||t|||i|||n|||c|||t||| |||a|||d|||v|||e|||r|||s|||e||| |||e|||f|||f|||e|||c|||t|||s||| |||w|||h|||o|||s|||e||| |||n|||a|||m|||e||| |||m|||e|||n|||t|||i|||o|||n|||s||| |||'|||A|||c|||u|||t|||e|||'||| |||c|||a|||u|||s|||e|||d||| |||b|||y||| |||d|||r|||u|||g|||s||| |||t|||h|||a|||t||| |||t|||r|||e|||a|||t||| |||'|||b|||r|||e|||a|||s|||t||| |||c|||a|||n|||c|||e|||r|||'||| |||i|||l|||l|||n|||e|||s|||s|||?": {
+    "0": "What are the distinct adverse effects whose name mentions 'Acute' caused by drugs that treat 'breast cancer' illness?",
+    "1": "What are the unique side effects of drugs treating 'breast cancer' that mention 'Acute'?",
+    "2": "What are the distinct side effects whose name includes 'Acute' caused by drugs that treat 'breast cancer'?",
+    "3": "What are the unique side effects of drugs used to treat 'breast cancer' that mention 'Acute'?",
+    "4": "What are the distinct side effects whose name includes 'Acute' and is caused by drugs used for treating 'breast cancer'?"
+  },
+  "4|||9|||:|||:|||r|||e|||l|||a|||t|||i|||o|||n|||_|||s|||h|||i|||f|||t|||:|||:|||W|||h|||a|||t||| |||a|||r|||e||| |||t|||h|||e||| |||d|||i|||s|||t|||i|||n|||c|||t||| |||s|||i|||d|||e||| |||e|||f|||f|||e|||c|||t|||s||| |||w|||h|||o|||s|||e||| |||n|||a|||m|||e||| |||m|||e|||n|||t|||i|||o|||n|||s||| |||'|||A|||c|||u|||t|||e|||'||| |||c|||a|||u|||s|||e|||d||| |||b|||y||| |||c|||o|||m|||p|||o|||u|||n|||d|||s||| |||t|||h|||a|||t||| |||i|||s||| |||u|||s|||e|||d||| |||f|||o|||r||| |||'|||b|||r|||e|||a|||s|||t||| |||c|||a|||n|||c|||e|||r|||'||| |||d|||i|||s|||e|||a|||s|||e|||?": {
+    "0": "What are the distinct side effects whose name mentions 'Acute' caused by compounds that is used for 'breast cancer' disease?",
+    "1": "What are the unique side effects whose name includes 'Acute' that result from compounds used for treating 'breast cancer'?",
+    "2": "What are the unique side effects whose name includes 'Acute' that result from compounds used for treating 'breast cancer'?",
+    "3": "What are the unique side effects whose name includes 'Acute' that result from compounds used for treating 'breast cancer'?",
+    "4": "What are the unique side effects whose name includes 'Acute' that result from compounds used for treating 'breast cancer'?"
+  },
+  "4|||9|||:|||:|||e|||n|||t|||i|||t|||y|||_|||r|||e|||l|||a|||t|||i|||o|||n|||_|||s|||h|||i|||f|||t|||:|||:|||W|||h|||a|||t||| |||a|||r|||e||| |||t|||h|||e||| |||d|||i|||s|||t|||i|||n|||c|||t||| |||a|||d|||v|||e|||r|||s|||e||| |||e|||f|||f|||e|||c|||t|||s||| |||w|||h|||o|||s|||e||| |||n|||a|||m|||e||| |||m|||e|||n|||t|||i|||o|||n|||s||| |||'|||A|||c|||u|||t|||e|||'||| |||c|||a|||u|||s|||e|||d||| |||b|||y||| |||d|||r|||u|||g|||s||| |||t|||h|||a|||t||| |||i|||s||| |||u|||s|||e|||d||| |||f|||o|||r||| |||'|||b|||r|||e|||a|||s|||t||| |||c|||a|||n|||c|||e|||r|||'||| |||i|||l|||l|||n|||e|||s|||s|||?": {
+    "0": "What are the distinct adverse effects whose name mentions 'Acute' caused by drugs that is used for 'breast cancer' illness?",
+    "1": "What are the distinct side effects whose name contains 'Acute' that are caused by drugs used for 'breast cancer'?",
+    "2": "What are the distinct adverse drug reactions whose name includes 'Acute' and are caused by drugs used for 'breast cancer'?",
+    "3": "What are the distinct adverse effects whose name mentions 'Acute' caused by drugs that is used for 'breast cancer' illness?",
+    "4": "What are the distinct side effects whose name includes 'Acute' and are caused by drugs used for 'breast cancer'?"
+  },
+  "4|||9|||:|||:|||h|||a|||r|||d|||_|||s|||h|||i|||f|||t|||:|||:|||W|||h|||a|||t||| |||a|||r|||e||| |||t|||h|||e||| |||d|||i|||s|||t|||i|||n|||c|||t||| |||u|||n|||w|||a|||n|||t|||e|||d||| |||r|||e|||a|||c|||t|||i|||o|||n|||s||| |||w|||h|||o|||s|||e||| |||n|||a|||m|||e||| |||m|||e|||n|||t|||i|||o|||n|||s||| |||'|||A|||c|||u|||t|||e|||'||| |||c|||a|||u|||s|||e|||d||| |||b|||y||| |||m|||e|||d|||i|||c|||a|||t|||i|||o|||n|||s||| |||t|||h|||a|||t||| |||i|||s||| |||p|||r|||e|||s|||c|||r|||i|||b|||e|||d||| |||f|||o|||r||| |||'|||b|||r|||e|||a|||s|||t||| |||c|||a|||n|||c|||e|||r|||'||| |||m|||e|||d|||i|||c|||a|||l||| |||c|||o|||n|||d|||i|||t|||i|||o|||n|||?": {
+    "0": "What are the distinct unwanted reactions whose name mentions 'Acute' caused by medications that is prescribed for 'breast cancer' medical condition?",
+    "1": "What are the unique adverse effects of 'Acute' type that result from medications used for 'breast cancer'?",
+    "2": "What are the unique adverse effects whose name includes 'Acute' resulting from medications used for 'breast cancer'?",
+    "3": "What are the unique adverse effects of medication used for 'breast cancer' that mention 'Acute'?",
+    "4": "What are the specific adverse events whose name includes 'Acute' and are caused by medications used for 'breast cancer'?"
+  },
+  "5|||7|||:|||:|||e|||n|||t|||i|||t|||y|||_|||s|||h|||i|||f|||t|||:|||:|||W|||h|||i|||c|||h||| |||g|||e|||n|||e|||t|||i|||c||| |||f|||a|||c|||t|||o|||r|||s||| |||a|||r|||e||| |||d|||o|||w|||n|||r|||e|||g|||u|||l|||a|||t|||e|||d||| |||b|||y||| |||d|||r|||u|||g|||s||| |||i|||n|||c|||l|||u|||d|||e|||d||| |||i|||n||| |||t|||h|||e||| |||p|||h|||a|||r|||m|||a|||c|||o|||l|||o|||g|||i|||c||| |||c|||l|||a|||s|||s||| |||'|||D|||o|||p|||a|||m|||i|||n|||e||| |||U|||p|||t|||a|||k|||e||| |||I|||n|||h|||i|||b|||i|||t|||o|||r|||s|||'|||?": {
+    "0": "Which genetic factors are downregulated by drugs included in the pharmacologic class 'Dopamine Uptake Inhibitors'?",
+    "1": "Which genetic factors are downregulated by drugs included in the pharmacologic class 'Dopamine Uptake Inhibitors'?",
+    "2": "Which genetic factors are downregulated by drugs included in the pharmacologic class 'Dopamine Uptake Inhibitors'?",
+    "3": "Which genetic factors are downregulated by drugs included in the pharmacologic class 'Dopamine Uptake Inhibitors'?",
+    "4": "Which genes are downregulated by drugs classified under the 'Dopamine Uptake Inhibitors' pharmacologic class?"
+  },
+  "5|||7|||:|||:|||r|||e|||l|||a|||t|||i|||o|||n|||_|||s|||h|||i|||f|||t|||:|||:|||W|||h|||i|||c|||h||| |||g|||e|||n|||e|||s||| |||a|||r|||e||| |||d|||o|||w|||n|||r|||e|||g|||u|||l|||a|||t|||e|||d||| |||b|||y||| |||c|||o|||m|||p|||o|||u|||n|||d|||s||| |||i|||n|||c|||l|||u|||d|||e|||d||| |||i|||n||| |||t|||h|||e||| |||p|||h|||a|||r|||m|||a|||c|||o|||l|||o|||g|||i|||c||| |||c|||l|||a|||s|||s||| |||'|||D|||o|||p|||a|||m|||i|||n|||e||| |||U|||p|||t|||a|||k|||e||| |||I|||n|||h|||i|||b|||i|||t|||o|||r|||s|||'|||?": {
+    "0": "Which genes are downregulated by compounds included in the pharmacologic class 'Dopamine Uptake Inhibitors'?",
+    "1": "Which genes are downregulated by compounds included in the pharmacologic class 'Dopamine Uptake Inhibitors'?",
+    "2": "Which genes are downregulated by compounds included in the pharmacologic class 'Dopamine Uptake Inhibitors'?",
+    "3": "Which genes are downregulated by compounds included in the pharmacologic class 'Dopamine Uptake Inhibitors'?",
+    "4": "Which genes are downregulated by compounds included in the pharmacologic class 'Dopamine Uptake Inhibitors'?"
+  },
+  "5|||7|||:|||:|||e|||n|||t|||i|||t|||y|||_|||r|||e|||l|||a|||t|||i|||o|||n|||_|||s|||h|||i|||f|||t|||:|||:|||W|||h|||i|||c|||h||| |||g|||e|||n|||e|||t|||i|||c||| |||f|||a|||c|||t|||o|||r|||s||| |||a|||r|||e||| |||d|||o|||w|||n|||r|||e|||g|||u|||l|||a|||t|||e|||d||| |||b|||y||| |||d|||r|||u|||g|||s||| |||i|||n|||c|||l|||u|||d|||e|||d||| |||i|||n||| |||t|||h|||e||| |||p|||h|||a|||r|||m|||a|||c|||o|||l|||o|||g|||i|||c||| |||c|||l|||a|||s|||s||| |||'|||D|||o|||p|||a|||m|||i|||n|||e||| |||U|||p|||t|||a|||k|||e||| |||I|||n|||h|||i|||b|||i|||t|||o|||r|||s|||'|||?": {
+    "0": "Which genetic factors are downregulated by drugs included in the pharmacologic class 'Dopamine Uptake Inhibitors'?",
+    "1": "Which genetic factors are downregulated by drugs included in the pharmacologic class 'Dopamine Uptake Inhibitors'?",
+    "2": "Which genetic factors are downregulated by drugs included in the pharmacologic class 'Dopamine Uptake Inhibitors'?",
+    "3": "Which genetic factors are downregulated by drugs included in the pharmacologic class 'Dopamine Uptake Inhibitors'?",
+    "4": "Which genes are downregulated by drugs classified under the 'Dopamine Uptake Inhibitors' pharmacologic class?"
+  },
+  "5|||7|||:|||:|||h|||a|||r|||d|||_|||s|||h|||i|||f|||t|||:|||:|||W|||h|||i|||c|||h||| |||p|||r|||o|||t|||e|||i|||n|||s||| |||a|||r|||e||| |||d|||o|||w|||n|||r|||e|||g|||u|||l|||a|||t|||e|||d||| |||b|||y||| |||m|||e|||d|||i|||c|||a|||t|||i|||o|||n|||s||| |||i|||n|||c|||l|||u|||d|||e|||d||| |||i|||n||| |||t|||h|||e||| |||p|||h|||a|||r|||m|||a|||c|||o|||l|||o|||g|||i|||c||| |||c|||l|||a|||s|||s||| |||'|||D|||o|||p|||a|||m|||i|||n|||e||| |||U|||p|||t|||a|||k|||e||| |||I|||n|||h|||i|||b|||i|||t|||o|||r|||s|||'|||?": {
+    "0": "Which proteins are downregulated by medications included in the pharmacologic class 'Dopamine Uptake Inhibitors'?",
+    "1": "Which genes are downregulated by medications classified under 'Dopamine Uptake Inhibitors'?",
+    "2": "Which genes are downregulated by medications classified under 'Dopamine Uptake Inhibitors'?",
+    "3": "Which genes are downregulated by medications classified under 'Dopamine Uptake Inhibitors'?",
+    "4": "Which genes are downregulated by medications classified under the 'Dopamine Uptake Inhibitors' category?"
+  },
+  "7|||6|||:|||:|||e|||n|||t|||i|||t|||y|||_|||s|||h|||i|||f|||t|||:|||:|||I|||f||| |||a||| |||p|||a|||t|||i|||e|||n|||t||| |||i|||s||| |||t|||a|||k|||i|||n|||g||| |||t|||h|||e||| |||'|||G|||e|||m|||c|||i|||t|||a|||b|||i|||n|||e|||'||| |||t|||o||| |||t|||r|||e|||a|||t||| |||h|||i|||s||| |||i|||l|||l|||n|||e|||s|||s|||,||| |||w|||h|||a|||t||| |||d|||i|||s|||t|||i|||n|||c|||t||| |||c|||l|||i|||n|||i|||c|||a|||l||| |||s|||y|||m|||p|||t|||o|||m|||s||| |||h|||e||| |||m|||a|||y||| |||p|||r|||e|||s|||e|||n|||t||| |||b|||e|||f|||o|||r|||e||| |||t|||h|||e||| |||t|||r|||e|||a|||t|||m|||e|||n|||t|||?": {
+    "0": "If a patient is taking the 'Gemcitabine' to treat his illness, what distinct clinical symptoms he may present before the treatment?",
+    "1": "If a patient is prescribed Gemcitabine to treat their illness, which specific clinical symptoms might they exhibit prior to the treatment?",
+    "2": "If a patient is taking Gemcitabine to treat their condition, what distinct clinical symptoms might they exhibit before starting the treatment?",
+    "3": "If a patient is taking Gemcitabine to treat their illness, what distinct clinical symptoms might they experience before starting treatment?",
+    "4": "If a patient is taking Gemcitabine to treat their condition, what specific clinical symptoms might they exhibit prior to the treatment?"
+  },
+  "7|||6|||:|||:|||r|||e|||l|||a|||t|||i|||o|||n|||_|||s|||h|||i|||f|||t|||:|||:|||I|||f||| |||a||| |||p|||a|||t|||i|||e|||n|||t||| |||i|||s||| |||t|||a|||k|||i|||n|||g||| |||t|||h|||e||| |||'|||G|||e|||m|||c|||i|||t|||a|||b|||i|||n|||e|||'||| |||t|||o||| |||t|||r|||e|||a|||t||| |||h|||i|||s||| |||d|||i|||s|||e|||a|||s|||e|||,||| |||w|||h|||a|||t||| |||d|||i|||s|||t|||i|||n|||c|||t||| |||s|||y|||m|||p|||t|||o|||m|||s||| |||h|||e||| |||m|||a|||y||| |||s|||h|||o|||w||| |||b|||e|||f|||o|||r|||e||| |||t|||h|||e||| |||t|||r|||e|||a|||t|||m|||e|||n|||t|||?": {
+    "0": "If a patient is taking the 'Gemcitabine' to treat his disease, what distinct symptoms he may show before the treatment?",
+    "1": "If a patient is prescribed Gemcitabine to treat their disease, which specific symptoms might they experience prior to the treatment?",
+    "2": "If a patient takes Gemcitabine to treat their condition, which distinct symptoms might they exhibit prior to the treatment?",
+    "3": "If a patient is taking Gemcitabine to treat their disease, what distinct symptoms might they exhibit before starting the treatment?",
+    "4": "If a patient is taking Gemcitabine to treat their condition, what specific symptoms might they exhibit prior to the treatment?"
+  },
+  "7|||6|||:|||:|||e|||n|||t|||i|||t|||y|||_|||r|||e|||l|||a|||t|||i|||o|||n|||_|||s|||h|||i|||f|||t|||:|||:|||I|||f||| |||a||| |||p|||a|||t|||i|||e|||n|||t||| |||i|||s||| |||t|||a|||k|||i|||n|||g||| |||t|||h|||e||| |||'|||G|||e|||m|||c|||i|||t|||a|||b|||i|||n|||e|||'||| |||t|||o||| |||t|||r|||e|||a|||t||| |||h|||i|||s||| |||i|||l|||l|||n|||e|||s|||s|||,||| |||w|||h|||a|||t||| |||d|||i|||s|||t|||i|||n|||c|||t||| |||c|||l|||i|||n|||i|||c|||a|||l||| |||s|||y|||m|||p|||t|||o|||m|||s||| |||h|||e||| |||m|||a|||y||| |||s|||h|||o|||w||| |||b|||e|||f|||o|||r|||e||| |||t|||h|||e||| |||t|||r|||e|||a|||t|||m|||e|||n|||t|||?": {
+    "0": "If a patient is taking the 'Gemcitabine' to treat his illness, what distinct clinical symptoms he may show before the treatment?",
+    "1": "If a patient is prescribed Gemcitabine to treat their illness, which specific clinical signs or symptoms might they exhibit prior to the treatment?",
+    "2": "If a patient is taking Gemcitabine to treat their condition, what distinct clinical symptoms might they exhibit before starting the treatment?",
+    "3": "If a patient is taking Gemcitabine to treat their illness, what distinct clinical symptoms might they exhibit before starting the treatment?",
+    "4": "If a patient is prescribed Gemcitabine to treat their condition, which specific clinical symptoms might they exhibit prior to the treatment?"
+  },
+  "7|||6|||:|||:|||h|||a|||r|||d|||_|||s|||h|||i|||f|||t|||:|||:|||I|||f||| |||a||| |||p|||a|||t|||i|||e|||n|||t||| |||i|||s||| |||t|||a|||k|||i|||n|||g||| |||t|||h|||e||| |||'|||G|||e|||m|||c|||i|||t|||a|||b|||i|||n|||e|||'||| |||t|||o||| |||i|||s||| |||p|||r|||e|||s|||c|||r|||i|||b|||e|||d||| |||f|||o|||r||| |||h|||i|||s||| |||m|||e|||d|||i|||c|||a|||l||| |||c|||o|||n|||d|||i|||t|||i|||o|||n|||,||| |||w|||h|||a|||t||| |||d|||i|||s|||t|||i|||n|||c|||t||| |||s|||y|||m|||p|||t|||o|||m|||s||| |||h|||e||| |||m|||a|||y||| |||p|||r|||e|||s|||e|||n|||t||| |||b|||e|||f|||o|||r|||e||| |||t|||h|||e||| |||t|||r|||e|||a|||t|||m|||e|||n|||t|||?": {
+    "0": "If a patient is taking the 'Gemcitabine' to is prescribed for his medical condition, what distinct symptoms he may present before the treatment?",
+    "1": "If a patient is given Gemcitabine for their medical condition, which specific symptoms might they experience prior to treatment?",
+    "2": "If a patient is prescribed Gemcitabine for their medical condition, what distinct symptoms might they experience before starting treatment?",
+    "3": "If a patient is prescribed Gemcitabine for their medical condition, what distinct symptoms might they experience before starting treatment?",
+    "4": "If a patient is prescribed Gemcitabine for their medical condition, what distinct symptoms might they experience before starting treatment?"
+  },
+  "9|||7|||:|||:|||e|||n|||t|||i|||t|||y|||_|||s|||h|||i|||f|||t|||:|||:|||W|||h|||a|||t||| |||a|||r|||e||| |||t|||h|||e||| |||d|||r|||u|||g|||s||| |||w|||h|||o|||s|||e||| |||n|||a|||m|||e||| |||s|||t|||a|||r|||t||| |||w|||i|||t|||h||| |||'|||P|||'||| |||t|||h|||a|||t||| |||u|||p|||r|||e|||g|||u|||l|||a|||t|||e||| |||o|||r||| |||d|||o|||w|||n|||r|||e|||g|||u|||l|||a|||t|||e||| |||g|||e|||n|||e|||t|||i|||c||| |||f|||a|||c|||t|||o|||r||| |||w|||h|||o|||s|||e||| |||i|||d|||e|||n|||t|||i|||f|||i|||e|||r||| |||i|||s||| |||5|||1|||0|||2|||6|||?": {
+    "0": "What are the drugs whose name start with 'P' that upregulate or downregulate genetic factor whose identifier is 51026?",
+    "1": "What are the drugs whose name start with 'P' that upregulate or downregulate genetic factor whose identifier is 51026?",
+    "2": "What are the drugs whose name start with 'P' that upregulate or downregulate genetic factor whose identifier is 51026?",
+    "3": "What are the drugs whose name start with 'P' that upregulate or downregulate genetic factor whose identifier is 51026?",
+    "4": "What are the drugs whose name start with 'P' that upregulate or downregulate genetic factor whose identifier is 51026?"
+  },
+  "9|||7|||:|||:|||r|||e|||l|||a|||t|||i|||o|||n|||_|||s|||h|||i|||f|||t|||:|||:|||W|||h|||a|||t||| |||a|||r|||e||| |||t|||h|||e||| |||c|||o|||m|||p|||o|||u|||n|||d|||s||| |||w|||h|||o|||s|||e||| |||n|||a|||m|||e||| |||s|||t|||a|||r|||t||| |||w|||i|||t|||h||| |||'|||P|||'||| |||t|||h|||a|||t||| |||u|||p|||r|||e|||g|||u|||l|||a|||t|||e||| |||o|||r||| |||d|||o|||w|||n|||r|||e|||g|||u|||l|||a|||t|||e||| |||g|||e|||n|||e||| |||w|||h|||o|||s|||e||| |||i|||d|||e|||n|||t|||i|||f|||i|||e|||r||| |||i|||s||| |||5|||1|||0|||2|||6|||?": {
+    "0": "What are the compounds whose name start with 'P' that upregulate or downregulate gene whose identifier is 51026?",
+    "1": "What are the compounds whose name start with 'P' that upregulate or downregulate gene whose identifier is 51026?",
+    "2": "What are the compounds whose name start with 'P' that upregulate or downregulate gene whose identifier is 51026?",
+    "3": "What are the compounds whose name start with 'P' that upregulate or downregulate gene whose identifier is 51026?",
+    "4": "What are the compounds whose name start with 'P' that upregulate or downregulate gene whose identifier is 51026?"
+  },
+  "9|||7|||:|||:|||e|||n|||t|||i|||t|||y|||_|||r|||e|||l|||a|||t|||i|||o|||n|||_|||s|||h|||i|||f|||t|||:|||:|||W|||h|||a|||t||| |||a|||r|||e||| |||t|||h|||e||| |||d|||r|||u|||g|||s||| |||w|||h|||o|||s|||e||| |||n|||a|||m|||e||| |||s|||t|||a|||r|||t||| |||w|||i|||t|||h||| |||'|||P|||'||| |||t|||h|||a|||t||| |||u|||p|||r|||e|||g|||u|||l|||a|||t|||e||| |||o|||r||| |||d|||o|||w|||n|||r|||e|||g|||u|||l|||a|||t|||e||| |||g|||e|||n|||e|||t|||i|||c||| |||f|||a|||c|||t|||o|||r||| |||w|||h|||o|||s|||e||| |||i|||d|||e|||n|||t|||i|||f|||i|||e|||r||| |||i|||s||| |||5|||1|||0|||2|||6|||?": {
+    "0": "What are the drugs whose name start with 'P' that upregulate or downregulate genetic factor whose identifier is 51026?",
+    "1": "What are the drugs whose name start with 'P' that upregulate or downregulate genetic factor whose identifier is 51026?",
+    "2": "What are the drugs whose name start with 'P' that upregulate or downregulate genetic factor whose identifier is 51026?",
+    "3": "What are the drugs whose name start with 'P' that upregulate or downregulate genetic factor whose identifier is 51026?",
+    "4": "What are the drugs whose name start with 'P' that upregulate or downregulate genetic factor whose identifier is 51026?"
+  },
+  "9|||7|||:|||:|||h|||a|||r|||d|||_|||s|||h|||i|||f|||t|||:|||:|||W|||h|||a|||t||| |||a|||r|||e||| |||t|||h|||e||| |||m|||e|||d|||i|||c|||a|||t|||i|||o|||n|||s||| |||w|||h|||o|||s|||e||| |||n|||a|||m|||e||| |||s|||t|||a|||r|||t||| |||w|||i|||t|||h||| |||'|||P|||'||| |||t|||h|||a|||t||| |||u|||p|||r|||e|||g|||u|||l|||a|||t|||e||| |||o|||r||| |||d|||o|||w|||n|||r|||e|||g|||u|||l|||a|||t|||e||| |||p|||r|||o|||t|||e|||i|||n||| |||w|||h|||o|||s|||e||| |||i|||d|||e|||n|||t|||i|||f|||i|||e|||r||| |||i|||s||| |||5|||1|||0|||2|||6|||?": {
+    "0": "What are the medications whose name start with 'P' that upregulate or downregulate protein whose identifier is 51026?",
+    "1": "What are the medications whose name start with 'P' that upregulate or downregulate protein whose identifier is 51026?",
+    "2": "What are the medications whose name start with 'P' that upregulate or downregulate protein whose identifier is 51026?",
+    "3": "What are the medications whose name start with 'P' that upregulate or downregulate protein whose identifier is 51026?",
+    "4": "What are the medications whose name start with 'P' that upregulate or downregulate protein whose identifier is 51026?"
+  },
+  "1|||0|||2|||:|||:|||e|||n|||t|||i|||t|||y|||_|||s|||h|||i|||f|||t|||:|||:|||W|||h|||i|||c|||h||| |||g|||e|||n|||e|||t|||i|||c||| |||f|||a|||c|||t|||o|||r|||s||| |||a|||r|||e||| |||r|||e|||g|||u|||l|||a|||t|||e|||d||| |||b|||y||| |||'|||N|||P|||C|||1|||'||| |||a|||n|||d||| |||a|||s|||s|||o|||c|||i|||a|||t|||e|||d||| |||w|||i|||t|||h||| |||'|||a|||z|||o|||o|||s|||p|||e|||r|||m|||i|||a|||'|||?": {
+    "0": "Which genetic factors are regulated by 'NPC1' and associated with 'azoospermia'?",
+    "1": "Which genetic factors are regulated by 'NPC1' and associated with 'azoospermia'?",
+    "2": "Which genes are regulated by 'NPC1' and associated with 'azoospermia'?",
+    "3": "Which genetic factors are regulated by 'NPC1' and associated with 'azoospermia'?",
+    "4": "Which genes are regulated by 'NPC1' and associated with 'azoospermia'?"
+  },
+  "1|||0|||2|||:|||:|||r|||e|||l|||a|||t|||i|||o|||n|||_|||s|||h|||i|||f|||t|||:|||:|||W|||h|||i|||c|||h||| |||g|||e|||n|||e|||s||| |||a|||r|||e||| |||r|||e|||g|||u|||l|||a|||t|||e|||d||| |||b|||y||| |||'|||N|||P|||C|||1|||'||| |||a|||n|||d||| |||a|||s|||s|||o|||c|||i|||a|||t|||e|||d||| |||w|||i|||t|||h||| |||'|||a|||z|||o|||o|||s|||p|||e|||r|||m|||i|||a|||'|||?": {
+    "0": "Which genes are regulated by 'NPC1' and associated with 'azoospermia'?",
+    "1": "Which genes are regulated by 'NPC1' and associated with 'azoospermia'?",
+    "2": "Which genes are regulated by 'NPC1' and associated with 'azoospermia'?",
+    "3": "Which genes are regulated by 'NPC1' and associated with 'azoospermia'?",
+    "4": "Which genes are regulated by 'NPC1' and associated with 'azoospermia'?"
+  },
+  "1|||0|||2|||:|||:|||e|||n|||t|||i|||t|||y|||_|||r|||e|||l|||a|||t|||i|||o|||n|||_|||s|||h|||i|||f|||t|||:|||:|||W|||h|||i|||c|||h||| |||g|||e|||n|||e|||t|||i|||c||| |||f|||a|||c|||t|||o|||r|||s||| |||a|||r|||e||| |||r|||e|||g|||u|||l|||a|||t|||e|||d||| |||b|||y||| |||'|||N|||P|||C|||1|||'||| |||a|||n|||d||| |||a|||s|||s|||o|||c|||i|||a|||t|||e|||d||| |||w|||i|||t|||h||| |||'|||a|||z|||o|||o|||s|||p|||e|||r|||m|||i|||a|||'|||?": {
+    "0": "Which genetic factors are regulated by 'NPC1' and associated with 'azoospermia'?",
+    "1": "Which genetic factors are regulated by 'NPC1' and associated with 'azoospermia'?",
+    "2": "Which genes are regulated by 'NPC1' and associated with 'azoospermia'?",
+    "3": "Which genetic factors are regulated by 'NPC1' and associated with 'azoospermia'?",
+    "4": "Which genes are regulated by 'NPC1' and associated with 'azoospermia'?"
+  },
+  "1|||0|||2|||:|||:|||h|||a|||r|||d|||_|||s|||h|||i|||f|||t|||:|||:|||W|||h|||i|||c|||h||| |||p|||r|||o|||t|||e|||i|||n|||s||| |||a|||r|||e||| |||r|||e|||g|||u|||l|||a|||t|||e|||d||| |||b|||y||| |||'|||N|||P|||C|||1|||'||| |||a|||n|||d||| |||a|||s|||s|||o|||c|||i|||a|||t|||e|||d||| |||w|||i|||t|||h||| |||'|||a|||z|||o|||o|||s|||p|||e|||r|||m|||i|||a|||'|||?": {
+    "0": "Which proteins are regulated by 'NPC1' and associated with 'azoospermia'?",
+    "1": "Which genes are regulated by 'NPC1' and associated with 'azoospermia'?",
+    "2": "Which genes are regulated by 'NPC1' and associated with 'azoospermia'?",
+    "3": "Which genes are regulated by 'NPC1' and associated with 'azoospermia'?",
+    "4": "Which genes are regulated by 'NPC1' and associated with 'azoospermia'?"
+  }
+}

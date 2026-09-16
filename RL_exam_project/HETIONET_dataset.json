@@ -1,0 +1,2002 @@
+[
+  {
+    "question": "Which diseases present the similar symptom with the disease 'hypertension'? List the distinct diseases whose names contains 'malignant'.",
+    "cypher": "MATCH (d1:Disease {name: 'hypertension'})-[:PRESENTS_DpS]->(s:Symptom)<-[:PRESENTS_DpS]-(d2:Disease) WHERE d2.name CONTAINS 'malignant' RETURN DISTINCT d2.name AS Disease2"
+  },
+  {
+    "question": "Find compounds whose name ends with 'one' that are used to treat the 'hypertension'. What genes do they downregulate?",
+    "cypher": "MATCH (c1:Compound)-[:TREATS_CtD]->(d:Disease {name: 'hypertension'}) MATCH (g1:Gene)<-[:DOWNREGULATES_CdG]-(c1) WHERE c1.name ENDS WITH 'one' RETURN c1.name AS Compound1, g1.name AS Gene1"
+  },
+  {
+    "question": "Which anatomical entities express the gene DPYSL5, given that it is expressed in the anatomy 'sense organ'?",
+    "cypher": "MATCH (a1:Anatomy {name: 'sense organ'})-[:EXPRESSES_AeG]->(g:Gene {name: 'DPYSL5'})<-[:EXPRESSES_AeG]-(a2:Anatomy) RETURN a2.name AS Anatomy2"
+  },
+  {
+    "question": "Which genes on chromosome 'X' that are covaried with genes participate in the pathway named 'Apoptosis'?",
+    "cypher": "MATCH (p:Pathway {name: 'Apoptosis'})<-[:PARTICIPATES_GpPW]-(g1:Gene)-[:COVARIES_GcG]->(g2:Gene) WHERE g2.chromosome = 'X' RETURN g2.name"
+  },
+  {
+    "question": "List cellular components whose name contains 'collagene' in which the genes which are either upregulated in the 'ear' or expressed in the 'sense organ' participate.",
+    "cypher": "MATCH (cc:CellularComponent)<-[:PARTICIPATES_GpCC]-(g:Gene) WHERE (g)<-[:UPREGULATES_AuG]-(:Anatomy {name: 'ear'}) OR (g)<-[:EXPRESSES_AeG]-(:Anatomy {name: 'sense organ'}) AND cc.name CONTAINS 'collagen' RETURN g.name, cc.name"
+  },
+  {
+    "question": "Which genes whose name starts with 'HIST' participate in the cellular component with identifier 'GO:0000784' or with name 'histone deacetylase complex'?",
+    "cypher": "MATCH (g:Gene)-[:PARTICIPATES_GpCC]->(cc:CellularComponent) WHERE (cc.identifier = 'GO:0000784' OR cc.name = 'histone deacetylase complex') AND g.name STARTS WITH 'HIST' RETURN g.name"
+  },
+  {
+    "question": "What are the distinct anatomical locations whose name include 'system' associated with genes in cellular component with identifier 'GO:0034677' or with name 'nuclear chromosome, telomeric region'?",
+    "cypher": "MATCH (a:Anatomy)-[b:EXPRESSES_AeG]->(g:Gene)-[:PARTICIPATES_GpCC]->(cc:CellularComponent)  WHERE (cc.name = 'nuclear chromosome, telomeric region' OR cc.identifier = 'GO:0034677') AND a.name CONTAINS 'system' RETURN DISTINCT a.name"
+  },
+  {
+    "question": "Which five genes participate in the fewest cellular components (breaking ties alphabetically according to gene name)?",
+    "cypher": "MATCH (g:Gene)-[r:PARTICIPATES_GpCC]->(cc:CellularComponent) WITH g, COUNT(r) AS participationCount RETURN g.name, participationCount ORDER BY participationCount ASC, g.name ASC LIMIT 5"
+  },
+  {
+    "question": "Which distinct genes participate in both cellular components and pathways as the gene 'HIST1H4F' and are located on chromosome '1'?",
+    "cypher": "MATCH (g1:Gene {name: 'HIST1H4F'})-[:PARTICIPATES_GpCC]->(cc:CellularComponent), (g1)-[:PARTICIPATES_GpPW]->(pw:Pathway), (g2:Gene)-[:PARTICIPATES_GpCC]->(cc) WHERE (g2)-[:PARTICIPATES_GpPW]->(pw) AND g2.chromosome = '1' RETURN DISTINCT g2.name"
+  },
+  {
+    "question": "Which genes participate in the cellular component 'ruffle membrane' and are expressed in the anatomical location 'liver'?",
+    "cypher": "MATCH (cc:CellularComponent {name: 'ruffle membrane'})<-[:PARTICIPATES_GpCC]-(g:Gene)<-[:EXPRESSES_AeG]-(a:Anatomy {name: 'liver'}) RETURN g.name"
+  },
+  {
+    "question": "Retrieve diseases that are similar to 'obesity' and have associated genes located on chromosome 9.",
+    "cypher": "MATCH (d1:Disease {name: 'obesity'})-[:RESEMBLES_DrD]->(d2:Disease)-[:ASSOCIATES_DaG]->(g:Gene) WHERE g.chromosome = '9' RETURN d2.name, g.name"
+  },
+  {
+    "question": "Which compound has the highest number of downregulated genes (breaking ties alphabetically by compound name)?",
+    "cypher": "MATCH (c:Compound)-[:DOWNREGULATES_CdG]->(g:Gene) RETURN c.name, COUNT(g) AS gene_count ORDER BY gene_count DESC, c.name ASC LIMIT 1"
+  },
+  {
+    "question": "Retrieve genes whose names contain 'USP', such that they interact with a gene that participates in both the 'Cell Cycle' and 'DNA Repair' pathways.",
+    "cypher": "MATCH (g:Gene)-[:PARTICIPATES_GpPW]->(p1:Pathway {name: 'Cell Cycle'}), (g)-[:PARTICIPATES_GpPW]->(p2:Pathway {name: 'DNA Repair'}), (g)-[:INTERACTS_GiG]->(g1:Gene) WHERE g1.name CONTAINS'USP' RETURN g1.name"
+  },
+  {
+    "question": "Which distinct molecular functions related to 'RNA' do genes that participate in the biological process 'regulation of heart contraction' also participate in?",
+    "cypher": "MATCH (bp:BiologicalProcess {name: 'regulation of heart contraction'})<-[:PARTICIPATES_GpBP]-(g:Gene)-[:PARTICIPATES_GpMF]->(mf:MolecularFunction) mf.name CONTAINS 'RNA' RETURN DISTINCT mf.name"
+  },
+  {
+    "question": "What distinct GTPase-related molecular functions do genes participating in the biological process 'cytokinesis' or 'chemotaxis' participate in",
+    "cypher": "MATCH (g:Gene)-[:PARTICIPATES_GpBP]->(bp:BiologicalProcess), (g)-[:PARTICIPATES_GpMF]->(mf:MolecularFunction) WHERE (bp.name = 'cytokinesis' OR bp.name = 'chemotaxis') AND mf.name CONTAINS 'GTPase' RETURN DISTINCT mf.name"
+  },
+  {
+    "question": "Which biological process has the fewest participating genes, breaking ties alphabetically by biological process name?",
+    "cypher": "MATCH (g:Gene)-[:PARTICIPATES_GpBP]->(bp:BiologicalProcess) RETURN bp.name, COUNT(g) AS gene_count ORDER BY gene_count ASC, bp.name ASC LIMIT 1"
+  },
+  {
+    "question": "Which pharmacologic class has the minimum number of compounds (breaking ties alphabetically according to pharmacologic class name), and what is the count?",
+    "cypher": "MATCH (p:PharmacologicClass)-[:INCLUDES_PCiC]->(c:Compound) RETURN p.name, COUNT(c) AS compound_count ORDER BY compound_count ASC, p.name ASC LIMIT 1"
+  },
+  {
+    "question": "List symptoms whose name contains 'Pain'. Which are associated with diseases that localize to 'liver'?",
+    "cypher": "MATCH (a:Anatomy {name: 'liver'})<-[:LOCALIZES_DlA]-(d:Disease)-[:PRESENTS_DpS]->(s:Symptom) WHERE s.name CONTAINS 'Pain' RETURN s.name AS symptom_name"
+  },
+  {
+    "question": "List genes on chromosome 'Y' that are co-expressed in the lung and sense organ.",
+    "cypher": "MATCH (a1:Anatomy {name: 'sense organ'})-[:EXPRESSES_AeG]->(g:Gene) MATCH (a2:Anatomy {name: 'lung'})-[:EXPRESSES_AeG]->(g) WHERE g.chromosome = 'Y' RETURN g.name AS GeneName"
+  },
+  {
+    "question": "List distinct RNA-related pathways in which the genes that interact with gene 'DFFA' participate.",
+    "cypher": "MATCH (g:Gene)-[:INTERACTS_GiG]->(g1:Gene)-[:PARTICIPATES_GpPW]->(p:Pathway) WHERE g.name = 'DFFA' AND p.name CONTAINS 'RNA' RETURN DISTINCT g1.name,p.name"
+  },
+  {
+    "question": "Retrieve distinct blood-related anatomical locations that diseases presenting the symptom 'Fever' localize to.",
+    "cypher": "MATCH (s:Symptom {name: 'Fever'})<-[:PRESENTS_DpS]-(d:Disease)-[:LOCALIZES_DlA]->(a:Anatomy) WHERE a.name CONTAINS 'blood' RETURN DISTINCT a.name"
+  },
+  {
+    "question": "Which five genes are expressed in the highest number of distinct anatomical locations (breaking ties alphabetically according to gene name)?",
+    "cypher": "MATCH (a:Anatomy)-[:EXPRESSES_AeG]->(g:Gene) RETURN g.name, COUNT(DISTINCT a) AS expression_count ORDER BY expression_count DESC, g.name ASC LIMIT 5"
+  },
+  {
+    "question": "Retrieve genes that the compounds in the pharmacologic class 'Cytochrome P450 2D6 Inducers' upregulate or downregulate.",
+    "cypher": "MATCH (pc:PharmacologicClass)-[:INCLUDES_PCiC]->(c:Compound)-[:UPREGULATES_CuG|DOWNREGULATES_CdG]->(g:Gene) WHERE pc.name = 'Cytochrome P450 2D6 Inducers' RETURN g.name"
+  },
+  {
+    "question": "Look for compunds whose name ends with 'nin' and which downregulate the genes participating the biological process 'endocytosis' or 'viral process'.",
+    "cypher": "MATCH (c:Compound)-[:DOWNREGULATES_CdG]->(g:Gene)-[:PARTICIPATES_GpBP]->(bp:BiologicalProcess) WHERE c.name ENDS WITH 'nin' AND bp.name in ['endocytosis', 'viral process'] RETURN DISTINCT c.name"
+  },
+  {
+    "question": "Which disease associated with genes is linked to the highest number of pathways (breaking ties alphabetically according to disease name), and what is that number?",
+    "cypher": "MATCH (d:Disease)-[:ASSOCIATES_DaG]->(g:Gene)-[:PARTICIPATES_GpPW]->(p:Pathway) WITH d, COUNT(DISTINCT p) AS pathway_count RETURN d.name, pathway_count ORDER BY pathway_count DESC, d.name ASC LIMIT 1"
+  },
+  {
+    "question": "Find unique diseases upregulating or downregulating the genes which participate in the pathway 'Oxidative phosphorylation'.",
+    "cypher": "MATCH (d:Disease)-[:UPREGULATES_DuG|DOWNREGULATES_DdG]->(g:Gene)-[:PARTICIPATES_GpPW]->(pw:Pathway {name: 'Oxidative phosphorylation'}) RETURN DISTINCT d.name"
+  },
+  {
+    "question": "Retrieve two genes both in the same chromosome ('1') interacting with each other and both of them participate in the pathway 'Vpu mediated degradation of CD4'.",
+    "cypher": "MATCH (g1:Gene)-[:PARTICIPATES_GpPW]->(pw:Pathway {name: 'Vpu mediated degradation of CD4'})<-[:PARTICIPATES_GpPW]-(g2:Gene) WHERE (g1)-[:INTERACTS_GiG]->(g2) AND g1.chromosome = g2.chromosome AND g1.chromosome = '1' RETURN g1.name, g2.name"
+  },
+  {
+    "question": "What are the compounds whose name start with 'P' that upregulate or downregulate gene whose identifier is 51026?",
+    "cypher": "MATCH (c1:Compound)-[r1:UPREGULATES_CuG]->(g:Gene{identifier:51026})<-[r2:DOWNREGULATES_CdG]-(c2:Compound) WHERE c1.name STARTS WITH 'P' AND c2.name STARTS WITH 'P' RETURN c1.name, c2.name"
+  },
+  {
+    "question": "Find genes that are regulated by the gene whose identifier is 83448 and the compounds by which they are bound with actions including 'activator'.",
+    "cypher": "MATCH (g1:Gene{identifier:83448})-[:REGULATES_GrG]->(g2:Gene)<-[r:BINDS_CbG]-(c:Compound) WHERE 'activator' IN r.actions RETURN g1.name, g2.name, c.name, r.actions"
+  },
+  {
+    "question": "What are the molecular functions that the genes downregulated by compound 'Nicergoline' participate in?",
+    "cypher": "MATCH (c:Compound {name: 'Nicergoline'})-[r:DOWNREGULATES_CdG]->(g:Gene)-[:PARTICIPATES_GpMF]->(mf:MolecularFunction) RETURN g.name, mf.name"
+  },
+  {
+    "question": "What are the diseases associated with genes starting with the letter 'A' that are bound to the compound 'Progesterone' and have a binding affinity between 10 and 100 nM?",
+    "cypher": "MATCH (d:Disease)-[:ASSOCIATES_DaG]->(g:Gene)<-[r:BINDS_CbG]-(c:Compound {name: 'Progesterone'}) WHERE r.affinity_nM >= 10 AND r.affinity_nM <= 100 AND g.name STARTS WITH 'A' RETURN g.name, r.affinity_nM, d.name"
+  },
+  {
+    "question": "Retrieve the names of compounds starting wth the letter 'B' which bind the gene whose name is 'CYP1A2' and where the binding action includes 'inhibitor' or 'substrate'.",
+    "cypher": "MATCH (c:Compound)-[r:BINDS_CbG]->(g:Gene {name: 'CYP1A2'}) WHERE 'inhibitor' IN r.actions OR 'substrate' IN r.actions AND c.name STARTS WITH 'B' RETURN c.name, r.actions"
+  },
+  {
+    "question": "List diseases that resemble the disease whose identifier is 'DOID:1793'. Skip first two diseases.",
+    "cypher": "MATCH (d1:Disease {identifier: 'DOID:1793'})-[:RESEMBLES_DrD]->(d2:Disease) RETURN d2.name SKIP 2"
+  },
+  {
+    "question": "List genes that interact with the gene 'KLK2' and are involved in the same biological processes.",
+    "cypher": "MATCH (g1:Gene {name: 'KLK2'})-[:INTERACTS_GiG]->(g2:Gene)-[:PARTICIPATES_GpBP]->(bp:BiologicalProcess)<-[:PARTICIPATES_GpBP]-(g1) RETURN g2.name, bp.name"
+  },
+  {
+    "question": "Identify the cellular components associated with the genes named 'TP53' and 'BRCA1'.",
+    "cypher": "MATCH (g:Gene)-[:PARTICIPATES_GpCC]->(cc:CellularComponent) WHERE g.name = 'TP53' OR g.name = 'BRCA1' RETURN cc.name"
+  },
+  {
+    "question": "Which genes do not interact with other genes on chromosome 'X'? Return the gene name.",
+    "cypher": "MATCH (g:Gene) WHERE NOT (g)-[:INTERACTS_GiG]->(:Gene {chromosome: 'X'}) RETURN g.name AS gene"
+  },
+  {
+    "question": "List genes participating in the biological process 'female sex differentiation' that are associated with 'azoospermia'.",
+    "cypher": "MATCH (d:Disease {name: 'azoospermia'})-[:ASSOCIATES_DaG]->(g:Gene)-[:PARTICIPATES_GpBP]->(bp:BiologicalProcess {name: 'female sex differentiation'}) RETURN g.name"
+  },
+  {
+    "question": "Find all genes that are downregulated in 'systemic scleroderma'.",
+    "cypher": "MATCH (d:Disease {name: 'systemic scleroderma'})-[:DOWNREGULATES_DdG]->(g:Gene) RETURN g.name"
+  },
+  {
+    "question": "Retrieve genes associated with either 'diabetes mellitus' or 'hypertension'",
+    "cypher": "MATCH (g:Gene)<-[:ASSOCIATES_DaG]-(d:Disease) WHERE d.name = 'diabetes mellitus' OR d.name = 'hypertension' RETURN g.name"
+  },
+  {
+    "question": "Find diseases associated with genes that are participating either in the 'Wnt signaling pathway' or in the 'Notch signaling pathway'.",
+    "cypher": "MATCH (d:Disease)-[:ASSOCIATES_DaG]->(g:Gene)-[:PARTICIPATES_GpPW]->(pw:Pathway) WHERE pw.name = 'Wnt signaling pathway' OR pw.name = 'Notch signaling pathway' RETURN d.name"
+  },
+  {
+    "question": "List all distinct compounds whose name ends with 'en' that either upregulate or downregulate genes associated with the 'obesity' dosease.",
+    "cypher": "MATCH (c:Compound)-[:UPREGULATES_CuG|:DOWNREGULATES_CdG]->(g:Gene)<-[:ASSOCIATES_DaG]-(d:Disease {name: 'obesity'}) WHERE c.name ENDS WITH 'en' RETURN DISTINCT c.name"
+  },
+  {
+    "question": "Which genes are expressed in the 'brain' and either upregulated or downregulated in 'Schizophrenia'?",
+    "cypher": "MATCH (g:Gene) WHERE (g)<-[:EXPRESSES_AeG]-(:Anatomy {name: 'brain'}) AND (g)<-[:UPREGULATES_DuG|DOWNREGULATES_DdG]-(:Disease {name: 'schizophrenia'}) RETURN g.name"
+  },
+  {
+    "question": "What distinct pathways do genes that interact with gene 'BRCA1' participate in?",
+    "cypher": "MATCH (g:Gene {name: 'BRCA1'})-[:INTERACTS_GiG]->(g2:Gene)-[:PARTICIPATES_GpPW]->(p:Pathway) RETURN DISTINCT p.name"
+  },
+  {
+    "question": "Which genes participate in both the 'DNA Repair' and 'Cell Cycle' pathways?",
+    "cypher": "MATCH (g:Gene)-[:PARTICIPATES_GpPW]->(p1:Pathway {name: 'DNA Repair'}), (g)-[:PARTICIPATES_GpPW]->(p2:Pathway {name: 'Cell Cycle'}) RETURN g.name"
+  },
+  {
+    "question": "Identify genes that interact with 'MYC' and participate in either 'Cell Cycle' or 'Wnt Signaling' pathways.",
+    "cypher": "MATCH (g:Gene)-[:INTERACTS_GiG]->(:Gene {name: 'MYC'})-[:PARTICIPATES_GpPW]->(p:Pathway) WHERE p.name = 'Cell Cycle' OR p.name = 'Wnt Signaling' RETURN g.name"
+  },
+  {
+    "question": "Find pathways that the gene 'BRCA1' and the gene with identifier '8357' both participate in.",
+    "cypher": "MATCH (g1:Gene {name: 'BRCA1'})-[:PARTICIPATES_GpPW]->(p:Pathway), (g2:Gene {identifier: 8357})-[:PARTICIPATES_GpPW]->(p) RETURN p.name"
+  },
+  {
+    "question": "Identify compounds that upregulate genes involved in the molecular function 'syntaxin binding'.",
+    "cypher": "MATCH (mf:MolecularFunction {name: 'syntaxin binding'})<-[:PARTICIPATES_GpMF]-(g:Gene)<-[:UPREGULATES_CuG]-(c:Compound) RETURN c.name"
+  },
+  {
+    "question": "Which biological processes do genes participating in the molecular function 'U1 snRNA binding' participate?",
+    "cypher": "MATCH (mf:MolecularFunction {name: 'U1 snRNA binding'})<-[:PARTICIPATES_GpMF]-(g:Gene)-[:PARTICIPATES_GpBP]->(bp:BiologicalProcess) RETURN bp.name"
+  },
+  {
+    "question": "List the molecular functions associated with genes that participate in the biological process 'protein sialylation', ordered by the number of participating genes in descending order.",
+    "cypher": "MATCH (bp:BiologicalProcess {name: 'protein sialylation'})<-[:PARTICIPATES_GpBP]-(g:Gene)-[:PARTICIPATES_GpMF]->(mf:MolecularFunction) RETURN mf.name, COUNT(g) AS gene_count ORDER BY gene_count DESC"
+  },
+  {
+    "question": "What is the average number of biological processes in which a gene participating in the molecular function 'kinase activity' participate?",
+    "cypher": "MATCH (mf:MolecularFunction {name: 'kinase activity'})<-[:PARTICIPATES_GpMF]-(g:Gene)-[:PARTICIPATES_GpBP]->(bp:BiologicalProcess) WITH g, COUNT(bp) AS process_count RETURN AVG(process_count) AS avg_processes_per_gene"
+  },
+  {
+    "question": "What are the distinct side effects whose name mentions 'Acute' caused by compounds that treat 'breast cancer' disease?",
+    "cypher": "MATCH (d:Disease {name: 'breast cancer'})<-[:TREATS_CtD]-(c:Compound)-[:CAUSES_CcSE]->(se:SideEffect) WHERE se.name CONTAINS 'Acute' RETURN DISTINCT se.name"
+  },
+  {
+    "question": "Which genes are upregulated by compounds that treat 'melanoma'?",
+    "cypher": "MATCH (d:Disease {name: 'melanoma'})<-[:TREATS_CtD]-(c:Compound)-[:UPREGULATES_CuG]->(g:Gene) RETURN c.name, g.name"
+  },
+  {
+    "question": "Which anatomical locations are affected by diseases treated by the compound 'Linagliptin'?",
+    "cypher": "MATCH (c:Compound {name: 'Linagliptin'})-[:TREATS_CtD]->(d:Disease)-[:LOCALIZES_DlA]->(a:Anatomy) RETURN d.name, a.name"
+  },
+  {
+    "question": "Which symptoms are presented by diseases treated by the compound 'Mesalazine'?",
+    "cypher": "MATCH (c:Compound {name: 'Mesalazine'})-[:TREATS_CtD]->(d:Disease)-[:PRESENTS_DpS]->(s:Symptom) RETURN d.name, s.name"
+  },
+  {
+    "question": "What are the pharmacologic classes that include compounds that treat 'migraine'?",
+    "cypher": "MATCH (d:Disease {name: 'migraine'})<-[:TREATS_CtD]-(c:Compound)<-[:INCLUDES_PCiC]-(pc:PharmacologicClass) RETURN c.name, pc.name"
+  },
+  {
+    "question": "List compounds that treat diseases localized to either the cardiovascular or respiratory system.",
+    "cypher": "MATCH (c:Compound)-[:TREATS_CtD]->(d:Disease)-[:LOCALIZES_DlA]->(a:Anatomy) WHERE a.name = 'cardiovascular system' OR a.name = 'respiratory system' RETURN c.name"
+  },
+  {
+    "question": "Which distinct compounds treating diseases present symptoms related to 'Pain'?",
+    "cypher": "MATCH (c:Compound)-[:TREATS_CtD]->(:Disease)-[:PRESENTS_DpS]->(:Symptom {name: 'Pain'}) RETURN DISTINCT c.name"
+  },
+  {
+    "question": "What side effects are caused by compounds included in the pharmacologic class with the identifier 'N0000007151'?",
+    "cypher": "MATCH (p:PharmacologicClass {identifier: 'N0000007151'})-[:INCLUDES_PCiC]->(c:Compound)-[:CAUSES_CcSE]->(s:SideEffect) RETURN c.name, s.name"
+  },
+  {
+    "question": "Which genes are downregulated by compounds included in the pharmacologic class 'Dopamine Uptake Inhibitors'?",
+    "cypher": "MATCH (p:PharmacologicClass {name: 'Dopamine Uptake Inhibitors'})-[:INCLUDES_PCiC]->(c:Compound)-[:DOWNREGULATES_CdG]->(g:Gene) RETURN c.name, g.name"
+  },
+  {
+    "question": "List the pharmacologic classes including compounds that treat the disease 'glaucoma', sorted by the pharmacologic class name.",
+    "cypher": "MATCH (p:PharmacologicClass)-[:INCLUDES_PCiC]->(c:Compound)-[:TREATS_CtD]->(d:Disease {name: 'glaucoma'}) RETURN p.name, c.name ORDER BY p.name"
+  },
+  {
+    "question": "Look for the average number of diseases treated by compounds included in each pharmacologic class.",
+    "cypher": "MATCH (p:PharmacologicClass)-[:INCLUDES_PCiC]->(c:Compound)-[:TREATS_CtD]->(d:Disease) WITH p, COUNT(d) AS disease_count RETURN AVG(disease_count) AS average_disease_count"
+  },
+  {
+    "question": "Identify diseases that present multiple symptoms including 'Headache' and 'Nausea'.",
+    "cypher": "MATCH (d:Disease)-[:PRESENTS_DpS]->(s1:Symptom {name: 'Headache'}), (d)-[:PRESENTS_DpS]->(s2:Symptom {name: 'Nausea'}) RETURN d.name"
+  },
+  {
+    "question": "Which symptoms are presented by the disease identified by 'DOID:0060119' or 'DOID:1686'?",
+    "cypher": "MATCH (d:Disease)-[:PRESENTS_DpS]->(s:Symptom) WHERE d.identifier = 'DOID:0060119' OR d.identifier = 'DOID:1686' RETURN s.name AS symptom_name"
+  },
+  {
+    "question": "Which are the diseases localized to 'common carotid artery plus branches' and that present the symptom 'Weight Gain' or 'Albuminuria'?",
+    "cypher": "MATCH (a:Anatomy {name: 'common carotid artery plus branches'})<-[:LOCALIZES_DlA]->(d:Disease)-[:PRESENTS_DpS]->(s:Symptom) WHERE s.name = 'Weight Gain' OR s.name = 'Albuminuria' RETURN d.name AS disease_name"
+  },
+  {
+    "question": "Find the average number of diseases that localize to an anatomical part.",
+    "cypher": "MATCH (d:Disease)-[:LOCALIZES_DlA]->(a:Anatomy) WITH a, COUNT(d) AS disease_count RETURN AVG(disease_count) AS avg_diseases_per_anatomy"
+  },
+  {
+    "question": "Which genes are expressed in the vagina and downregulated in 'lung cancer'?",
+    "cypher": "MATCH (a:Anatomy {name:'vagina'})-[:EXPRESSES_AeG]->(g:Gene)<-[:DOWNREGULATES_DdG]-(:Disease {name: 'lung cancer'}) RETURN g.name"
+  },
+  {
+    "question": "Which genes are expressed in the heart and participate in the regulation of Biological Processes 'reproductive system development'?",
+    "cypher": "MATCH (:Anatomy {name: 'heart'})-[:EXPRESSES_AeG]->(g:Gene)-[:PARTICIPATES_GpBP]->(bp:BiologicalProcess {name: 'reproductive system development'}) RETURN g.name"
+  },
+  {
+    "question": "Which pairs of distinct genes on chromosome 2 both participate in the same pathway and are both associated with the molecular function 'frizzled binding'? Return the two gene names.",
+    "cypher": "MATCH (g1:Gene)-[:PARTICIPATES_GpPW]->(pw:Pathway) MATCH (g1)-[:PARTICIPATES_GpMF]->(mf:MolecularFunction {name: 'frizzled binding'}) MATCH (g2:Gene)-[:PARTICIPATES_GpPW]->(pw) WHERE (mf)<-[:PARTICIPATES_GpMF]-(g2) AND g2.name <> g1.name AND g1.chromosome = g2.chromosome = '2' RETURN g1.name AS GeneName1, g2.name AS GeneName2"
+  },
+  {
+    "question": "Which distinct anatomical structures exhibit upregulated expression of the gene CFAP45 or gene EDN3?",
+    "cypher": "MATCH (a:Anatomy)-[:UPREGULATES_AuG]->(g:Gene) WHERE g.name = 'CFAP45' OR g.name = 'EDN3' RETURN DISTINCT a.name"
+  },
+  {
+    "question": "What is the average number of genes expressed in the anatomical structure?",
+    "cypher": "MATCH (a:Anatomy)-[:EXPRESSES_AeG]->(g:Gene) WITH a, COUNT(g) as gene_count RETURN AVG(gene_count)"
+  },
+  {
+    "question": "What are the genes that participate in the same pathway as gene 'RAD52'?",
+    "cypher": "MATCH (g:Gene)-[:PARTICIPATES_GpPW]->(p:Pathway)<-[:PARTICIPATES_GpPW]-(a:Gene) WHERE g.name = 'RAD52' RETURN p.name, a.name"
+  },
+  {
+    "question": "Which genes covary with the gene 'MYBPC2' or gene 'LIMS1'?",
+    "cypher": "MATCH (g:Gene)-[:COVARIES_GcG]->(covarying:Gene) WHERE g.name = 'MYBPC2' OR g.name = 'LIMS1' RETURN covarying.name"
+  },
+  {
+    "question": "What is the average number of genes regulated by each gene?",
+    "cypher": "MATCH (g:Gene)-[:REGULATES_GrG]->(regulated:Gene) WITH g, COUNT(regulated) as gene_count RETURN AVG(gene_count)"
+  },
+  {
+    "question": "Find the average number of pathways in which the genes that interact with the gene 'CDK1' participate.",
+    "cypher": "MATCH (g:Gene {name: 'CDK1'})-[:INTERACTS_GiG]->(g1:Gene)-[:PARTICIPATES_GpPW]->(p:Pathway) WITH g1, COUNT(p) as pw_count RETURN AVG(pw_count)"
+  },
+  {
+    "question": "What are the side effects caused by compounds that upregulate the gene 'GPATCH8' and are included in the pharmacologic class 'Thyroxine'?",
+    "cypher": "MATCH (pc:PharmacologicClass {name: 'Thyroxine'})-[:INCLUDES_PCiC]->(c:Compound)-[:UPREGULATES_CuG]->(g:Gene {name: 'GPATCH8'}) MATCH (c)-[:CAUSES_CcSE]->(se:SideEffect) RETURN se.name"
+  },
+  {
+    "question": "Retrieve the anatomical locations that are localized in diseases presenting the symptom 'Obesity' and that resemble 'atherosclerosis'.",
+    "cypher": "MATCH (d1:Disease {name: 'atherosclerosis'})-[:RESEMBLES_DrD]->(d2:Disease)-[:PRESENTS_DpS]->(s:Symptom {name: 'Obesity'}) MATCH (d2)-[:LOCALIZES_DlA]->(a:Anatomy) RETURN d2.name, a.name"
+  },
+  {
+    "question": "List the molecular functions in which genes that are downregulated by the compound 'Nelfinavir' and participate in the pathway 'Carbohydrate metabolism' participate.",
+    "cypher": "MATCH (c:Compound {name: 'Nelfinavir'})-[:DOWNREGULATES_CdG]->(g:Gene)-[:PARTICIPATES_GpPW]->(p:Pathway {name: 'Carbohydrate metabolism'}) MATCH (g)-[:PARTICIPATES_GpMF]->(mf:MolecularFunction) RETURN mf.name"
+  },
+  {
+    "question": "Which distinct pressure-related side effets are caused by the compounds curing cancer-related disease'?",
+    "cypher": "MATCH (se:SideEffect)<-[:CAUSES_CcSE]-(c:Compound)-[:TREATS_CtD]->(d:Disease)  WHERE d.name CONTAINS 'cancer' AND se.name CONTAINS 'pressure' RETURN DISTINCT se.name"
+  },
+  {
+    "question": "If a patient is taking the 'Gemcitabine' to treat his disease, what distinct symptoms he may present before the treatment?",
+    "cypher": "MATCH (c:Compound {name: 'Gemcitabine'})-[:TREATS_CtD]->(d:Disease)-[:PRESENTS_DpS]->(s:Symptom) RETURN DISTINCT s.name"
+  },
+  {
+    "question": "What are the compounds and diseases that the compounds treat, knowing that the compounds cause 'Vertigo' and that the diseases present 'Headache'?",
+    "cypher": "MATCH (se:SideEffect {name: 'Vertigo'})<-[:CAUSES_CcSE]-(c:Compound)-[:TREATS_CtD]->(d:Disease)-[:PRESENTS_DpS]->(s:Symptom {name:'Headache'}) RETURN c.name, d.name"
+  },
+  {
+    "question": "What are the compounds that a patient with 'ovarian cancer' takes and that cause 'Abdominal distension'?",
+    "cypher": "MATCH (se:SideEffect)<-[:CAUSES_CcSE]-(c:Compound)-[:TREATS_CtD]->(d:Disease) WHERE se.name = 'Abdominal distension' AND d.name = 'ovarian cancer' RETURN c.name"
+  },
+  {
+    "question": "Which diseases present the 'Paraplegia'? Find the number of compounds which treat each kind of these diseases.",
+    "cypher": "MATCH (d:Disease)-[:PRESENTS_DpS]->(s:Symptom {name: 'Paraplegia'}) MATCH (c:Compound)-[:TREATS_CtD]->(d) RETURN d.name, COUNT(c)"
+  },
+  {
+    "question": "What are the compounds and the diseases that they treat, knowing that both the side effects caused by compounds and the symptoms presented by diseases are 'Vomiting'?",
+    "cypher": "MATCH (se:SideEffect {name: 'Vomiting'})<-[:CAUSES_CcSE]-(c:Compound)-[:TREATS_CtD]->(d:Disease)-[:PRESENTS_DpS]->(s:Symptom {name: 'Vomiting'}) RETURN c.name, d.name"
+  },
+  {
+    "question": "Which genes participate in the biological process 'cell-cell signaling' and are bound by the compound 'Triazolam'?",
+    "cypher": "MATCH (c:Compound {name: 'Triazolam'})-[:BINDS_CbG]->(g:Gene)-[:PARTICIPATES_GpBP]->(bp:BiologicalProcess {name: 'cell-cell signaling'}) RETURN g.name"
+  },
+  {
+    "question": "Find five biological processes in which genes bound by compounds included in the pharmacologic class 'Thyroxine' participate.",
+    "cypher": "MATCH (pc:PharmacologicClass {name: 'Thyroxine'})-[:INCLUDES_PCiC]->(c:Compound)-[:BINDS_CbG]->(g:Gene)-[:PARTICIPATES_GpBP]->(bp:BiologicalProcess) RETURN bp.name LIMIT 5"
+  },
+  {
+    "question": "Which genes participate in the biological process 'sexual reproduction' are downregulated by compounds included in the pharmacologic class 'Thiazolidinediones'?",
+    "cypher": "MATCH (pc:PharmacologicClass {name: 'Thiazolidinediones'})-[:INCLUDES_PCiC]->(c:Compound)-[:DOWNREGULATES_CdG]->(g:Gene)-[:PARTICIPATES_GpBP]->(bp:BiologicalProcess {name: 'sexual reproduction'}) RETURN g.name"
+  },
+  {
+    "question": "What are the unique common biological processes shared by genes bound by compounds included in both the pharmacologic classes 'Decreased Platelet Aggregation' and 'Thyroxine' ?",
+    "cypher": "MATCH (pc1:PharmacologicClass {name: 'Decreased Platelet Aggregation'})-[:INCLUDES_PCiC]->(c1:Compound)-[:BINDS_CbG]->(g:Gene)<-[:BINDS_CbG]-(c2:Compound)<-[:INCLUDES_PCiC]-(pc2:PharmacologicClass {name: 'Thyroxine'}), (g)-[:PARTICIPATES_GpBP]->(bp:BiologicalProcess) RETURN DISTINCT bp.name"
+  },
+  {
+    "question": "List the distinct biological processes in which the genes bound by 'Isoaminile' or 'Methocarbamol' participate.",
+    "cypher": "MATCH (c:Compound)-[:BINDS_CbG]->(g:Gene)-[:PARTICIPATES_GpBP]->(bp:BiologicalProcess) WHERE c.name IN ['Isoaminile', 'Methocarbamol'] RETURN DISTINCT bp.name"
+  },
+  {
+    "question": "Which genes participate in the pathway 'Metabolism' and are upregulated by the disease 'azoospermia'? ",
+    "cypher": "MATCH (d:Disease {name: 'azoospermia'})-[:UPREGULATES_DuG]->(g:Gene)-[:PARTICIPATES_GpPW]->(pw:Pathway {name: 'Metabolism'}) RETURN g.name"
+  },
+  {
+    "question": "What diseases downregulate the genes which paticipate in the pathway 'Integration of provirus'? ",
+    "cypher": "MATCH (d:Disease)-[:DOWNREGULATES_DdG]->(g:Gene)-[:PARTICIPATES_GpPW]->(pw:Pathway {name: 'Integration of provirus'}) RETURN d.name"
+  },
+  {
+    "question": "Look for the distinct diseases that associate the genes which participate in the pathways 'Signaling by GPCR' and 'Oxidative Stress'.",
+    "cypher": "MATCH (pw1:Pathway {name: 'Signaling by GPCR'})<-[:PARTICIPATES_GpPW]-(:Gene)<-[:ASSOCIATES_DaG]-(d1:Disease)-[:ASSOCIATES_DaG]->(:Gene)-[:PARTICIPATES_GpPW]->(pw2:Pathway {name: 'Oxidative Stress'}) RETURN DISTINCT d1.name"
+  },
+  {
+    "question": "Which distinct diseases resemble Behcet-related disease' and downregulate the genes which participate in the pathway 'Late Phase of HIV Life Cycle'? ",
+    "cypher": "MATCH (d1:Disease)-[:RESEMBLES_DrD]->(d2:Disease)-[:DOWNREGULATES_DdG]->(g:Gene)-[:PARTICIPATES_GpPW]->(pw:Pathway {name: 'Late Phase of HIV Life Cycle'}) WHERE d1.name CONTAINS 'Behcet' RETURN DISTINCT d2.name"
+  },
+  {
+    "question": "What is the average number of pathways that genes downregulated by the disease 'obesity' are associated with?",
+    "cypher": "MATCH (d:Disease {name: 'obesity'})-[:DOWNREGULATES_DdG]->(g:Gene)-[:PARTICIPATES_GpPW]->(p:Pathway) WITH g, COUNT(p) AS pathway_count RETURN AVG(pathway_count)"
+  },
+  {
+    "question": "Identify genes that are upregulated by the compound 'Caffeine' and participate in the biological processes that contain 'DNA'.",
+    "cypher": "MATCH (c:Compound {name: 'Caffeine'})-[r:UPREGULATES_CuG]->(g:Gene)-[:PARTICIPATES_GpBP]->(bp:BiologicalProcess) WHERE bp.name CONTAINS 'DNA' RETURN g.name, bp.name"
+  },
+  {
+    "question": "What are the diseases, whose name does not contain 'cancer', treated by the compound whose identifier is 'DB00997'?",
+    "cypher": "MATCH (n:Compound {identifier: 'DB00997'})-[r:TREATS_CtD]->(d:Disease) WHERE NOT d.name CONTAINS 'cancer' RETURN n.name, d.name"
+  },
+  {
+    "question": "Identify diseases whose name contains 'chronic' where the associated genes are bound by Tacrolimus.",
+    "cypher": "MATCH (c:Compound {name: 'Tacrolimus'})-[r1:BINDS_CbG]->(g:Gene)<-[:ASSOCIATES_DaG]-(d:Disease) WHERE d.name CONTAINS 'chronic' RETURN g.name, d.name"
+  },
+  {
+    "question": "List the names of compounds that bind to gene whose identifier is 3362 and also the diseases name that they palliate contain the word 'Tourette'.",
+    "cypher": "MATCH (c:Compound)-[r1:BINDS_CbG]->(g:Gene {identifier: 3362}), (c)-[:PALLIATES_CpD]->(d:Disease) WHERE d.name CONTAINS 'Tourette' RETURN g.name, c.name, d.name"
+  },
+  {
+    "question": "What are the diseases whose associated genes starting with the letter 'A' bind the compound 'Progesterone' and have a binding affinity between 10 and 100 nM ?",
+    "cypher": "MATCH (d:Disease)-[:ASSOCIATES_DaG]->(g:Gene)<-[r:BINDS_CbG]-(c:Compound {name: 'Progesterone'}) WHERE r.affinity_nM >= 10 AND r.affinity_nM <= 100 AND g.name STARTS WITH 'A' RETURN g.name, r.affinity_nM, d.name"
+  },
+  {
+    "question": "Retrieve the names of compounds starting wth the letter 'B' which bind the gene whose name is 'CYP1A2' and where the binding action includes 'inhibitor' or 'substrate'.",
+    "cypher": "MATCH (c:Compound)-[r:BINDS_CbG]->(g:Gene {name: 'CYP1A2'}) WHERE 'inhibitor' IN r.actions OR 'substrate' IN r.actions AND c.name STARTS WITH 'B' RETURN c.name, r.actions"
+  },
+  {
+    "question": "List diseases that resemble the disease whose identifier is 'DOID:1793'. Skip first two diseases.",
+    "cypher": "MATCH (d1:Disease {identifier: 'DOID:1793'})-[:RESEMBLES_DrD]->(d2:Disease) RETURN d2.name SKIP 2"
+  },
+  {
+    "question": "Which malignant-related diseases present the similar symptom with the disease 'hypertension'? List the distinct diseases names.",
+    "cypher": "MATCH (d1:Disease {name: 'hypertension'})-[:PRESENTS_DpS]->(s:Symptom)<-[:PRESENTS_DpS]-(d2:Disease) WHERE d2.name CONTAINS 'malignant' RETURN DISTINCT d2.name AS Disease2"
+  },
+  {
+    "question": "What are the compounds whose name start with 'P' that upregulate or downregulate gene whose identifier is 51026?",
+    "cypher": "MATCH (c1:Compound)-[r1:UPREGULATES_CuG]->(g:Gene {identifier: 51026})<-[r2:DOWNREGULATES_CdG]-(c2:Compound) WHERE c1.name STARTS WITH 'P' AND c2.name STARTS WITH 'P' RETURN c1.name,c2.name"
+  },
+  {
+    "question": "What are the compounds that resemble the compound with identifier 'DB01603' and that have a similarity score greater than 0.7? Start listing the compounds by the largest similarity.",
+    "cypher": "MATCH (c1:Compound {identifier: 'DB01603'})-[r:RESEMBLES_CrC]->(c2:Compound) WHERE r.similarity > 0.7 RETURN c1.name, c2.name, r.similarity ORDER BY r.similarity DESC"
+  },
+  {
+    "question": "Find the number of compounds that cause the same side effects as 'Alitretinoin' and also downregulate the same genes.",
+    "cypher": "MATCH (c1:Compound {name: 'Alitretinoin'})-[:CAUSES_CcSE]->(se:SideEffect)<-[:CAUSES_CcSE]-(c2:Compound)-[:DOWNREGULATES_CdG]->(g:Gene)<-[:DOWNREGULATES_CdG]-(c1) RETURN COUNT(c2) AS num_compounds"
+  },
+  {
+    "question": "Identify the number of diseases that upregulated genes which participate in the same biological processes involving the gene downregulate by 'lung cancer'.",
+    "cypher": "MATCH (d1:Disease {name: 'lung cancer'})-[c:DOWNREGULATES_DdG]->(:Gene)-[:PARTICIPATES_GpBP]->(bp:BiologicalProcess)<-[:PARTICIPATES_GpBP]-(:Gene)<-[:UPREGULATES_DuG]-(d2:Disease) RETURN COUNT(d2) AS num_diseases"
+  },
+  {
+    "question": "How many genes participate in the cellular component with name 'chromosomal region' or 'excitatory synapse'?",
+    "cypher": "MATCH (g:Gene)-[:PARTICIPATES_GpCC]->(cc:CellularComponent) WHERE cc.name = 'chromosomal region' or cc.name = 'excitatory synapse' RETURN COUNT(g)"
+  },
+  {
+    "question": "How many genes are associated with the cellular component 'TAP complex'?",
+    "cypher": "MATCH (g:Gene)-[:PARTICIPATES_GpCC]->(cc:CellularComponent {name: 'TAP complex'}) RETURN COUNT(g)"
+  },
+  {
+    "question": "Which cellular components have at least 500 participating genes, ranked from highest to lowest by gene count?",
+    "cypher": "MATCH (g:Gene)-[:PARTICIPATES_GpCC]->(cc:CellularComponent) WITH cc, COUNT(g) AS geneCount WHERE geneCount >= 500 RETURN cc.name, geneCount ORDER BY geneCount DESC"
+  },
+  {
+    "question": "Which genes are regulated by 'NPC1' and associated with 'azoospermia'?",
+    "cypher": "MATCH (g:Gene {name: 'NPC1'})-[:REGULATES_GrG]->(target:Gene)<-[:ASSOCIATES_DaG]-(d:Disease {name: 'azoospermia'}) RETURN target.name"
+  },
+  {
+    "question": "How many genes are associated with the disease 'salivary gland cancer'?",
+    "cypher": "MATCH (d:Disease {name: 'salivary gland cancer'})-[:ASSOCIATES_DaG]->(g:Gene) RETURN COUNT(g)"
+  },
+  {
+    "question": "How many genes are involved in either the 'Apoptosis' pathway or the 'Cell Cycle' pathway?",
+    "cypher": "MATCH (g:Gene)-[:PARTICIPATES_GpPW]->(p:Pathway) WHERE p.name = 'Apoptosis' OR p.name = 'Cell Cycle' RETURN COUNT(g)"
+  },
+  {
+    "question": "How many pathways does the gene 'TP53' participate in?",
+    "cypher": "MATCH (g:Gene {name: 'TP53'})-[:PARTICIPATES_GpPW]->(p:Pathway) RETURN COUNT(p) AS pathway_count"
+  },
+  {
+    "question": "Which pathways have at least 500 participating genes, ranked from highest to lowest by gene count?",
+    "cypher": "MATCH (g:Gene)-[:PARTICIPATES_GpPW]->(p:Pathway) WITH p, COUNT(g) AS geneCount WHERE geneCount >= 500 RETURN p.name, geneCount ORDER BY geneCount DESC"
+  },
+  {
+    "question": "List the RNA-related pathways by the number of genes on chromosome 'X' that they involve. Start with the pathway that involves the most genes.",
+    "cypher": "MATCH (g:Gene)-[:PARTICIPATES_GpPW]->(p:Pathway) WHERE g.chromosome = 'X' AND p.name CONTAINS 'RNA' RETURN p.name, COUNT(g) AS gene_count ORDER BY gene_count DESC"
+  },
+  {
+    "question": "Which gene covatirs with the gene 'PIK3CA' and participates in the pathway 'TOR Signaling'?",
+    "cypher": "MATCH (g1:Gene {name: 'PIK3CA'})-[:COVARIES_GcG]->(g2:Gene)-[:PARTICIPATES_GpPW]->(p:Pathway {name: 'TOR Signaling'}) RETURN g2.name"
+  },
+  {
+    "question": "Which gene participates in the 'DNA metabolic process' and 'U1 snRNA binding'?",
+    "cypher": "MATCH (mf:MolecularFunction {name: 'U1 snRNA binding'})<-[:PARTICIPATES_GpMF]-(g:Gene)-[:PARTICIPATES_GpBP]->(bp:BiologicalProcess {name: 'DNA metabolic process'}) RETURN g.name"
+  },
+  {
+    "question": "How many distinct molecular functions are associated with genes involved in 'regulation of heart contraction'?",
+    "cypher": "MATCH (bp:BiologicalProcess {name: 'regulation of heart contraction'})<-[:PARTICIPATES_GpBP]-(g:Gene)-[:PARTICIPATES_GpMF]->(mf:MolecularFunction) RETURN COUNT(DISTINCT mf) AS distinct_molecular_functions"
+  },
+  {
+    "question": "How many different genes participate in both 'establishment of protein localization to chromatin' and 'postsynaptic membrane assembly'?",
+    "cypher": "MATCH (g:Gene)-[:PARTICIPATES_GpBP]->(bp:BiologicalProcess) WHERE bp.name = 'establishment of protein localization to chromatin' OR bp.name = 'postsynaptic membrane assembly' RETURN COUNT(DISTINCT g) AS gene_count"
+  },
+  {
+    "question": "Find the number of side effects caused by compounds treating hypertension.",
+    "cypher": "MATCH (d:Disease {name: 'hypertension'})<-[:TREATS_CtD]-(c:Compound)-[:CAUSES_CcSE]->(se:SideEffect) RETURN COUNT(Distinct se) AS side_effect_count"
+  },
+  {
+    "question": "Which compounds that treat multiple sclerosis cause the fewest side effects? Return the top 3, breaking ties alphabetically by compound name.",
+    "cypher": "MATCH (d:Disease {name: 'multiple sclerosis'})<-[:TREATS_CtD]-(c:Compound)-[:CAUSES_CcSE]->(se:SideEffect) WITH c, COUNT(se) AS side_effect_count RETURN c.name, side_effect_count ORDER BY side_effect_count ASC, c.name ASC LIMIT 3"
+  },
+  {
+    "question": "How many pharmacologic classes include compounds that palliate 'breast cancer'?",
+    "cypher": "MATCH (pc:PharmacologicClass)-[:INCLUDES_PCiC]->(c:Compound)-[:PALLIATES_CpD]->(d:Disease {name: 'breast cancer'}) RETURN COUNT(pc) AS pharmacologic_class_count"
+  },
+  {
+    "question": "Count the number of genes that are downregulated by compounds treating nicotine dependence.",
+    "cypher": "MATCH (c:Compound)-[:TREATS_CtD]->(d:Disease {name: 'nicotine dependence'})-[:DOWNREGULATES_DdG]->(g:Gene) RETURN COUNT(g) AS gene_count"
+  },
+  {
+    "question": "Find the compounds that bind to the gene with name 'CYP3A4' and belong to the pharmacologic class 'Central Nervous System Stimulation'.",
+    "cypher": "MATCH (p:PharmacologicClass {name: 'Central Nervous System Stimulation'})-[:INCLUDES_PCiC]->(c:Compound)-[:BINDS_CbG]->(g:Gene {name: 'CYP3A4'}) RETURN c.name"
+  },
+  {
+    "question": "Which compounds included in the pharmacologic class 'Benzothiazoles' cause the side effect identified by 'C0030193'?",
+    "cypher": "MATCH (p:PharmacologicClass {name: 'Benzothiazoles'})-[:INCLUDES_PCiC]->(c:Compound)-[:CAUSES_CcSE]->(s:SideEffect {identifier: 'C0030193'}) RETURN c.name"
+  },
+  {
+    "question": "What are the three first side effects caused by compounds (breaking ties alphabetically by side effect name)?",
+    "cypher": "MATCH (s:SideEffect)<-[:CAUSES_CcSE]-(c:Compound) RETURN s.name, COUNT(c) AS compound_count ORDER BY compound_count DESC, s.name ASC LIMIT 3"
+  },
+  {
+    "question": "What is the average number of compounds included in each pharmacologic class?",
+    "cypher": "MATCH (p:PharmacologicClass)-[:INCLUDES_PCiC]->(c:Compound) WITH p, COUNT(c) AS compound_count RETURN AVG(compound_count) AS average_compound_count"
+  },
+  {
+    "question": "Which diseases localizing in 'retina' present with the symptom 'Obesity'?",
+    "cypher": "MATCH (a:Anatomy {name: 'retina'})<-[:LOCALIZES_DlA]-(d:Disease)-[:PRESENTS_DpS]->(s:Symptom {name: 'Obesity'}) RETURN d.name "
+  },
+  {
+    "question": "What is the maximum number of diseases that localize to any single anatomical part?",
+    "cypher": "MATCH (d:Disease)-[:LOCALIZES_DlA]->(a:Anatomy) WITH a, COUNT(d) AS disease_count RETURN MAX(disease_count) AS max_disease_count"
+  },
+  {
+    "question": "List the diseases that localize to 'gonad', ordered by the highest number of presented symptoms.",
+    "cypher": "MATCH (a:Anatomy {name: 'gonad'})<-[:LOCALIZES_DlA]-(d:Disease)-[:PRESENTS_DpS]->(s:Symptom) RETURN d.name AS disease_name, COUNT(s) AS symptom_count"
+  },
+  {
+    "question": "What is the total number of symptoms presented by diseases that localize to 'decidua'?",
+    "cypher": "MATCH (a:Anatomy {name: 'decidua'})<-[:LOCALIZES_DlA]-(d:Disease)-[:PRESENTS_DpS]->(s:Symptom) RETURN COUNT(s) AS symptom_count"
+  },
+  {
+    "question": "What is the average number of symptoms presented by diseases localizing to 'heart'?",
+    "cypher": "MATCH (:Anatomy {name: 'heart'})<-[:LOCALIZES_DlA]-(d:Disease)-[:PRESENTS_DpS]->(s:Symptom) WITH d, COUNT(s) AS symptom_count RETURN AVG(symptom_count) AS avg_symptoms"
+  },
+  {
+    "question": "What is the maximum number of genes expressed in a single anatomical structure?",
+    "cypher": "MATCH (a:Anatomy)-[:EXPRESSES_AeG]->(g:Gene) WITH a,COUNT(g) AS gene_count RETURN MAX(gene_count)"
+  },
+  {
+    "question": "Find the maximum number of genes which are downregulated by a anatomical structure and upregulated by 'bone marrow'.",
+    "cypher": "MATCH (a:Anatomy)-[:DOWNREGULATES_AdG]->(g:Gene)<-[:UPREGULATES_AuG]-(b:Anatomy {name: 'bone marrow'}) WITH a,COUNT(g) as gene_count RETURN MAX(gene_count)"
+  },
+  {
+    "question": "Order the bone-related anatomical structures by the number of diseases which localize in each of them. Start with the largest number.",
+    "cypher": "MATCH (d:Disease)-[:LOCALIZES_DlA]->(a:Anatomy) WITH a, COUNT(d) AS disease_count WHERE a.name CONTAINS 'bone' RETURN a.name, disease_count ORDER BY disease_count DESC"
+  },
+  {
+    "question": "How many anatomical structures express the genes which are downregulated by 'liver'?",
+    "cypher": "MATCH (a:Anatomy)-[:EXPRESSES_AeG]->(g:Gene)<-[:DOWNREGULATES_AdG]-(b:Anatomy {name: 'liver'}) RETURN COUNT(a)"
+  },
+  {
+    "question": "Identify the genes that both interact with gene 'CEBPE' and participate in the 'miRNAs involved in DNA damage response' pathway.",
+    "cypher": "MATCH (g:Gene {name: 'CEBPE'})-[:INTERACTS_GiG]->(interacting:Gene)-[:PARTICIPATES_GpPW]->(p:Pathway {name: 'miRNAs involved in DNA damage response'}) RETURN interacting.name"
+  },
+  {
+    "question": "Which genes on chromosome 'Y' participate in the highest number of pathways, ranked from highest to lowest by pathway count?",
+    "cypher": "MATCH (g:Gene)-[:PARTICIPATES_GpPW]->(p:Pathway) WHERE g.chromosome = 'Y' RETURN g.name, COUNT(p) AS pathway_count ORDER BY pathway_count DESC"
+  },
+  {
+    "question": "How many genes participate in the same biological process as gene 'CCL5'?",
+    "cypher": "MATCH (g:Gene)-[:PARTICIPATES_GpBP]->(bp:BiologicalProcess)<-[:PARTICIPATES_GpBP]-(other:Gene) WHERE g.name = 'CCL5' RETURN COUNT(other) AS gene_count"
+  },
+  {
+    "question": "Among the genes which interact with the gene 'TLE2', how many genes participate in RNA-related pathway?",
+    "cypher": "MATCH (g:Gene {name: 'TLE2'})-[:INTERACTS_GiG]->(g1:Gene)-[:PARTICIPATES_GpPW]->(pw:Pathway) WHERE pw.name CONTAINS 'RNA' RETURN COUNT(g1)"
+  },
+  {
+    "question": "Order the number of genes with which the genes participate in the pathway '' covary. Start with the smallest number.",
+    "cypher": "MATCH (g:Gene)-[:COVARIES_GcG]->(g1:Gene)-[:PARTICIPATES_GpPW]->(pw:Pathway {name: 'Abnormal metabolism in phenylketonuria'}) RETURN COUNT(g) ORDER BY COUNT(g) ASC"
+  },
+  {
+    "question": "Find the pharmacologic classes that include the compound identified by 'DB00451'.",
+    "cypher": "MATCH (pc:PharmacologicClass)-[:INCLUDES_PCiC]->(c:Compound {identifier: 'DB00451'}) RETURN pc.name"
+  },
+  {
+    "question": "What are the pathways involving genes that are both downregulated by the disease 'Crohn\\'s disease' and upregulated by the compound 'Amodiaquine'?",
+    "cypher": "MATCH (d:Disease {name: 'Crohn\\'s disease'})-[:DOWNREGULATES_DdG]->(g:Gene)<-[:UPREGULATES_CuG]-(c:Compound {name: 'Amodiaquine'}) MATCH (g)-[:PARTICIPATES_GpPW]->(p:Pathway) RETURN p.name"
+  },
+  {
+    "question": "How many side effects are caused by compounds that bind to genes involved in 'eye development'?",
+    "cypher": "MATCH (c:Compound)-[:BINDS_CbG]->(g:Gene)-[:PARTICIPATES_GpBP]->(bp:BiologicalProcess {name: 'eye development'}) MATCH (c)-[:CAUSES_CcSE]->(se:SideEffect) RETURN COUNT(se) AS side_effect_count"
+  },
+  {
+    "question": "Find the average number of diseases that are treated by each compound in the pharmacologic class 'Adrenergic beta2-Agonists'.",
+    "cypher": "MATCH (pc:PharmacologicClass {name: 'Adrenergic beta2-Agonists'})-[:INCLUDES_PCiC]->(c:Compound)-[:TREATS_CtD]->(d:Disease) WITH c,COUNT(d) as disease_count RETURN AVG(disease_count)"
+  },
+  {
+    "question": "List all diseases presenting the symptom 'Pain', ordered by the count of genes they are associated with.",
+    "cypher": "MATCH (d:Disease)-[:PRESENTS_DpS]->(s:Symptom {name: 'Pain'}) MATCH (d)-[:ASSOCIATES_DaG]->(g:Gene) RETURN d.name, COUNT(g) AS gene_count ORDER BY gene_count DESC"
+  },
+  {
+    "question": "What is the disease that 'Fluorouracil' treats and presents 'Urinoma'?",
+    "cypher": "MATCH (c:Compound {name: 'Fluorouracil'})-[:TREATS_CtD]->(d:Disease)-[:PRESENTS_DpS]->(s:Symptom {name: 'Urinoma'}) RETURN d.name"
+  },
+  {
+    "question": "Which compound treats both 'coronary artery disease' and 'glaucoma' and how many side effets does it causes?",
+    "cypher": "MATCH (d1:Disease {name: 'coronary artery disease'})<-[:TREATS_CtD]-(c:Compound)-[:TREATS_CtD]->(d2:Disease {name: 'glaucoma'}) MATCH (c)-[:CAUSES_CcSE]->(se:SideEffect) RETURN c.name, COUNT(se)"
+  },
+  {
+    "question": "Find the compound treating the 'asthma' and order them by the number of side effets they cause. Start from the highest",
+    "cypher": "MATCH (se:SideEffect)<-[:CAUSES_CcSE]-(c:Compound)-[:TREATS_CtD]->(d:Disease {name: 'asthma'}) WITH c,COUNT(se) as se_count RETURN c.name,se_count ORDER BY se_count DESC"
+  },
+  {
+    "question": "Retrieve the diseases treated by the 'Tirofiban' and order them by the number of number of symptoms they presents. Start from the one which presents the fewest symptoms.",
+    "cypher": "MATCH (c:Compound {name: 'Tirofiban'})-[:TREATS_CtD]->(d:Disease)-[:PRESENTS_DpS]->(s:Symptom) WITH d,COUNT(s) as s_count RETURN d.name,s_count ORDER BY s_count ASC"
+  },
+  {
+    "question": "Which compounds included in the pharmacologic class 'Macrolides' are involved with genes participating in the biological process 'lipid catabolic process'?",
+    "cypher": "MATCH (pc:PharmacologicClass {name: 'Macrolides'})-[:INCLUDES_PCiC]->(c:Compound)-[:BINDS_CbG]->(g:Gene)-[:PARTICIPATES_GpBP]->(bp:BiologicalProcess {name: 'lipid catabolic process'}) RETURN DISTINCT c.name"
+  },
+  {
+    "question": "Which pharmacologic classes have at least 10 compounds binding genes involved in the biological process 'regulation of peptide transport', ordered by compound count from highest to lowest?",
+    "cypher": "MATCH (pc:PharmacologicClass)-[:INCLUDES_PCiC]->(c:Compound)-[:BINDS_CbG]->(g:Gene)-[:PARTICIPATES_GpBP]->(bp:BiologicalProcess {name: 'regulation of peptide transport'}) WITH pc, COUNT(c) AS compound_count WHERE compound_count >= 10 RETURN pc.name, compound_count ORDER BY compound_count DESC"
+  },
+  {
+    "question": "How many pharmacologic classes include compounds that bind to genes involved in the biological process 'embryonic process involved in female pregnancy' ?",
+    "cypher": "MATCH (pc:PharmacologicClass)-[:INCLUDES_PCiC]->(c:Compound)-[:BINDS_CbG]->(g:Gene)-[:PARTICIPATES_GpBP]->(bp:BiologicalProcess {name: 'embryonic process involved in female pregnancy'}) RETURN COUNT(DISTINCT pc)"
+  },
+  {
+    "question": "Identify the DNA-related pathways that involve the highest number of genes which are associated with the disease 'prostate cancer'.",
+    "cypher": "MATCH (d:Disease {name: 'prostate cancer'})-[:ASSOCIATES_DaG]->(g:Gene)-[:PARTICIPATES_GpPW]->(p:Pathway) WHERE p.name CONTAINS 'DNA' RETURN p.name, COUNT(DISTINCT g) AS gene_count ORDER BY gene_count DESC"
+  },
+  {
+    "question": "Among the genes participating in the pathway 'Immune System', how many of them are upregulated by the disease 'hematologic cancer'?",
+    "cypher": "MATCH (d:Disease {name: 'hematologic cancer'})-[:UPREGULATES_DuG]->(g:Gene)-[:PARTICIPATES_GpPW]->(pw:Pathway {name: 'Immune System'}) RETURN COUNT(g)"
+  },
+  {
+    "question": "How many distinct pharmacologic classes include compounds that bind to genes involved in the biological process 'embryonic process involved in female pregnancy'?",
+    "cypher": "MATCH (pc:PharmacologicClass)-[:INCLUDES_PCiC]->(c:Compound)-[:BINDS_CbG]->(g:Gene)-[:PARTICIPATES_GpBP]->(bp:BiologicalProcess {name: 'embryonic process involved in female pregnancy'}) RETURN COUNT(DISTINCT pc)"
+  },
+  {
+    "question": "List the pathways participated in by genes associated with the disease 'prostate cancer', considering only pathways with at least 40 such genes. Return the pathway name and the number of distinct associated genes, ordered by gene count in descending order.",
+    "cypher": "MATCH (d:Disease {name: 'prostate cancer'})-[:ASSOCIATES_DaG]->(g:Gene)-[:PARTICIPATES_GpPW]->(p:Pathway) WITH p, COUNT(DISTINCT g) AS gene_count WHERE gene_count >= 40 RETURN p.name, gene_count ORDER BY gene_count DESC"
+  },
+  {
+    "question": "Among the genes participating in the pathway 'Immune System', how many of them are upregulated by the disease 'hematologic cancer'?",
+    "cypher": "MATCH (d:Disease {name: 'hematologic cancer'})-[:UPREGULATES_DuG]->(g:Gene)-[:PARTICIPATES_GpPW]->(pw:Pathway {name: 'Immune System'}) RETURN COUNT(g)"
+  },
+  {
+    "question": "List compounds that are used to treat 'rheumatoid arthritis'.",
+    "cypher": "MATCH (d:Disease {name: 'rheumatoid arthritis'})<-[:TREATS_CtD]-(c:Compound) RETURN c.name"
+  },
+  {
+    "question": "Identify compounds that resemble 'Lisinopril'.",
+    "cypher": "MATCH (c1:Compound {name: 'Lisinopril'})-[:RESEMBLES_CrC]->(c2:Compound) RETURN c2.name"
+  },
+  {
+    "question": "Which diseases commonly present the symptom 'Fever'?",
+    "cypher": "MATCH (s:Symptom {name: 'Fever'})<-[:PRESENTS_DpS]-(d:Disease) RETURN d.name"
+  },
+  {
+    "question": "Which genes regulate the gene 'CDKN1A'?",
+    "cypher": "MATCH (g1:Gene {name: 'CDKN1A'})<-[:REGULATES_GrG]-(g2:Gene) RETURN g2.name"
+  },
+  {
+    "question": "Which compounds treat 'hypertension'?",
+    "cypher": "MATCH (d:Disease {name: 'hypertension'})<-[:TREATS_CtD]-(c:Compound) RETURN c.name"
+  },
+  {
+    "question": "Which compounds have a binding relationship with the gene 'TP53'?",
+    "cypher": "MATCH (g:Gene {name: 'TP53'})<-[:BINDS_CbG]-(c:Compound) RETURN c.name"
+  },
+  {
+    "question": "What pathways do both the genes 'EGFR' and 'KRAS' participate in?",
+    "cypher": "MATCH (g1:Gene {name: 'EGFR'})-[:PARTICIPATES_GpPW]->(p:Pathway)<-[:PARTICIPATES_GpPW]-(g2:Gene {name: 'KRAS'}) RETURN p.name"
+  },
+  {
+    "question": "List compounds that are known to palliate 'migraine'",
+    "cypher": "MATCH (d:Disease {name: 'migraine'})<-[:PALLIATES_CpD]-(c:Compound) RETURN c.name"
+  },
+  {
+    "question": "Can you identify genes whose desription contains 'tumor' that are downregulated in 'lung cancer'?",
+    "cypher": "MATCH (d:Disease {name: 'lung cancer'})-[:DOWNREGULATES_DdG]->(g:Gene) WHERE g.description CONTAINS 'tumor' RETURN g.name, g.description"
+  },
+  {
+    "question": "Find genes that interact with the gene 'BRAF' and that participate in the same biological process in which 'BRAF' participates in.",
+    "cypher": "MATCH (g1:Gene {name: 'BRAF'})-[:INTERACTS_GiG]->(g2:Gene)-[:PARTICIPATES_GpBP]->(:BiologicalProcess)<-[:PARTICIPATES_GpBP]-(g1) RETURN g2.name"
+  },
+  {
+    "question": "What are the compounds that downregulate the expression of the gene 'TP53'?",
+    "cypher": "MATCH (g:Gene {name: 'TP53'})<-[:DOWNREGULATES_CdG]-(c:Compound) RETURN c.name"
+  },
+  {
+    "question": "List the genes that interact with the gene named 'EGFR'.",
+    "cypher": "MATCH (g1:Gene {name: 'EGFR'})-[:INTERACTS_GiG]->(g2:Gene) RETURN g2.name"
+  },
+  {
+    "question": "Can you list the genes starting with 'UH' that participate in the biological process 'DNA repair' and the molecular functions they participate in?",
+    "cypher": "MATCH (bp:BiologicalProcess {name: 'DNA repair'})<-[:PARTICIPATES_GpBP]-(g:Gene)-[:PARTICIPATES_GpMF]->(mf:MolecularFunction) WHERE g.name STARTS WITH 'UH' RETURN g.name, mf.name"
+  },
+  {
+    "question": "Which genes interact with the gene 'BRCA1' and what pathways containing the string 'DNA replication' in the name do they participate in?",
+    "cypher": "MATCH (g1:Gene {name: 'BRCA1'})-[:INTERACTS_GiG]->(g2:Gene)-[:PARTICIPATES_GpPW]->(p:Pathway) WHERE p.name CONTAINS 'DNA replication' RETURN g2.name, p.name"
+  },
+  {
+    "question": "Can you find genes that bind to the compound 'Lisinopril'?",
+    "cypher": "MATCH (c:Compound {name: 'Lisinopril'})-[:BINDS_CbG]->(g:Gene) RETURN g.name"
+  },
+  {
+    "question": "Identify the molecular functions in which the gene 'PTPN11' participates in.",
+    "cypher": "MATCH (g:Gene {name: 'PTPN11'})-[:PARTICIPATES_GpMF]->(mf:MolecularFunction) RETURN mf.name"
+  },
+  {
+    "question": "What compounds are known to cause the side effect 'Hallucination' in patients with 'hypertension'?",
+    "cypher": "MATCH (d:Disease {name:'hypertension'})<-[:TREATS_CtD]-(c:Compound)-[:CAUSES_CcSE]->(se:SideEffect) WHERE se.name = 'Hallucination' RETURN c.name"
+  },
+  {
+    "question": "List compounds that bind to the gene 'AKT1'.",
+    "cypher": "MATCH (g:Gene {name: 'AKT1'})<-[:BINDS_CbG]-(c:Compound) RETURN c.name"
+  },
+  {
+    "question": "Which genes covary with gene 'PTPN11'?",
+    "cypher": "MATCH (g1:Gene {name: 'PTPN11'})-[:COVARIES_GcG]->(g2:Gene) RETURN g2.name"
+  },
+  {
+    "question": "Which genes located on chromosome 13 participate in the 'Lysosome' cellular component?",
+    "cypher": "MATCH (g:Gene)-[:PARTICIPATES_GpCC]->(:CellularComponent {name: 'Lysosome'}) WHERE g.chromosome = '13' RETURN g.name"
+  },
+  {
+    "question": "Find genes that interact with the gene 'BRCA1' and participate in the molecular function named 'hormone receptor binding' that also 'BRCA1' is known to be participating in.",
+    "cypher": "MATCH (g1:Gene {name: 'BRCA1'})-[:INTERACTS_GiG]->(g2:Gene)-[:PARTICIPATES_GpMF]->(mf:MolecularFunction {name: 'hormone receptor binding'})<-[:PARTICIPATES_GpMF]-(g1) RETURN g2.name"
+  },
+  {
+    "question": "Count all the genes interaction occurring in the 'MAPK Signaling Pathway'.",
+    "cypher": "MATCH (g1:Gene)-[r:INTERACTS_GiG]->(g2:Gene)-[:PARTICIPATES_GpPW]->(:Pathway {name: 'MAPK Signaling Pathway'}) RETURN COUNT(r)"
+  },
+  {
+    "question": "Can you find genes that are bound by 'Desipramine' and are also associated with 'obesity'?",
+    "cypher": "MATCH (c:Compound {name: 'Desipramine'})-[:BINDS_CbG]->(g:Gene)<-[:ASSOCIATES_DaG]-(d:Disease {name: 'obesity'}) RETURN g.name"
+  },
+  {
+    "question": "What are the actions associated with the binding of the compound 'Metoprolol' to genes?",
+    "cypher": "MATCH (c:Compound {name: 'Metoprolol'})-[r:BINDS_CbG]->(g:Gene) RETURN g.name, r.actions"
+  },
+  {
+    "question": "List compounds that are known to palliate 'multiple sclerosis'.",
+    "cypher": "MATCH (d:Disease {name: 'multiple sclerosis'})<-[:PALLIATES_CpD]-(c:Compound) RETURN c.name"
+  },
+  {
+    "question": "List the genes interacting with other genes that participate in the biological process named 'protein targeting'.",
+    "cypher": "MATCH (bp:BiologicalProcess {name: 'protein targeting'})<-[:PARTICIPATES_GpBP]-(g:Gene {name: 'RPL34'} )-[:INTERACTS_GiG]->(ig:Gene) RETURN g.name, ig.name"
+  },
+  {
+    "question": "List the genes that are bound by the compound 'Lisinopril' and their binding affinities.",
+    "cypher": "MATCH (c:Compound {name: 'Lisinopril'})-[r:BINDS_CbG]->(g:Gene) RETURN g.name, r.affinity_nM"
+  },
+  {
+    "question": "Which compounds bind with genes that covary with the gene named 'T'?",
+    "cypher": "MATCH (g:Gene {name: 'T'})-[:COVARIES_GcG]->(g2:Gene)<-[:BINDS_CbG]-(c:Compound) RETURN c.name"
+  },
+  {
+    "question": "Which diseases are palliated by compounds that resemble 'Amitriptyline'?",
+    "cypher": "MATCH (c:Compound {name: 'Amitriptyline'})-[:RESEMBLES_CrC]->(c2:Compound)-[:PALLIATES_CpD]->(d:Disease) RETURN d.name"
+  },
+  {
+    "question": "Can you find genes that covary with 'JUN' and participate in the same pathway in which also 'JUN' does participate?",
+    "cypher": "MATCH (g1:Gene)-[:COVARIES_GcG]->(g:Gene {name: 'JUN'})-[:PARTICIPATES_GpPW]->(pw:Pathway)<-[:PARTICIPATES_GpPW]-(g1:Gene) RETURN g1.name"
+  },
+  {
+    "question": "Can you list diseases that commonly present 'Constipation'?",
+    "cypher": "MATCH (s:Symptom {name: 'Constipation'})<-[:PRESENTS_DpS]-(d:Disease) RETURN d.name"
+  },
+  {
+    "question": "What are the genes that are upregulated by compounds included in the 'Oxazolidinones' pharmacologic class?",
+    "cypher": "MATCH (pc:PharmacologicClass {name: 'Oxazolidinones'})-[:INCLUDES_PCiC]->(c:Compound)-[:UPREGULATES_CuG]->(g:Gene) RETURN g.name"
+  },
+  {
+    "question": "Which genes are bound by the compound 'Penbutolol' and what are the molecular functions they participate in?",
+    "cypher": "MATCH (c:Compound {name: 'Penbutolol'})-[:BINDS_CbG]->(g:Gene)-[:PARTICIPATES_GpMF]->(mf:MolecularFunction) RETURN g.name, mf.name"
+  },
+  {
+    "question": "Do genes 'SMAD4' and 'SMAD7' interact with each other?",
+    "cypher": "MATCH (g1:Gene {name: 'SMAD4'})-[:INTERACTS_GiG]->(g2:Gene {name:'SMAD7'}) RETURN g1.name, g2.name"
+  },
+  {
+    "question": "What compounds are commonly used for palliating 'migraine'?",
+    "cypher": "MATCH (d:Disease {name: 'migraine'})<-[:PALLIATES_CpD]-(c:Compound) RETURN c.name"
+  },
+  {
+    "question": "What cellular components are participated by the gene 'MYC'?",
+    "cypher": "MATCH (g:Gene {name: 'MYC'})-[:PARTICIPATES_GpCC]->(cc:CellularComponent) RETURN cc.name"
+  },
+  {
+    "question": "Which compounds are effective in palliating 'bipolar disorder'?",
+    "cypher": "MATCH (d:Disease {name: 'bipolar disorder'})<-[:PALLIATES_CpD]-(c:Compound) RETURN c.name"
+  },
+  {
+    "question": "Can you provide a list of compounds whose name ends with 'en' and that cause the side effect 'Skin disorder'?",
+    "cypher": "MATCH (se:SideEffect {name: 'Skin disorder'} )<-[:CAUSES_CcSE]-(c:Compound) WHERE c.name ENDS WITH 'en' RETURN c.name"
+  },
+  {
+    "question": "What genes whose name start with 'CH' are commonly expressed in the 'brain' and associated with 'schizophrenia'?",
+    "cypher": "MATCH (a:Anatomy {name: 'brain'})-[:EXPRESSES_AeG]->(g:Gene)<-[:ASSOCIATES_DaG]-(d:Disease {name: 'schizophrenia'}) WHERE g.name STARTS WITH 'CH' RETURN g.name"
+  },
+  {
+    "question": "Which diseases commonly present the symptom 'Arthralgia'?",
+    "cypher": "MATCH (s:Symptom {name: 'Arthralgia'})<-[:PRESENTS_DpS]-(d:Disease) RETURN d.name"
+  },
+  {
+    "question": "List the genes that regulate the gene 'TP53' and participate in the 'chromatin' cellular component.",
+    "cypher": "MATCH (g1:Gene)-[:REGULATES_GrG]->(:Gene {name: 'TP53'})-[:PARTICIPATES_GpCC]->(:CellularComponent {name: 'chromatin'}) RETURN g1.name"
+  },
+  {
+    "question": "Explain how compounds treat 'atopic dermatitis'",
+    "cypher": "MATCH (d:Disease {name: 'atopic dermatitis'})<-[:TREATS_CtD]-(c:Compound) RETURN c.name"
+  },
+  {
+    "question": "Which diseases commonly present 'Fever' and localize in the 'Musculoskeletal System'?",
+    "cypher": "MATCH (s:Symptom {name: 'Fever'})<-[:PRESENTS_DpS]-(d:Disease)-[:LOCALIZES_DlA]->(a:Anatomy {name: 'superior mesenteric artery'}) RETURN d.name"
+  },
+  {
+    "question": "Can you find genes that co-vary with the gene 'BRCA1'?",
+    "cypher": "MATCH (g1:Gene {name:'BRCA1'})-[:COVARIES_GcG]->(g2:Gene) RETURN g2.name"
+  },
+  {
+    "question": "Which genes participate in the 'DNA Repair' pathway and regulate the gene DNMT1?",
+    "cypher": "MATCH (g1:Gene)-[:REGULATES_GrG]->(g2:Gene {name:'DNMT1'}) WHERE (g1)-[:PARTICIPATES_GpPW]->(:Pathway {name: 'DNA Repair'}) RETURN g1.name"
+  },
+  {
+    "question": "List genes located on chromosome 'Y' that participate in the same molecular function of 'STAT3'.",
+    "cypher": "MATCH (g:Gene {name: 'STAT3'})-[:PARTICIPATES_GpMF]->(mf:MolecularFunction)<-[:PARTICIPATES_GpMF]-(g2:Gene) WHERE g2.chromosome = 'Y' RETURN g2.name"
+  },
+  {
+    "question": "List the compounds that bind the gene 'TP53' and their binding actions.",
+    "cypher": "MATCH (g:Gene {name: 'TP53'})<-[r:BINDS_CbG]-(c:Compound) RETURN c.name, r.actions"
+  },
+  {
+    "question": "Can you provide the compounds that bind the gene 'BRAF' and their binding affinities?",
+    "cypher": "MATCH (g:Gene {name: 'BRAF'})<-[r:BINDS_CbG]-(c:Compound) RETURN c.name, r.affinity_nM"
+  },
+  {
+    "question": "What cellular components are participated by the gene 'CDH1'?",
+    "cypher": "MATCH (g:Gene {name: 'CDH1'})-[:PARTICIPATES_GpCC]->(cc:CellularComponent) RETURN cc.name"
+  },
+  {
+    "question": "What are the actions associated with the binding of the compound 'Metformin' to genes?",
+    "cypher": "MATCH (c:Compound {name: 'Metformin'})-[r:BINDS_CbG]->(g:Gene) RETURN r.actions"
+  },
+  {
+    "question": "Can you provide a list of compounds used in the treatment of 'osteoporosis'?",
+    "cypher": "MATCH (d:Disease {name: 'osteoporosis'})<-[:TREATS_CtD]-(c:Compound) RETURN c.name"
+  },
+  {
+    "question": "Can you provide the binding affinities of genes that interact with the compound 'Omeprazole'?",
+    "cypher": "MATCH (c:Compound {name: 'Omeprazole'})-[r:BINDS_CbG]->(g:Gene) RETURN g.name, c.actions"
+  },
+  {
+    "question": "List the genes that have a binding relationship with the compound 'Metformin' and their associated actions.",
+    "cypher": "MATCH (c:Compound {name: 'Metformin'})-[r:BINDS_CbG]->(g:Gene) RETURN g.name, r.actions"
+  },
+  {
+    "question": "List genes whose name starts with 'RB' that participate in the same cellular component of the gene 'MYC'.",
+    "cypher": "MATCH (g1:Gene {name: 'MYC'})-[:PARTICIPATES_GpCC]->(cc:CellularComponent)<-[:PARTICIPATES_GpCC]-(g2:Gene) WHERE g2.name STARTS WITH 'RB' RETURN g2.name"
+  },
+  {
+    "question": "List the genes that participate in the molecular function 'kinase activity' and their associated pathways. Moreover, consider only pathways whose name contains the string 'miRNAs'.",
+    "cypher": "MATCH (mf:MolecularFunction {name: 'kinase activity'})<-[:PARTICIPATES_GpMF]-(g:Gene)-[:PARTICIPATES_GpPW]->(p:Pathway) WHERE p.name CONTAINS 'miRNAs' RETURN g.name, p.name"
+  },
+  {
+    "question": "List the genes that covary with the gene 'APOE'.",
+    "cypher": "MATCH (g1:Gene {name: 'APOE'})-[:COVARIES_GcG]->(g2:Gene) RETURN g2.name"
+  },
+  {
+    "question": "Show compounds that resemble 'Acetaminophen' in the database.",
+    "cypher": "MATCH (c:Compound {name: 'Acetaminophen'})-[:RESEMBLES_CrC]->(c2:Compound) RETURN c2.name"
+  },
+  {
+    "question": "Which genes interact with the gene 'KRAS' and are associated with the disease 'stomach cancer'?",
+    "cypher": "MATCH (d:Disease {name: 'stomach cancer'} )-[:ASSOCIATES_DaG]->(g1:Gene)-[:INTERACTS_GiG]->(g2:Gene {name: 'KRAS'}) RETURN  g1.name"
+  },
+  {
+    "question": "Can you identify the genes that participate in the biological process named 'D-serine metabolic process' and the molecular functions they participate in?",
+    "cypher": "MATCH (bp:BiologicalProcess {name: 'D-serine metabolic process'})<-[:PARTICIPATES_GpBP]-(g:Gene)-[:PARTICIPATES_GpMF]->(mf:MolecularFunction) RETURN g.name, mf.name"
+  },
+  {
+    "question": "Retrieve the genes that interact with both 'BRCA1' and 'BRCA2' in the graph.",
+    "cypher": "MATCH (g1:Gene {name: 'BRCA1'})-[:INTERACTS_GiG]->(g2:Gene)<-[:INTERACTS_GiG]-(g3:Gene {name: 'BRCA2'}) RETURN g2.name"
+  },
+  {
+    "question": "What are the symptoms that the disease 'celiac disease' presents?",
+    "cypher": "MATCH (d:Disease {name: 'celiac disease'})-[:PRESENTS_DpS]->(s:Symptom) RETURN s.name"
+  },
+  {
+    "question": "How does 'osteoporosis' localize within the body?",
+    "cypher": "MATCH (d:Disease {name: 'osteoporosis'})-[:LOCALIZES_DlA]->(a:Anatomy) RETURN a.name"
+  },
+  {
+    "question": "What genes resemble the gene 'SRC' while also interacting with 'SRC'?",
+    "cypher": "MATCH (g1:Gene)-[RESEMBLES_GrG]->(g2:Gene {name: 'SRC'})-[:INTERACTS_GiG]-(g1) RETURN g1.name"
+  },
+  {
+    "question": "Which compounds palliate the disease 'hypertension'?",
+    "cypher": "MATCH (d:Disease {name: 'hypertension'})<-[:PALLIATES_CpD]-(c:Compound) RETURN c.name"
+  },
+  {
+    "question": "Which compounds whose name ends with 'amol' are known to cause the side effect 'Insomnia'?",
+    "cypher": "MATCH (se:SideEffect {name: 'Insomnia'})<-[:CAUSES_CcSE]-(c:Compound) WHERE c.name ENDS WITH 'amol' RETURN c.name"
+  },
+  {
+    "question": "What diseases are treated by compounds that bind the gene 'ALOX5'?",
+    "cypher": "MATCH (g:Gene {name: 'ALOX5'})<-[:BINDS_CbG]-(c:Compound)-[:TREATS_CtD]->(d:Disease) RETURN d.name"
+  },
+  {
+    "question": "List the genes that participate in the 'ripoptosome assembly' biological process.",
+    "cypher": "MATCH (g:Gene)-[:PARTICIPATES_GpBP]->(:BiologicalProcess {name: 'ripoptosome assembly'}) RETURN g.name"
+  },
+  {
+    "question": "Which genes are associated with the disease 'age related macular degeneration'?",
+    "cypher": "MATCH (d:Disease {name: 'age related macular degeneration'})-[:ASSOCIATES_DaG]->(g:Gene) RETURN g.name"
+  },
+  {
+    "question": "Which genes on chromosome 'X' participate in the biological process named 'extracellular matrix disassembly'?",
+    "cypher": "MATCH (bp:BiologicalProcess {name: 'extracellular matrix disassembly'})<-[:PARTICIPATES_GpBP]-(g:Gene) WHERE g.chromosome = 'X' RETURN g.name"
+  },
+  {
+    "question": "Identify genes that interact with 'RELA' and participate in the biological process named 'response to hydrogen peroxide' in which also 'RELA' participates in.",
+    "cypher": "MATCH (g1:Gene)-[:INTERACTS_GiG]->(g2:Gene {name: 'RELA'})-[:PARTICIPATES_GpBP]->(bp:BiologicalProcess {name: 'response to hydrogen peroxide'})<-[:PARTICIPATES_GpBP]-(g1:Gene) RETURN g1.name"
+  },
+  {
+    "question": "Which specific compound(s) treat(s) 'asthma'?",
+    "cypher": "MATCH (d:Disease {name: 'asthma'})<-[:TREATS_CtD]-(c:Compound) RETURN c.name"
+  },
+  {
+    "question": "Identify the genes on chromosome '9' that regulate the gene 'EZH2'.",
+    "cypher": "MATCH (g1:Gene {name:'EZH2'})<-[:REGULATES_GrG]-(g2:Gene) WHERE g2.chromosome = '9' RETURN g2.name"
+  },
+  {
+    "question": "What are the side effects containing 'pain' in the name that are caused by compounds that bind the gene 'EGFR'?",
+    "cypher": "MATCH (g:Gene {name: 'EGFR'})<-[:BINDS_CbG]-(c:Compound)-[:CAUSES_CcSE]->(se:SideEffect) WHERE se.name CONTAINS 'pain' RETURN se.name"
+  },
+  {
+    "question": "Consider genes regulated by BRCA1 that are bound by compounds. What PubMed IDs support those compound-gene binding interactions?",
+    "cypher": "MATCH (g:Gene {name: 'BRCA1'})-[:REGULATES_GrG]->(g2:Gene)<-[r:BINDS_CbG]-(c:Compound) RETURN g2.name, c.name, r.pubmed_ids"
+  },
+  {
+    "question": "Find genes that covary with the gene 'CDH1' when the latter participates in the cellular component named 'cell cortex'.",
+    "cypher": "MATCH (g1:Gene )-[:COVARIES_GcG]->(g:Gene {name: 'CDH1'})-[:PARTICIPATES_GpCC]->(:CellularComponent {name: 'cell cortex'}) RETURN g1.name"
+  },
+  {
+    "question": "Which genes the gene 'PTEN' interact with when these participate in the biological process 'activation of immune response' in which also 'PTEN' participates in?",
+    "cypher": "MATCH (g1:Gene {name: 'PTEN'})-[:INTERACTS_GiG]->(g2:Gene)-[:PARTICIPATES_GpBP]->(bp:BiologicalProcess {name: 'activation of immune response'})<-[:PARTICIPATES_GpBP]-(g1:Gene) RETURN g2.name"
+  },
+  {
+    "question": "Which genes participate in the same 'VEGFR1 specific signals' pathway in which also 'AKT1' is known to participate?",
+    "cypher": "MATCH (g1:Gene {name: 'AKT1'})-[:PARTICIPATES_GpPW]->(:Pathway {name: 'VEGFR1 specific signals'})<-[:PARTICIPATES_GpPW]-(g2:Gene) RETURN g2.name"
+  },
+  {
+    "question": "What biological processes whose name contains the string 'positive regulation' involve the gene 'PTEN'?",
+    "cypher": "MATCH (g:Gene {name:'PTEN'})-[:PARTICIPATES_GpBP]->(bp:BiologicalProcess) WHERE bp.name CONTAINS 'positive regulation' RETURN bp.name"
+  },
+  {
+    "question": "List genes that regulate the gene 'CDKN2A'.",
+    "cypher": "MATCH (g1:Gene {name: 'CDKN2A'})<-[:REGULATES_GrG]-(g2:Gene) RETURN g2.name"
+  },
+  {
+    "question": "Count the side effects caused by both the compound 'Metformin' and the compound 'L-DOPA'.",
+    "cypher": "MATCH (c:Compound {name: 'Metformin'})-[:CAUSES_CcSE]->(se:SideEffect)<-[:CAUSES_CcSE]-(c2:Compound {name: 'L-DOPA'}) RETURN COUNT(se)"
+  },
+  {
+    "question": "Can you count all the compounds that downregulate genes that are also downregulated by 'Metformin'?",
+    "cypher": "MATCH (c1:Compound {name: 'Metformin'})-[:DOWNREGULATES_CdG]->(g:Gene)<-[:DOWNREGULATES_CdG]-(c2:Compound) RETURN COUNT(c2)"
+  },
+  {
+    "question": "Which genes are associated with the progression of 'middle ear cancer'?",
+    "cypher": "MATCH (d:Disease {name: 'middle ear cancer'})-[:ASSOCIATES_DaG]->(g:Gene) RETURN g.name"
+  },
+  {
+    "question": "Which compounds bind genes that treat 'nicotine dependence'?",
+    "cypher": "MATCH (d:Disease {name: 'nicotine dependence'})<-[:TREATS_CtD]-(c:Compound)-[:BINDS_CbG]->(g:Gene) RETURN c.name, g.name"
+  },
+  {
+    "question": "What are the compounds that palliate 'hypertension'?",
+    "cypher": "MATCH (d:Disease {name: 'hypertension'})<-[:PALLIATES_CpD]-(c:Compound) RETURN c.name"
+  },
+  {
+    "question": "Show me compounds that palliate the same diseases that the compound 'Ethinyl Estradiol' palliates.",
+    "cypher": "MATCH (c1:Compound {name: 'Ethinyl Estradiol'})-[:PALLIATES_CpD]->(d:Disease)<-[:PALLIATES_CpD]-(c2:Compound) RETURN c2.name, d.name"
+  },
+  {
+    "question": "List diseases that present 'Fatigue' as a symptom.",
+    "cypher": "MATCH (s:Symptom {name: 'Fatigue'})<-[:PRESENTS_DpS]-(d:Disease) RETURN d.name"
+  },
+  {
+    "question": "Which compounds are effective in treating asthma?",
+    "cypher": "MATCH (d:Disease {name: 'asthma'})<-[:TREATS_CtD]-(c:Compound) RETURN c.name"
+  },
+  {
+    "question": "What are the different actions associated with the binding of compounds to genes that participate in the 'DNA Repair' pathway?",
+    "cypher": "MATCH (c:Compound)-[r:BINDS_CbG]->(g:Gene)-[:PARTICIPATES_GpPW]->(:Pathway {name: 'DNA Repair'}) RETURN c.name, g.name, r.actions"
+  },
+  {
+    "question": "Can you provide the compounds that bind the gene 'AKT1' together with their binding actions?",
+    "cypher": "MATCH (g:Gene {name: 'AKT1'})<-[r:BINDS_CbG]-(c:Compound) RETURN c.name, r.actions"
+  },
+  {
+    "question": "Which genes are regulated by the gene 'MYC' and they are located on the same chromosome of 'MYC'?",
+    "cypher": "MATCH (g1:Gene {name: 'MYC'})-[:REGULATES_GrG]->(g2:Gene) WHERE g2.chromosome = g1.chromosome RETURN  g2.name, g2.chromosome"
+  },
+  {
+    "question": "Can you identify the genes that covary with the gene 'WRB'?",
+    "cypher": "MATCH (g1:Gene )-[:COVARIES_GcG]->(g2:Gene {name: 'WRB'}) RETURN g1.name"
+  },
+  {
+    "question": "Find genes that interact with the gene 'BRAF' and participate in the biological process named 'negative regulation of neuron apoptotic process' in which also 'BRAF' participate.",
+    "cypher": "MATCH (g1:Gene {name: 'BRAF'})-[:INTERACTS_GiG]->(g2:Gene)-[:PARTICIPATES_GpBP]->(bp:BiologicalProcess {name: 'negative regulation of neuron apoptotic process'})<-[:PARTICIPATES_GpBP]-(g1) RETURN g2.name"
+  },
+  {
+    "question": "List the diseases that localize in the 'liver'.",
+    "cypher": "MATCH (a:Anatomy {name: 'liver'})<-[:LOCALIZES_DlA]-(d:Disease) RETURN d.name"
+  },
+  {
+    "question": "In which molecular functions that contain 'GTP' the genes that are regulated by the gene 'STAT3' participate?",
+    "cypher": "MATCH (g:Gene {name: 'STAT3'})-[:REGULATES_GrG]->(:Gene)-[:PARTICIPATES_GpMF]->(mf:MolecularFunction) WHERE mf.name CONTAINS 'GTP' RETURN mf.name"
+  },
+  {
+    "question": "Can you find the compounds involved in the treatment of 'multiple sclerosis'?",
+    "cypher": "MATCH (d:Disease {name: 'multiple sclerosis'})<-[:TREATS_CtD]-(c:Compound) RETURN c.name"
+  },
+  {
+    "question": "Which compounds palliate the symptoms of 'atopic dermatitis'?",
+    "cypher": "MATCH (d:Disease {name: 'atopic dermatitis'})<-[:PALLIATES_CpD]-(c:Compound) RETURN c.name"
+  },
+  {
+    "question": "What compounds are known to palliate 'breast cancer' and have gene-binding actions classified as 'negative modulator'?",
+    "cypher": "MATCH (d:Disease {name: 'breast cancer'})<-[:PALLIATES_CpD]-(c:Compound)-[r:BINDS_CbG]->(g:Gene) WHERE 'negative modulator' IN r.actions RETURN c.name"
+  },
+  {
+    "question": "List genes that resemble 'NCSTN' with an unbiased source.",
+    "cypher": "MATCH (g1:Gene {name: 'NCSTN'})-[RESEMBLES_GrG {unbiased: true}]-(g2:Gene) RETURN g2.name"
+  },
+  {
+    "question": "What are the molecular functions participated by genes that 'MCM9' covary with?",
+    "cypher": "MATCH (g:Gene {name:'MCM9'})-[:COVARIES_GcG]->(g2:Gene)-[:PARTICIPATES_GpMF]->(mf:MolecularFunction) RETURN mf.name"
+  },
+  {
+    "question": "Which genes are known to be bound by the compound 'Atropine'?",
+    "cypher": "MATCH (c:Compound {name: 'Atropine'})-[:BINDS_CbG]->(g:Gene) RETURN g.name"
+  },
+  {
+    "question": "Which genes are associated with 'asthma' and 'multiple sclerosis'?",
+    "cypher": "MATCH (d1:Disease {name: 'asthma'})-[:ASSOCIATES_DaG]->(g:Gene) WITH COLLECT(g.name) AS genes1 MATCH (d2:Disease {name: 'multiple sclerosis'})-[:ASSOCIATES_DaG]->(g:Gene) WITH genes1, COLLECT(g.name) AS genes2 RETURN genes1, genes2"
+  },
+  {
+    "question": "Which genes interact with the compound 'Warfarin' via binding?",
+    "cypher": "MATCH (c:Compound {name: 'Warfarin'})-[:BINDS_CbG]->(g:Gene) RETURN g.name"
+  },
+  {
+    "question": "Which genes interact with the gene 'MAPK1' and participate in 'MAPK Signaling Pathway'?",
+    "cypher": "MATCH (g1:Gene {name: 'MAPK1'})-[:INTERACTS_GiG]->(g2:Gene)-[:PARTICIPATES_GpPW]->(p:Pathway {name: 'MAPK Signaling Pathway'}) RETURN g2.name"
+  },
+  {
+    "question": "List the genes on chromosome 'Y' that participate in the 'synapse' cellular component.",
+    "cypher": "MATCH (g:Gene)-[:PARTICIPATES_GpCC]->(:CellularComponent {name:'synapse'}) WHERE g.chromosome = 'Y' RETURN g.name"
+  },
+  {
+    "question": "Which genes are associated with the disease 'gestational diabetes'?",
+    "cypher": "MATCH (d:Disease {name: 'gestational diabetes'})-[:ASSOCIATES_DaG]->(g:Gene) RETURN g.name"
+  },
+  {
+    "question": "Provide a list of compounds that bind the gene 'EGFR' and their binding actions.",
+    "cypher": "MATCH (g:Gene {name: 'EGFR'})<-[r:BINDS_CbG]-(c:Compound) RETURN c.name, r.actions"
+  },
+  {
+    "question": "List the genes that interact with the gene 'PTEN' and participate in the pathway named 'Adaptive Immune System'.",
+    "cypher": "MATCH (g1:Gene {name: 'PTEN'})-[:INTERACTS_GiG]->(g2:Gene)-[:PARTICIPATES_GpPW]->(p:Pathway {name: 'Adaptive Immune System'}) RETURN g2.name"
+  },
+  {
+    "question": "Count the genes that are involved in the 'Apoptosis' pathway?",
+    "cypher": "MATCH (g:Gene)-[:PARTICIPATES_GpPW]->(:Pathway {name: 'Apoptosis'}) RETURN COUNT(g)"
+  },
+  {
+    "question": "Identify the pathways in which the gene 'MCM9' participates.",
+    "cypher": "MATCH (g:Gene {name: 'MCM9'})-[:PARTICIPATES_GpPW]->(pw:Pathway) RETURN pw.name"
+  },
+  {
+    "question": "What diseases present the same symptoms of 'gestational diabetes'?",
+    "cypher": "MATCH (d1:Disease {name: 'gestational diabetes'})-[:PRESENTS_DpS]->(s:Symptom)<-[:PRESENTS_DpS]-(d2:Disease) RETURN d2.name"
+  },
+  {
+    "question": "In which biological processes whose name contains 'stimulus' the gene 'TP53' participate?",
+    "cypher": "MATCH (g:Gene {name:'TP53'})-[:PARTICIPATES_GpBP]->(bp:BiologicalProcess) WHERE bp.name CONTAINS 'stimulus' RETURN bp.name"
+  },
+  {
+    "question": "How many distinct genes participate in the same molecular function in which the gene 'MYC' participates?",
+    "cypher": "MATCH (g1:Gene {name: 'MYC'})-[:PARTICIPATES_GpMF]->(mf:MolecularFunction)<-[:PARTICIPATES_GpMF]-(g2:Gene) WHERE g2 <> g1 RETURN COUNT(DISTINCT g2)"
+  },
+  {
+    "question": "Which compounds are effective in palliating 'migraine'? Return their name and URL.",
+    "cypher": "MATCH (d:Disease {name:'migraine'})<-[:PALLIATES_CpD]-(c:Compound) RETURN c.name, c.url"
+  },
+  {
+    "question": "What compounds are known to resemble certain compounds in their palliative effects on 'atopic dermatitis'?",
+    "cypher": "MATCH (d:Disease {name: 'atopic dermatitis'})<-[:PALLIATES_CpD]-(c:Compound)-[:RESEMBLES_CrC]->(c2:Compound) RETURN c.name, c2.name"
+  },
+  {
+    "question": "Can you identify the diseases that localize in the 'brain'?",
+    "cypher": "MATCH (a:Anatomy {name: 'brain'})<-[:LOCALIZES_DlA]-(d:Disease) RETURN d.name"
+  },
+  {
+    "question": "Which compounds associated with the treatment of the 'obesity' disease downregulate the gene 'RRP1B'?",
+    "cypher": "MATCH (d:Disease {name: 'obesity'})<-[:TREATS_CtD]-(c:Compound)-[:DOWNREGULATES_CdG]->(g:Gene {name: 'RRP1B'}) RETURN c.name"
+  },
+  {
+    "question": "Which genes interact with the gene named 'VCAM1' and participate in the biological process 'negative regulation of neuron apoptotic process' in which also 'VCAM1' participates?",
+    "cypher": "MATCH (bp:BiologicalProcess {name: 'negative regulation of neuron apoptotic process'})<-[:PARTICIPATES_GpBP]-(g1:Gene)-[:INTERACTS_GiG]-(g2:Gene {name: 'VCAM1'}) RETURN g1.name"
+  },
+  {
+    "question": "How do certain compounds palliate 'migraine' without causing adverse effects?",
+    "cypher": "MATCH (d:Disease {name: 'migraine'})<-[:PALLIATES_CpD]-(c:Compound) WHERE NOT (c)-[:CAUSES_CcSE]->(:SideEffect) RETURN c.name"
+  },
+  {
+    "question": "What biological processes whose name contains 'DNA' are regulated by the gene 'BRCA2'?",
+    "cypher": "MATCH (g:Gene {name: 'BRCA2'})-[:PARTICIPATES_GpBP]->(bp:BiologicalProcess) WHERE bp.name CONTAINS 'DNA' RETURN bp.name"
+  },
+  {
+    "question": "List genes that interact with the gene 'CDK4' when participating in the 'chromosomal region'.",
+    "cypher": "MATCH (:Gene {name: 'CDK4'})-[:INTERACTS_GiG]->(g:Gene)-[:PARTICIPATES_GpCC]->(:CellularComponent {name: 'chromosomal region'}) RETURN g.name"
+  },
+  {
+    "question": "Show me genes that are downregulated by the compound 'Flavoxate'.",
+    "cypher": "MATCH (c:Compound {name: 'Flavoxate'})-[:DOWNREGULATES_CdG]->(g:Gene) RETURN g.name"
+  },
+  {
+    "question": "List compounds that are known to palliate 'restless legs syndrome'",
+    "cypher": "MATCH (d:Disease {name: 'restless legs syndrome'})<-[:PALLIATES_CpD]-(c:Compound) RETURN c.name"
+  },
+  {
+    "question": "Which diseases resemble 'autistic disorder'?",
+    "cypher": "MATCH (d1:Disease {name: 'autistic disorder'})-[:RESEMBLES_DrD]->(d2:Disease) RETURN d2.name"
+  },
+  {
+    "question": "Find genes that covary with the gene 'DHDH' when participating in the cellular component 'chromatin'.",
+    "cypher": "MATCH (:Gene {name: 'DHDH'})-[:COVARIES_GcG]->(g:Gene)-[:PARTICIPATES_GpCC]->(:CellularComponent {name: 'chromatin'}) RETURN g.name"
+  },
+  {
+    "question": "Which compounds treat 'systemic scleroderma'?",
+    "cypher": "MATCH (d:Disease {name: 'systemic scleroderma'})<-[:TREATS_CtD]-(c:Compound) RETURN c.name"
+  },
+  {
+    "question": "What compounds are effective in palliating 'breast cancer'?",
+    "cypher": "MATCH (d:Disease {name: 'breast cancer'})<-[:PALLIATES_CpD]-(c:Compound) RETURN c.name"
+  },
+  {
+    "question": "What compounds are effective in palliating 'glaucoma'?",
+    "cypher": "MATCH (d:Disease {name: 'glaucoma'})<-[:PALLIATES_CpD]-(c:Compound) RETURN c.name"
+  },
+  {
+    "question": "Which genes are known to be bound by the compound 'Lisinopril'?",
+    "cypher": "MATCH (c:Compound {name: 'Lisinopril'})-[:BINDS_CbG]->(g:Gene) RETURN g.name"
+  },
+  {
+    "question": "Can you find genes that participate in the molecular function 'chromatin DNA binding' in which also 'FOXO3' participates in and that are located on the same chromosome of the gene 'FOXO3'?",
+    "cypher": "MATCH (g1:Gene {name: 'FOXO3'})-[:PARTICIPATES_GpMF]->(mf:MolecularFunction {name: 'chromatin DNA binding'})<-[:PARTICIPATES_GpMF]-(g2:Gene) WHERE g1.chromosome = g2.chromosome RETURN g2.name, g2.chromosome"
+  },
+  {
+    "question": "Can you identify compounds that treat the same diseases of 'Estradiol'?",
+    "cypher": "MATCH (c:Compound {name: 'Estradiol'})-[:TREATS_CtD]->(d:Disease)<-[:TREATS_CtD]-(c2:Compound) RETURN c2.name"
+  },
+  {
+    "question": "List the actions associated with the binding of compounds with the gene 'HTR1B'?",
+    "cypher": "MATCH (g:Gene {name: 'HTR1B'})<-[r:BINDS_CbG]-(c:Compound) RETURN c.name, r.actions"
+  },
+  {
+    "question": "Which compounds whose names end with 'ate' bind genes that regulate AKT1?",
+    "cypher": "MATCH (g1:Gene {name: 'AKT1'})-[:REGULATES_GrG]-(g2:Gene)-[:BINDS_CbG]-(c:Compound) WHERE c.name ENDS WITH 'ate' RETURN c.name"
+  },
+  {
+    "question": "Can you list the affinities of compounds that bind the gene 'EGFR'?",
+    "cypher": "MATCH (g:Gene {name: 'EGFR'})<-[r:BINDS_CbG]-(c:Compound) RETURN c.name, r.affinity_nM"
+  },
+  {
+    "question": "Which compounds bind the gene RHO, when the latter participates in the biological process 'visual perception'?",
+    "cypher": "MATCH (bp:BiologicalProcess {name: 'visual perception'} )<-[:PARTICIPATES_GpBP]-(g:Gene {name: 'RHO'})<-[r:BINDS_CbG]-(c:Compound) RETURN c.name"
+  },
+  {
+    "question": "What genes are associated with 'asthma' and 'allergic rhinitis'?",
+    "cypher": "MATCH (d1:Disease {name: 'asthma'})-[:ASSOCIATES_DaG]->(g:Gene), (d2:Disease {name: 'allergic rhinitis'} )-[:ASSOCIATES_DaG]->(g) RETURN g.name"
+  },
+  {
+    "question": "Which compounds are known to treat the same diseases of 'Ruxolitinib'?",
+    "cypher": "MATCH (c1:Compound {name: 'Ruxolitinib'})-[:TREATS_CtD]->(d:Disease)<-[:TREATS_CtD]-(c2:Compound) RETURN c2.name"
+  },
+  {
+    "question": "What are the biological processes whose name contains 'growth' that are regulated by the gene 'PTEN'?",
+    "cypher": "MATCH (g:Gene {name: 'PTEN'})-[:PARTICIPATES_GpBP]->(bp:BiologicalProcess) WHERE bp.name CONTAINS 'growth' RETURN bp.name"
+  },
+  {
+    "question": "Can you find genes that interact with the gene 'TP53' when those genes participate in the cellular component 'chromatin'?",
+    "cypher": "MATCH (:Gene {name: 'TP53'})-[:INTERACTS_GiG]->(g:Gene)-[:PARTICIPATES_GpCC]->(:CellularComponent {name: 'chromatin'}) RETURN g.name"
+  },
+  {
+    "question": "Can you find the compounds involved in the treatment of 'ulcerative colitis'?",
+    "cypher": "MATCH (d:Disease {name: 'ulcerative colitis'})<-[:TREATS_CtD]-(c:Compound) RETURN c.name"
+  },
+  {
+    "question": "Can you find compounds that bind the gene 'AKT1'?",
+    "cypher": "MATCH (g1:Gene {name: 'AKT1'})<-[:BINDS_CbG]-(c:Compound) RETURN c.name"
+  },
+  {
+    "question": "How does diseases with 'Headache' symptom localize within the body where the anatomy name contains 'artery'?",
+    "cypher": "MATCH (s:Symptom {name: 'Headache'})<-[:PRESENTS_DpS]-(d:Disease)-[:LOCALIZES_DlA]->(a:Anatomy) WHERE a.name CONTAINS 'artery' RETURN d.name, a.name"
+  },
+  {
+    "question": "How do certain compounds palliate the symptoms of 'breast cancer'?",
+    "cypher": "MATCH (d:Disease {name: 'breast cancer'})<-[:PALLIATES_CpD]-(c:Compound) RETURN c.name, c.mechanism_of_action"
+  },
+  {
+    "question": "Identify genes that co-vary with the gene 'AKT3'?",
+    "cypher": "MATCH (g1:Gene {name: 'AKT3'})-[:COVARIES_GcG]->(g2:Gene) RETURN g2.name"
+  },
+  {
+    "question": "Which unique compounds whose name ends with 'en' cause side effects identical to 'Ibuprofen'?",
+    "cypher": "MATCH (c:Compound {name: 'Ibuprofen'})-[:CAUSES_CcSE]->(se:SideEffect)<-[:CAUSES_CcSE]-(c2:Compound) WHERE c2.name ENDS WITH 'en' RETURN DISTINCT c2.name"
+  },
+  {
+    "question": "List the genes whose name starts with 'MAP' that participate in the same molecular function of 'EGFR' and are known to interact with other genes.",
+    "cypher": "MATCH (g1:Gene {name: 'EGFR'})-[:PARTICIPATES_GpMF]->(mf:MolecularFunction)<-[:PARTICIPATES_GpMF]-(g2:Gene)-[:INTERACTS_GiG]->(g3:Gene) WHERE g2.name STARTS WITH 'MAP' AND g3 <> g2 RETURN DISTINCT g2.name"
+  },
+  {
+    "question": "Identify the diseases whose name include 'malignant' that share the same symptoms of 'migraine'.",
+    "cypher": "MATCH (d1:Disease {name: 'migraine'})-[:PRESENTS_DpS]->(s:Symptom)<-[:PRESENTS_DpS]-(d2:Disease) WHERE d2.name CONTAINS 'malignant' RETURN DISTINCT d2.name"
+  },
+  {
+    "question": "Which compounds treat 'pancreatic cancer'?",
+    "cypher": "MATCH (d:Disease {name: 'pancreatic cancer'})<-[:TREATS_CtD]-(c:Compound) RETURN c.name"
+  },
+  {
+    "question": "List each compounds that are used to palliate 'glaucoma' with the collection of their associated side effects.",
+    "cypher": "MATCH (d:Disease {name: 'glaucoma'})<-[:PALLIATES_CpD]-(c:Compound)-[:CAUSES_CcSE]->(se:SideEffect) RETURN c.name, COLLECT(se.name)"
+  },
+  {
+    "question": "Which genes on chromosome 'X' participate in the biological process named 'visual perception'?",
+    "cypher": "MATCH (bp:BiologicalProcess {name: 'visual perception'})<-[:PARTICIPATES_GpBP]-(g:Gene) WHERE g.chromosome = 'X' RETURN g.name"
+  },
+  {
+    "question": "Which genes participate in the molecular function 'kinase activity' and also participate in the biological process named 'cytoplasmic transport'?",
+    "cypher": "MATCH (mf:MolecularFunction {name: 'kinase activity'})<-[:PARTICIPATES_GpMF]-(g:Gene)-[:PARTICIPATES_GpBP]->(bp:BiologicalProcess {name: 'cytoplasmic transport'}) RETURN g.name"
+  },
+  {
+    "question": "Which ANX-like genes participate in the same molecular functions for the gene 'AKT1'?",
+    "cypher": "MATCH (g1:Gene {name: 'AKT1'})-[:PARTICIPATES_GpMF]->(mf:MolecularFunction)<-[:PARTICIPATES_GpMF]-(g2:Gene) WHERE g2.name STARTS WITH 'ANX' RETURN g2.name"
+  },
+  {
+    "question": "Which genes have binding interactions with compounds that resemble the compound 'Codeine'?",
+    "cypher": "MATCH (c:Compound {name: 'Codeine'})-[:RESEMBLES_CrC]->(c2:Compound)-[:BINDS_CbG]->(g:Gene) RETURN g.name"
+  },
+  {
+    "question": "List compounds that treat 'pancreatic cancer' when participating in the 'histone binding' molecular function.",
+    "cypher": "MATCH (d:Disease {name: 'pancreatic cancer'})<-[:TREATS_CtD]-(c:Compound)-[:UPREGULATES_CuG]->(g:Gene)-[:PARTICIPATES_GpMF]->(mf:MolecularFunction {name: 'histone binding'}) RETURN c.name"
+  },
+  {
+    "question": "Which genes are downregulated by 'SRRT' and participate in the biological process 'immune response-regulating signaling pathway'?",
+    "cypher": "MATCH (bp:BiologicalProcess {name: 'immune response-regulating signaling pathway'})<-[:PARTICIPATES_GpBP]-(g1:Gene)<-[DOWNREGULATES_DdG]-(g2:Gene {name:'SRRT'}) RETURN g1.name"
+  },
+  {
+    "question": "Which compounds are used to treat 'multiple sclerosis'?",
+    "cypher": "MATCH (d:Disease {name: 'multiple sclerosis'})<-[:TREATS_CtD]-(c:Compound) RETURN c.name"
+  },
+  {
+    "question": "What symptoms are typically associated with 'osteoporosis'?",
+    "cypher": "MATCH (d:Disease {name: 'osteoporosis'})-[:PRESENTS_DpS]->(s:Symptom) RETURN s.name"
+  },
+  {
+    "question": "Which diseases commonly present the symptom 'Apnea' and localizes in the 'cardiovascular system'?",
+    "cypher": "MATCH (a:Anatomy {name: 'cardiovascular system'})<-[:LOCALIZES_DlA]-(d:Disease)-[:PRESENTS_DpS]->(s:Symptom {name: 'Apnea'}) RETURN d.name"
+  },
+  {
+    "question": "Which genes interact with the gene 'PTPN11' and participate in the molecular function named 'insulin receptor binding' as 'PTPN11' does?",
+    "cypher": "MATCH (g1:Gene {name: 'PTPN11'})-[:INTERACTS_GiG]->(g2:Gene)-[:PARTICIPATES_GpMF]->(mf:MolecularFunction {name: 'insulin receptor binding'})<-[:PARTICIPATES_GpMF]-(g1) RETURN g2.name"
+  },
+  {
+    "question": "List the diseases that commonly present the symptom 'Headache' and localize in the 'brain'.",
+    "cypher": "MATCH (s:Symptom {name: 'Headache'})<-[:PRESENTS_DpS]-(d:Disease)-[:LOCALIZES_DlA]->(a:Anatomy {name: 'brain'}) RETURN d.name"
+  },
+  {
+    "question": "Which genes have a binding relationship with the compound 'Warfarin' and are involved in the regulation of the gene named 'SELL'?",
+    "cypher": "MATCH (c:Compound {name: 'Warfarin'})-[:BINDS_CbG]->(g:Gene)-[:REGULATES_GrG]->(reg_gene:Gene {name: 'SELL'}) RETURN g.name"
+  },
+  {
+    "question": "Which genes regulates TP53?",
+    "cypher": "MATCH (g:Gene)-[:REGULATES_GrG]->(:Gene {name: 'TP53'}) RETURN g.name"
+  },
+  {
+    "question": "Identify the genes regulated by TP53.",
+    "cypher": "MATCH (:Gene {name: 'TP53'})-[:REGULATES_GrG]->(g2:Gene) RETURN g2.name"
+  },
+  {
+    "question": "What diseases are commonly treated by compounds that are included in the pharmacologic class named 'Purines'",
+    "cypher": "MATCH (pc:PharmacologicClass {name: 'Purines'})-[:INCLUDES_PCiC]->(c:Compound)-[:TREATS_CtD]->(d:Disease) RETURN d.name"
+  },
+  {
+    "question": "Which compounds are effective in palliating 'nicotine dependence'?",
+    "cypher": "MATCH (d:Disease {name:'nicotine dependence'})<-[:PALLIATES_CpD]-(c:Compound) RETURN c.name"
+  },
+  {
+    "question": "Which diseases commonly present both the symptoms 'Abdominal Pain' and 'Jaundice'?",
+    "cypher": "MATCH (s1:Symptom {name: 'Abdominal Pain'})<-[:PRESENTS_DpS]-(d:Disease)-[:PRESENTS_DpS]->(s2:Symptom {name: 'Jaundice'}) RETURN d.name"
+  },
+  {
+    "question": "What genes are commonly upregulated in 'hypertension'?",
+    "cypher": "MATCH (d:Disease {name: 'hypertension'})-[:UPREGULATES_DuG]->(g:Gene) RETURN g.name"
+  },
+  {
+    "question": "Which genes are associated with the molecular function 'D-amino-acid oxidase activity'?",
+    "cypher": "MATCH (mf:MolecularFunction {name: 'D-amino-acid oxidase activity'})<-[:PARTICIPATES_GpMF]-(g:Gene) RETURN g.name"
+  },
+  {
+    "question": "Can you provide compounds that treat 'obesity' and find if the relationship is unbiased?",
+    "cypher": "MATCH (d:Disease {name: 'obesity'})<-[r:TREATS_CtD]-(c:Compound) RETURN c.name, r.unbiased"
+  },
+  {
+    "question": "Find genes that regulate the gene 'LPL' and that participate in 'regulation of synapse structural plasticity' biological processes.",
+    "cypher": "MATCH (g1:Gene {name: 'LPL'})<-[:REGULATES_GrG]-(g2:Gene )-[:PARTICIPATES_GpBP]->(bp:BiologicalProcess {name: 'regulation of synapse structural plasticity'}) RETURN g2.name"
+  },
+  {
+    "question": "Which genes whose name starts with 'HIST' are regulated by the gene 'STAT3'?",
+    "cypher": "MATCH (g1:Gene {name:'STAT3'})-[:REGULATES_GrG]->(g2:Gene) WHERE g2.name STARTS WITH 'HIST' RETURN g2.name"
+  },
+  {
+    "question": "List the actions associated with the binding of genes on chromosome 'X' bound by compounds that palliate the disease 'bipolar disorder'.",
+    "cypher": "MATCH (d:Disease {name: 'bipolar disorder'})<-[:PALLIATES_CpD]-(c:Compound)-[r:BINDS_CbG]->(g:Gene) WHERE g.chromosome = 'X' RETURN g.name, r.actions"
+  },
+  {
+    "question": "Which compounds covary with the compound 'Antrafenine'?",
+    "cypher": "MATCH (c1:Compound {name: 'Antrafenine'})<-[COVARIES_GcG]-(c2:Compound) RETURN c2.name"
+  },
+  {
+    "question": "List the genes whose name starts with 'RB' that participate in the 'ribosome' cellular component.",
+    "cypher": "MATCH (g:Gene)-[:PARTICIPATES_GpCC]->(:CellularComponent {name:'ribosome'}) WHERE g.name STARTS WITH 'RB' RETURN g.name"
+  },
+  {
+    "question": "Can you find the genes that regulate the gene 'RPS7'?",
+    "cypher": "MATCH (g1:Gene {name: 'RPS7'})<-[:REGULATES_GrG]-(g2:Gene) RETURN g2.name"
+  },
+  {
+    "question": "Which diseases present the symptom 'Headache' and localize in the 'central nervous system'?",
+    "cypher": "MATCH (s:Symptom {name: 'Headache'})<-[:PRESENTS_DpS]-(d:Disease)-[:LOCALIZES_DlA]->(a:Anatomy {name: 'central nervous system'}) RETURN d.name"
+  },
+  {
+    "question": "Which molecular functions the genes 'CDKN1A' participates in are shared with the gene 'GK5'?",
+    "cypher": "MATCH (g1:Gene {name: 'CDKN1A'})-[:PARTICIPATES_GpMF]->(mf:MolecularFunction)<-[:PARTICIPATES_GpMF]-(g2:Gene {name: 'GK5'}) RETURN mf.name"
+  },
+  {
+    "question": "What are the compounds that bind the gene 'EGFR' with a binding 'affinity_nM' above 0.2?",
+    "cypher": "MATCH (g:Gene {name: 'EGFR'})<-[r:BINDS_CbG]-(c:Compound) WHERE r.affinity_nM > 0.2 RETURN c.name, r.affinity_nM"
+  },
+  {
+    "question": "Which biological processes do both CDK4 and STXBP4 participate in?",
+    "cypher": "MATCH (g1:Gene {name: 'CDK4'})-[:PARTICIPATES_GpBP]->(bp:BiologicalProcess)<-[:PARTICIPATES_GpBP]-(g2:Gene {name:'STXBP4'}) RETURN bp.name"
+  },
+  {
+    "question": "List the genes that co-vary with 'BRCA1' in terms of gene expression.",
+    "cypher": "MATCH (g1:Gene {name: 'BRCA1'})-[:COVARIES_GcG]->(g2:Gene) RETURN g2.name"
+  },
+  {
+    "question": "How many genes interact with 'AKT1' and participate in the same molecular function in which 'AKT1' participates?",
+    "cypher": "MATCH (g1:Gene {name: 'AKT1'})-[:INTERACTS_GiG]->(g2:Gene)-[:PARTICIPATES_GpMF]->(:MolecularFunction)<-[:PARTICIPATES_GpMF]-(g1) RETURN COUNT(g2)"
+  },
+  {
+    "question": "How many genes participate in the molecular function 'kinase activity'?",
+    "cypher": "MATCH (mf:MolecularFunction {name: 'kinase activity'})<-[:PARTICIPATES_GpMF]-(g:Gene) RETURN COUNT(g)"
+  },
+  {
+    "question": "How many genes the gene 'BRCA1' regulates?",
+    "cypher": "MATCH (g1:Gene {name: 'BRCA1'})-[:REGULATES_GrG]->(g2:Gene) RETURN COUNT(g2)"
+  },
+  {
+    "question": "How many genes regulate the gene 'MYC' and are also regulated by 'IL6ST'?",
+    "cypher": "MATCH (g1:Gene {name: 'MYC'})-[:REGULATES_GrG]->(g2:Gene)<-[:REGULATES_GrG]-(g3:Gene {name: 'IL6ST'}) RETURN COUNT(g2)"
+  },
+  {
+    "question": "How many genes that participate in the molecular function 'GTPase activity' also participate in pathways?",
+    "cypher": "MATCH (mf:MolecularFunction {name: 'GTPase activity'})<-[:PARTICIPATES_GpMF]-(g:Gene)-[:PARTICIPATES_GpPW]->(p:Pathway) RETURN COUNT(g)"
+  },
+  {
+    "question": "How many genes participate in the molecular function 'hydroxyapatite binding'?",
+    "cypher": "MATCH (mf:MolecularFunction {name: 'hydroxyapatite binding'})<-[:PARTICIPATES_GpMF]-(g:Gene) RETURN COUNT(g)"
+  },
+  {
+    "question": "How many genes on chromosome 'X' participate in kinase-related molecular function?",
+    "cypher": "MATCH (mf:MolecularFunction)<-[:PARTICIPATES_GpMF]-(g:Gene) WHERE mf.name CONTAINS 'kinase' AND g.chromosome = 'X' RETURN COUNT(g)"
+  },
+  {
+    "question": "How many genes are known to interact with the gene 'EGFR'?",
+    "cypher": "MATCH (g1:Gene {name: 'EGFR'})-[:INTERACTS_GiG]->(g2:Gene) RETURN COUNT(g2)"
+  },
+  {
+    "question": "How many genes regulate the gene 'BRCA1'?",
+    "cypher": "MATCH (g1:Gene {name: 'BRCA1'})<-[:REGULATES_GrG]-(g2:Gene) RETURN COUNT(g2)"
+  },
+  {
+    "question": "How many genes are known to interact with the gene 'EGFR'?",
+    "cypher": "MATCH (g1:Gene {name: 'EGFR'})<-[:INTERACTS_GiG]-(g2:Gene) RETURN COUNT(g2)"
+  },
+  {
+    "question": "How many genes interact with the gene 'BRAF' and participate in the same biological process in which 'BRAF' participates?",
+    "cypher": "MATCH (g1:Gene {name: 'BRAF'})<-[:INTERACTS_GiG]-(g2:Gene)-[:PARTICIPATES_GpBP]->(:BiologicalProcess)<-[:PARTICIPATES_GpBP]-(g1) RETURN COUNT(g2)"
+  },
+  {
+    "question": "How many genes are regulated by the gene 'STAT3'?",
+    "cypher": "MATCH (g1:Gene {name: 'STAT3'})-[:REGULATES_GrG]->(g2:Gene) RETURN COUNT(g2)"
+  },
+  {
+    "question": "How many genes that participate in the molecular function 'Receptor Binding' also participate in biological processes?",
+    "cypher": "MATCH (mf:MolecularFunction {name: 'NAD binding'})<-[:PARTICIPATES_GpMF]-(g:Gene)-[:PARTICIPATES_GpBP]->(:BiologicalProcess) RETURN COUNT(g)"
+  },
+  {
+    "question": "How many genes participate in the biological process named 'ripoptosome assembly'?",
+    "cypher": "MATCH (bp:BiologicalProcess {name: 'ripoptosome assembly'})<-[:PARTICIPATES_GpBP]-(g:Gene) RETURN COUNT(g)"
+  },
+  {
+    "question": "Which genes are upregulated in the presence of diabete-related diseases?",
+    "cypher": "MATCH (d:Disease)-[:UPREGULATES_DuG]->(g:Gene) WHERE d.name CONTAINS 'diabete' RETURN g.name, d.name"
+  },
+  {
+    "question": "Can you provide the binding affinities of genes that are bound by the compound 'Ibuprofen'?",
+    "cypher": "MATCH (c:Compound {name: 'Ibuprofen'})-[r:BINDS_CbG]->(g:Gene) RETURN g.name, r.affinity_nM"
+  },
+  {
+    "question": "Which compounds resemble 'Timolol'?",
+    "cypher": "MATCH (c1:Compound {name:'Timolol'})-[:RESEMBLES_CrC]->(c2:Compound) RETURN c2.name"
+  },
+  {
+    "question": "List the genes that participate in the 'AMP deaminase activity' molecular function pathway.",
+    "cypher": "MATCH (g:Gene)-[:PARTICIPATES_GpMF]->(:MolecularFunction {name: 'AMP deaminase activity'}) RETURN g.name"
+  },
+  {
+    "question": "Which 5 pairs of compounds share the most treated diseases (breaking ties alphabetically according to compound names)?",
+    "cypher": "MATCH (c1:Compound)-[:TREATS_CtD]->(d:Disease)<-[:TREATS_CtD]-(c2:Compound) WHERE c1 <> c2 WITH c1, c2, COUNT(DISTINCT d) AS shared_diseases RETURN c1.name, c2.name, shared_diseases ORDER BY shared_diseases DESC, c1.name ASC, c2.name ASC LIMIT 5"
+  },
+  {
+    "question": "Can you list genes that regulate the gene 'MYC' and share the same chromosome with it? Return also the regulation methods.",
+    "cypher": "MATCH (g1:Gene {name: 'MYC'})<-[r:REGULATES_GrG]-(g2:Gene) WHERE g1.chromosome = g2.chromosome RETURN g2.name, r.method"
+  },
+  {
+    "question": "What are the sources reporting compounds that treat 'head and neck cancer'?",
+    "cypher": "MATCH (d:Disease {name: 'head and neck cancer'})<-[r:TREATS_CtD]-(c:Compound) RETURN c.name, r.source"
+  },
+  {
+    "question": "List the genes that are bound by compounds causing the side effect 'Nausea' and binding 'affinity_nM' equal to 1000.",
+    "cypher": "MATCH (se:SideEffect {name: 'Nausea'})<-[:CAUSES_CcSE]-(c:Compound)-[r:BINDS_CbG]->(g:Gene) WHERE r.affinity_nM = 1000 RETURN g.name"
+  },
+  {
+    "question": "List the genes that are regulated by 'FBXL12' genes in the 'proteasome accessory complex' cellular component.",
+    "cypher": "MATCH (g1:Gene {name: 'FBXL12'})-[:REGULATES_GrG]->(g2:Gene)-[r:PARTICIPATES_GpCC]->(cc:CellularComponent {name: 'proteasome accessory complex'}) RETURN g2.name"
+  },
+  {
+    "question": "With which genes does the gene 'TP53' interact, when the interaction is supported by more that 3 sources including 'hetio-dag'?",
+    "cypher": "MATCH (g1:Gene {name: 'TP53'})-[r:INTERACTS_GiG]->(g2:Gene) WHERE 'hetio-dag' IN r.sources AND SIZE(r.sources) > 3 RETURN g2.name, r.sources"
+  },
+  {
+    "question": "Can you list genes that participate in the 'germ cell nucleus' cellular component?",
+    "cypher": "MATCH (g:Gene)-[:PARTICIPATES_GpCC]->(:CellularComponent {name: 'germ cell nucleus'}) RETURN g.name"
+  },
+  {
+    "question": "Which compounds treating 'polycystic ovary syndrome' bind genes when the binding actions include 'substrate'?",
+    "cypher": "MATCH (d:Disease {name: 'polycystic ovary syndrome'})<-[:TREATS_CtD]-(c:Compound)-[r:BINDS_CbG]->(g:Gene) WHERE 'substrate' IN r.actions RETURN c.name, g.name, r.actions"
+  },
+  {
+    "question": "Which compounds are included in the 'Antibiotics' pharmacologic class?",
+    "cypher": "MATCH (pc:PharmacologicClass {name: 'Histamine H2 Receptor Antagonists'})-[:INCLUDES_PCiC]->(c:Compound) RETURN c.name"
+  },
+  {
+    "question": "Can you provide compounds that target genes of the MAPK family in the treatment of cancer-related disease?",
+    "cypher": "MATCH (d:Disease)<-[:TREATS_CtD]-(c:Compound)-[:BINDS_CbG]->(g:Gene) WHERE d.name CONTAINS 'cancer' AND g.name CONTAINS 'MAPK' RETURN c.name, g.name"
+  },
+  {
+    "question": "Which distinct compounds whose name ends with 'sone' are known to cause the same side effects of 'Danazol'?",
+    "cypher": "MATCH (c1:Compound {name: 'Danazol'})-[:CAUSES_CcSE]->(se:SideEffect)<-[:CAUSES_CcSE]-(c2:Compound) WHERE c2.name ENDS WITH 'sone' RETURN DISTINCT c2.name"
+  },
+  {
+    "question": "Which compounds treat 'hypertension'?",
+    "cypher": "MATCH (d:Disease {name: 'hypertension'})<-[:TREATS_CtD]-(c:Compound) RETURN c.name"
+  },
+  {
+    "question": "List compounds that are used to treat 'rheumatoid arthritis'.",
+    "cypher": "MATCH (d:Disease {name: 'rheumatoid arthritis'})<-[:TREATS_CtD]-(c:Compound) RETURN c.name"
+  },
+  {
+    "question": "Which genes whose name starts with 'COX' are downregulated in the 'alcohol dependence' disease?",
+    "cypher": "MATCH (d:Disease {name: 'alcohol dependence'})-[:DOWNREGULATES_DdG]->(g:Gene) WHERE g.name STARTS WITH 'COX' RETURN g.name"
+  },
+  {
+    "question": "Can you list the actions associated with the binding of genes to the compound 'Azathioprine'?",
+    "cypher": "MATCH (c:Compound {name: 'Azathioprine'})-[r:BINDS_CbG]->(g:Gene) RETURN g.name, r.actions"
+  },
+  {
+    "question": "What are the different actions associated with the binding of genes to compounds included in the pharmacologic class 'Adrenergic Agonists'?",
+    "cypher": "MATCH (pc:PharmacologicClass {name: 'Adrenergic Agonists'})-[:INCLUDES_PCiC]->(c:Compound)-[r:BINDS_CbG]->(g:Gene) RETURN g.name, r.actions"
+  },
+  {
+    "question": "Can you list the genes that participate in the biological process 'DNA repair' and that also partecipate in the 'phosphatase activity' molecular function?",
+    "cypher": "MATCH (bp:BiologicalProcess {name: 'DNA repair'})<-[:PARTICIPATES_GpBP]-(g:Gene)-[:PARTICIPATES_GpMF]->(mf:MolecularFunction {name: 'phosphatase activity'}) RETURN g.name"
+  },
+  {
+    "question": "Which genes are upregulated by the compound 'Hydrocortisone'?",
+    "cypher": "MATCH (c:Compound {name:'Hydrocortisone'})-[:UPREGULATES_CuG]->(g:Gene) RETURN g.name"
+  },
+  {
+    "question": "Which compound-binds-gene triples are characterized by a non-null binding affinities? Return 5 triples order from highest affinity to lowest breaking ties alphabetically according to compound and gene name.",
+    "cypher": "MATCH (c:Compound)-[r:BINDS_CbG]->(g:Gene) WHERE r.affinity_nM IS NOT NULL RETURN g.name, c.name, r.affinity_nM ORDER BY r.affinity_nM DESC, g.name ASC, c.name ASC LIMIT 5"
+  },
+  {
+    "question": "With which genes does the gene 'BRCA1' interact and what pathways involving 'HIV' do they participate in?",
+    "cypher": "MATCH (g1:Gene {name: 'BRCA1'})-[:INTERACTS_GiG]->(g2:Gene)-[:PARTICIPATES_GpPW]->(p:Pathway) WHERE p.name CONTAINS 'HIV' RETURN g2.name, p.name"
+  },
+  {
+    "question": "List diseases that present 'Low Back Pain' as a symptom.",
+    "cypher": "MATCH (s:Symptom {name: 'Low Back Pain'})<-[:PRESENTS_DpS]-(d:Disease) RETURN d.name"
+  },
+  {
+    "question": "What compounds are known to cause 'Cough' as side effect in patients treated for 'hypertension'?",
+    "cypher": "MATCH (d:Disease {name: 'hypertension'})<-[:TREATS_CtD]-(c:Compound)-[:CAUSES_CcSE]->(se:SideEffect {name: 'Cough'}) RETURN c.name"
+  },
+  {
+    "question": "What are the genes that are upregulated by compounds with a z-score above 100?",
+    "cypher": "MATCH (c:Compound)-[r:UPREGULATES_CuG]->(g:Gene) WHERE r.z_score > 100 RETURN g.name, r.z_score"
+  },
+  {
+    "question": "List compounds that bind genes with an affinity between 900 and 1000 nM.",
+    "cypher": "MATCH (g:Gene )<-[r:BINDS_CbG]-(c:Compound) WHERE r.affinity_nM >900 AND r.affinity_nM <1000 RETURN c.name, r.affinity_nM, g.name"
+  },
+  {
+    "question": "Which genes on chromosome '12' participate in the 'lysosome' cellular component?",
+    "cypher": "MATCH (g:Gene)-[:PARTICIPATES_GpCC]->(:CellularComponent {name: 'lysosome'}) WHERE g.chromosome = '12' RETURN g.name"
+  },
+  {
+    "question": "With which genes does the gene 'BRCA1' interact, that participate in the molecular function named 'ubiquitin protein ligase binding' in which also 'BRCA1' participates.",
+    "cypher": "MATCH (g1:Gene {name: 'BRCA1'})-[:INTERACTS_GiG]->(g2:Gene)-[:PARTICIPATES_GpMF]->(:MolecularFunction {name: 'ubiquitin protein ligase binding'})<-[:PARTICIPATES_GpMF]-(g1) RETURN g2.name"
+  },
+  {
+    "question": "Which genes participating in the 'MAPK Signaling Pathway' interact with genes, when the interacting genes are on the same chromosome and that chromosome is '1'?",
+    "cypher": "MATCH (g1:Gene)-[:INTERACTS_GiG]->(g2:Gene)-[:PARTICIPATES_GpPW]->(:Pathway {name: 'MAPK Signaling Pathway'}) WHERE g1.chromosome = g2.chromosome = '1' RETURN g1.name, g2.name"
+  },
+  {
+    "question": "Can you find genes that interact with 'Dopamine' and are also associated with 'obesity'?",
+    "cypher": "MATCH (c:Compound {name: 'Dopamine'})-[:BINDS_CbG]->(g:Gene)<-[:ASSOCIATES_DaG]-(d:Disease {name:'obesity'}) RETURN g.name"
+  },
+  {
+    "question": "What are the actions associated with the binding of genes with the compound 'Metoprolol'?",
+    "cypher": "MATCH (c:Compound {name: 'Metoprolol'})-[r:BINDS_CbG]->(g:Gene) RETURN g.name, r.actions"
+  },
+  {
+    "question": "List compounds that are known to palliate 'multiple sclerosis'.",
+    "cypher": "MATCH (d:Disease {name: 'multiple sclerosis'})<-[:PALLIATES_CpD]-(c:Compound) RETURN c.name"
+  },
+  {
+    "question": "Can you find the compounds involved in the treatment of 'psoriasis' along with the treating source?",
+    "cypher": "MATCH (d:Disease {name: 'psoriasis'})<-[r:TREATS_CtD]-(c:Compound) RETURN c.name, r.source"
+  },
+  {
+    "question": "What compounds are known to palliate 'breast cancer' but not 'lung cancer'?",
+    "cypher": "MATCH (d:Disease {name: 'breast cancer'})<-[:PALLIATES_CpD]-(c:Compound) WHERE NOT (c)-[:PALLIATES_CpD]->(:Disease {name: 'lung cancer'}) RETURN c.name"
+  },
+  {
+    "question": "List the genes that are bound by the compound 'Lisinopril' and their binding affinities.",
+    "cypher": "MATCH (c:Compound {name: 'Lisinopril'})-[r:BINDS_CbG]->(g:Gene) RETURN g.name, r.affinity_nM"
+  },
+  {
+    "question": "Which compounds bind genes that the gene DACT3 covaries with?",
+    "cypher": "MATCH (g:Gene {name: 'DACT3'})-[:COVARIES_GcG]->(g2:Gene)<-[:BINDS_CbG]-(c:Compound) RETURN c.name"
+  },
+  {
+    "question": "Which diseases are palliated by compounds that resemble 'Ipratropium bromide'?",
+    "cypher": "MATCH (c:Compound {name: 'Ipratropium bromide'})-[:RESEMBLES_CrC]->(c2:Compound)-[:PALLIATES_CpD]->(d:Disease) RETURN d.name"
+  },
+  {
+    "question": "List compounds that resemble each other in the graph, where both end with 'sone'.",
+    "cypher": "MATCH (c1:Compound)-[:RESEMBLES_CrC]->(c2:Compound) WHERE c1.name ENDS WITH 'sone' AND c2.name ENDS WITH 'sone' RETURN c1.name, c2.name"
+  },
+  {
+    "question": "Which genes covary with MAML2 and participate in the same pathway in which MAML2 participates?",
+    "cypher": "MATCH (g1:Gene {name:'MAML2'} )-[:COVARIES_GcG]->(g2:Gene)-[:PARTICIPATES_GpPW]->(pw:Pathway)<-[:PARTICIPATES_GpPW]-(g1:Gene) RETURN g2.name"
+  },
+  {
+    "question": "What are the genes belonging to the PPP family that are upregulated by compounds in the pharmacologic class 'Vinca Alkaloids'?",
+    "cypher": "MATCH (pc:PharmacologicClass {name: 'Vinca Alkaloids'})-[:INCLUDES_PCiC]->(c:Compound)-[:UPREGULATES_CuG]->(g:Gene) WHERE g.name CONTAINS 'PPP' RETURN g.name"
+  },
+  {
+    "question": "Which genes interact with 'Ziprasidone' and participate in the molecular function 'aromatase activity'?",
+    "cypher": "MATCH (c:Compound {name: 'Ziprasidone'})-[:BINDS_CbG]->(g:Gene)-[:PARTICIPATES_GpMF]->(mf:MolecularFunction {name: 'aromatase activity'}) RETURN g.name"
+  },
+  {
+    "question": "What compounds are commonly used for palliating 'Chronic Pain'?",
+    "cypher": "MATCH (d:Disease {name: 'pancreatic cancer'})<-[:PALLIATES_CpD]-(c:Compound) RETURN c.name"
+  },
+  {
+    "question": "Which compounds are effective in palliating 'rheumatoid arthritis', and what are their side effect related to 'paralysis'?",
+    "cypher": "MATCH (d:Disease {name: 'rheumatoid arthritis'})<-[:PALLIATES_CpD]-(c:Compound)-[r:CAUSES_CcSE]->(se:SideEffect) WHERE se.name CONTAINS 'paralysis' RETURN c.name, se.name"
+  },
+  {
+    "question": "What compounds are known to palliate 'atopic dermatitis' and bind to genes located on chromosome X?",
+    "cypher": "MATCH (d:Disease {name: 'atopic dermatitis'})<-[:PALLIATES_CpD]-(c:Compound)-[:BINDS_CbG]->(g:Gene) WHERE g.chromosome = 'X' RETURN c.name, g.name"
+  },
+  {
+    "question": "Can you provide compounds that cause the side effect 'Nausea' and whose name include the substrig 'xol'?",
+    "cypher": "MATCH (se:SideEffect {name:'Nausea'})<-[:CAUSES_CcSE]-(c:Compound)  WHERE c.name CONTAINS 'xol' RETURN c.name"
+  },
+  {
+    "question": "What genes are commonly expressed in the 'brain' and associated with 'schizophrenia'? Report only those whose name starts with 'SNAP'.",
+    "cypher": "MATCH (a:Anatomy {name: 'brain'})-[:EXPRESSES_AeG]->(g:Gene)<-[:ASSOCIATES_DaG]-(d:Disease {name: 'schizophrenia'}) WHERE g.name STARTS WITH 'SNAP' RETURN g.name"
+  },
+  {
+    "question": "Which diseases commonly present the symptom 'Speech Disorders'?",
+    "cypher": "MATCH (s:Symptom {name: 'Speech Disorders'})<-[:PRESENTS_DpS]-(d:Disease) RETURN d.name"
+  },
+  {
+    "question": "List the genes that regulate the gene 'TP53' and participate in the 'nuclear periphery' cellular component.",
+    "cypher": "MATCH (g1:Gene)-[:REGULATES_GrG]->(:Gene {name: 'TP53'})-[:PARTICIPATES_GpCC]->(:CellularComponent {name: 'nuclear periphery'}) RETURN g1.name"
+  },
+  {
+    "question": "List the compounds that bind genes and are characterized by both the actions 'agonist' and 'partial agonist'.",
+    "cypher": "MATCH (c:Compound)-[b:BINDS_CbG]->(g:Gene) WHERE 'agonist' IN b.actions AND 'partial agonist' IN b.actions RETURN c.name, g.name, b.actions"
+  },
+  {
+    "question": "Which compounds treat 'primary biliary cirrhosis'?",
+    "cypher": "MATCH (d:Disease {name: 'primary biliary cirrhosis'})<-[:TREATS_CtD]-(c:Compound) RETURN c.name"
+  },
+  {
+    "question": "List the compounds that treat 'atopic dermatitis', given that it is localized in 'sweat gland'",
+    "cypher": "MATCH (d:Disease {name: 'atopic dermatitis'})<-[:TREATS_CtD]-(c:Compound), (d)-[:LOCALIZES_DlA]->(a:Anatomy {name: 'sweat gland'}) RETURN c.name"
+  },
+  {
+    "question": "Which diseases commonly present the symptom 'Fatigue' and are localized in the 'vertebral column'?",
+    "cypher": "MATCH (s:Symptom {name: 'Fatigue'})<-[:PRESENTS_DpS]-(d:Disease)-[:LOCALIZES_DlA]->(a:Anatomy {name: 'vertebral column'}) RETURN d.name"
+  },
+  {
+    "question": "What genes are commonly upregulated in 'schizophrenia' when the upregulation 'log2_fold_change' is stricly higher than 0.03?",
+    "cypher": "MATCH (d:Disease {name: 'schizophrenia'})-[r:UPREGULATES_DuG]->(g:Gene) WHERE r.log2_fold_change > 0.03 RETURN g.name, r.log2_fold_change"
+  },
+  {
+    "question": "Which genes participate in the 'DNA Repair' pathway and regulate genes where 'knockdown downregulates' and 'overexpression downregulates' are both subtypes of the regulation?",
+    "cypher": "MATCH (g1:Gene)-[r:REGULATES_GrG]->(g2:Gene) WHERE (g1)-[:PARTICIPATES_GpPW]->(:Pathway {name: 'DNA Repair'}) AND 'overexpression downregulates' IN r.subtypes AND 'knockdown downregulates' IN r.subtypes RETURN g1.name, g2.name, r.subtypes"
+  },
+  {
+    "question": "List distinct genes that participate in the same molecular function in which 'STAT3' participates. Report only those whose description include the word 'histone'.",
+    "cypher": "MATCH (g:Gene {name: 'STAT3'})-[:PARTICIPATES_GpMF]->(mf:MolecularFunction)<-[:PARTICIPATES_GpMF]-(g2:Gene) WHERE g2.description CONTAINS 'histone' RETURN DISTINCT g2.name, g2.description"
+  },
+  {
+    "question": "List the compounds that bind the gene 'TP53' and their binding actions.",
+    "cypher": "MATCH (g:Gene {name: 'TP53'})<-[r:BINDS_CbG]-(c:Compound) RETURN c.name, r.actions"
+  },
+  {
+    "question": "What are the different pharmacologic classes available in the database that are characterized by 'Physiologic Effect' as class type?",
+    "cypher": "MATCH (pc:PharmacologicClass) WHERE pc.class_type = 'Physiologic Effect' RETURN pc.name"
+  },
+  {
+    "question": "Can you provide the compounds that bind the gene 'BRAF' and their binding affinities?",
+    "cypher": "MATCH (g:Gene {name: 'BRAF'})<-[r:BINDS_CbG]-(c:Compound) RETURN c.name, r.affinity_nM"
+  },
+  {
+    "question": "What are the distinct lists of actions associated with the binding of the compound 'Metformin' to genes?",
+    "cypher": "MATCH (c:Compound {name: 'Metformin'})-[r:BINDS_CbG]->(g:Gene) RETURN DISTINCT r.actions"
+  },
+  {
+    "question": "Can you provide genes that are upregulated in 'abdominal aortic aneurysm' with a log2 fold change above 0.2, ranked by log2 fold change in descending order?",
+    "cypher": "MATCH (d:Disease {name:'abdominal aortic aneurysm'})-[r:UPREGULATES_DuG]->(g:Gene) WHERE r.log2_fold_change > 0.2 RETURN g.name, r.log2_fold_change ORDER BY r.log2_fold_change DESC"
+  },
+  {
+    "question": "Can you provide the binding actions of genes that are bound by the compound 'Omeprazole'?",
+    "cypher": "MATCH (c:Compound {name: 'Omeprazole'})-[r:BINDS_CbG]->(g:Gene) RETURN g.name, r.actions"
+  },
+  {
+    "question": "List the genes that have a binding relationship with the compound 'Metformin' and their associated actions.",
+    "cypher": "MATCH (c:Compound {name: 'Metformin'})-[r:BINDS_CbG]->(g:Gene) RETURN g.name, r.actions"
+  },
+  {
+    "question": "List genes on chromosome '4' that participate in the cellular component in which the gene 'MYC' participates.",
+    "cypher": "MATCH (g1:Gene {name: 'MYC'})-[:PARTICIPATES_GpCC]->(cc:CellularComponent)<-[:PARTICIPATES_GpCC]-(g2:Gene) WHERE g2.chromosome = '4' RETURN g2.name"
+  },
+  {
+    "question": "Investigate the genes that regulate and covary with the gene 'ATP6V0B'.",
+    "cypher": "MATCH (g1:Gene)-[:COVARIES_GcG]->(g2:Gene {name: 'ATP6V0B'})<-[:REGULATES_GrG]-(g1:Gene) RETURN g1.name"
+  },
+  {
+    "question": "List the genes that participate in the molecular function 'nuclease activity' and their associated mRNA-related pathways.",
+    "cypher": "MATCH (mf:MolecularFunction {name: 'nuclease activity'})<-[:PARTICIPATES_GpMF]-(g:Gene)-[:PARTICIPATES_GpPW]->(p:Pathway) WHERE p.name CONTAINS 'mRNA' RETURN g.name, p.name"
+  },
+  {
+    "question": "Which compounds are known to palliate diseases that upregulate genes with a log2 fold change greater than 1, and what are those diseases and log2 fold changes?",
+    "cypher": "MATCH (d:Disease)<-[:PALLIATES_CpD]-(c:Compound), (d)-[r:UPREGULATES_DuG]->(g:Gene) WHERE r.log2_fold_change > 1 RETURN c.name, d.name, r.log2_fold_change"
+  },
+  {
+    "question": "Which genes interact with each other in the context of the disease 'gestational diabetes', when the sources of the interaction exceed 3 items and among those items 'hetio-dag' is listed?",
+    "cypher": "MATCH (d:Disease {name: 'gestational diabetes'})-[:ASSOCIATES_DaG]->(g1:Gene)-[r:INTERACTS_GiG]->(g2:Gene) WHERE 'hetio-dag' IN r.sources AND SIZE(r.sources) > 3 RETURN g1.name, g2.name, r.sources"
+  },
+  {
+    "question": "Can you identify the genes that participate in both the biological process 'DNA repair' and in the molecular function 'DNA-methyltransferase activity'?",
+    "cypher": "MATCH (bp:BiologicalProcess {name: 'DNA repair'})<-[:PARTICIPATES_GpBP]-(g:Gene)-[:PARTICIPATES_GpMF]->(mf:MolecularFunction {name: 'DNA-methyltransferase activity'}) RETURN g.name"
+  },
+  {
+    "question": "Can you list the side effect caused by the compound having inchi 'InChI=1S/C24H25NO4/c1-17-21(26)19-11-8-12-20(23(19)29-22(17)18-9-4-2-5-10-18)24(27)28-16-15-25-13-6-3-7-14-25/h2,4-5,8-12H,3,6-7,13-16H2,1H3'?",
+    "cypher": "MATCH (c:Compound {inchi: 'InChI=1S/C24H25NO4/c1-17-21(26)19-11-8-12-20(23(19)29-22(17)18-9-4-2-5-10-18)24(27)28-16-15-25-13-6-3-7-14-25/h2,4-5,8-12H,3,6-7,13-16H2,1H3'})-[:CAUSES_CcSE]->(se:SideEffect) RETURN se.name"
+  },
+  {
+    "question": "For each diabete-related disease what is the list of symptoms that the disease presents?",
+    "cypher": "MATCH (d:Disease)-[:PRESENTS_DpS]->(s:Symptom) WHERE d.name CONTAINS 'diabete' RETURN d.name, COLLECT(s.name)"
+  },
+  {
+    "question": "Where does 'osteoporosis' localize within the body?",
+    "cypher": "MATCH (d:Disease {name: 'osteoporosis'})-[:LOCALIZES_DlA]->(a:Anatomy) RETURN a.name"
+  },
+  {
+    "question": "Find genes such that they resemble and interact with gene 'C1QBP'.",
+    "cypher": "MATCH (g1:Gene {name: 'C1QBP'})-[:INTERACTS_GiG]->(g2:Gene)-[RESEMBLES_GrG]-(g1) RETURN g2.name"
+  },
+  {
+    "question": "Which compounds are known to palliate 'hypertension' and are not known to cause the side effect 'Insomnia?",
+    "cypher": "MATCH (d:Disease {name: 'hypertension'})<-[:PALLIATES_CpD]-(c:Compound) WHERE NOT (c)-[:CAUSES_CcSE]->(:SideEffect {name:'Insomnia'}) RETURN c.name"
+  },
+  {
+    "question": "Investigate compounds that palliate the same cancer-related diseases and such that at least one of them includes the word 'Estrogens' in the name.",
+    "cypher": "MATCH (c1:Compound)-[:PALLIATES_CpD]->(d1:Disease)<-[:PALLIATES_CpD]-(c2:Compound) WHERE c1 <> c2 AND d1.name CONTAINS 'cancer' AND c1.name CONTAINS 'Estrogens' OR c2.name CONTAINS 'Estrogens' RETURN c1.name, c2.name, d1.name"
+  },
+  {
+    "question": "Which compounds whose name ends with 'ate' are known to cause either the side effect 'Insomnia' or 'Headache'?",
+    "cypher": "MATCH (se:SideEffect)<-[:CAUSES_CcSE]-(c:Compound) WHERE se.name IN ['Insomnia', 'Headache'] AND c.name ENDS WITH 'ate' RETURN c.name"
+  },
+  {
+    "question": "What diseases can be treated by compounds that bind the gene 'ALOX5'?",
+    "cypher": "MATCH (g:Gene {name: 'ALOX5'})<-[:BINDS_CbG]-(c:Compound)-[:TREATS_CtD]->(d:Disease) RETURN d.name"
+  },
+  {
+    "question": "Which genes participate in the biological process named 'execution phase of apoptosis'.",
+    "cypher": "MATCH (g:Gene)-[:PARTICIPATES_GpBP]->(:BiologicalProcess {name: 'execution phase of apoptosis'}) RETURN g.name"
+  },
+  {
+    "question": "Which genes are associated with the disease 'bile duct cancer' with more than one evidence sources?",
+    "cypher": "MATCH (d:Disease {name: 'bile duct cancer'})-[r:ASSOCIATES_DaG]->(g:Gene) WHERE SIZE(r.sources) > 1 RETURN g.name, r.sources"
+  },
+  {
+    "question": "Retrieve the list of genes that participate in each apoptosis-related biological process?",
+    "cypher": "MATCH (bp:BiologicalProcess )<-[:PARTICIPATES_GpBP]-(g:Gene) WHERE bp.name CONTAINS 'apoptosis' RETURN bp.name, COLLECT(g.name)"
+  },
+  {
+    "question": "Identify the genes object of interaction with 'CIDEA' and that are associated with the same biological processes in ehich 'CIDEA' participates. Moreover, report the list of the associated shared biological processes.",
+    "cypher": "MATCH (g1:Gene {name: 'CIDEA'})-[:INTERACTS_GiG]->(g2:Gene)-[:PARTICIPATES_GpBP]->(bp:BiologicalProcess)<-[:PARTICIPATES_GpBP]-(g1:Gene) RETURN g1.name, COLLECT(bp.name)"
+  },
+  {
+    "question": "Which specific compounds treat 'Asthma', and what are the list of skin-related side effect for each side effect?",
+    "cypher": "MATCH (d:Disease {name: 'asthma'})<-[r:TREATS_CtD]-(c:Compound)-[:CAUSES_CcSE]->(se:SideEffect) WHERE se.name CONTAINS 'skin' RETURN c.name, COLLECT(se.name)"
+  },
+  {
+    "question": "Identify the genes that regulate the gene NR1H2, when the regulation suptypes include the item 'overexpression upregulates'.",
+    "cypher": "MATCH (g1:Gene {name: 'NR1H2'})<-[r:REGULATES_GrG]-(g2:Gene) WHERE 'overexpression upregulates' IN r.subtypes RETURN g2.name"
+  },
+  {
+    "question": "What are the pain-related side effects caused by compounds that bind the gene 'EGFR'?",
+    "cypher": "MATCH (g:Gene {name: 'EGFR'})<-[:BINDS_CbG]-(c:Compound)-[:CAUSES_CcSE]->(se:SideEffect) WHERE se.name CONTAINS 'pain' RETURN se.name"
+  },
+  {
+    "question": "Can you provide the pubmed IDs of genes bound by compounds when those genes are regulated by the gene 'BRCA1'?",
+    "cypher": "MATCH (g:Gene {name: 'BRCA1'})-[:REGULATES_GrG]->(g2:Gene)<-[r:BINDS_CbG]-(c:Compound) RETURN g2.name, r.pubmed_ids"
+  },
+  {
+    "question": "Find genes that: 1) BRCA1 covaries with; 2) participate in the 'telomere cap complex'.",
+    "cypher": "MATCH (:Gene {name: 'BRCA1'})-[:COVARIES_GcG]->(g:Gene)-[:PARTICIPATES_GpCC]->(cc:CellularComponent {name: 'telomere cap complex'}) RETURN g.name"
+  },
+  {
+    "question": "Which genes interact with the gene 'PTEN' and participate in the same biological process with it, having more than 2 interaction sources including 'Lit-BM-13'?",
+    "cypher": "MATCH (g1:Gene {name: 'PTEN'})-[r:INTERACTS_GiG]->(g2:Gene)-[:PARTICIPATES_GpBP]->(:BiologicalProcess)<-[:PARTICIPATES_GpBP]-(g1:Gene) WHERE 'Lit-BM-13' IN r.sources AND SIZE(r.sources) > 2 RETURN DISTINCT g2.name, r.sources"
+  },
+  {
+    "question": "Which genes interact with the gene NR1H2 and participate in the same biological processes in which the mentioned gene participates, when interaction sources exceed 2 items (> 2) and one of those items is 'hetio-dag'?",
+    "cypher": "MATCH (g1:Gene {name: 'NR1H2'})-[r:INTERACTS_GiG]->(g2:Gene)-[:PARTICIPATES_GpBP]->(:BiologicalProcess)<-[:PARTICIPATES_GpBP]-(g1:Gene) WHERE 'hetio-dag' IN r.sources AND SIZE(r.sources) > 2 RETURN DISTINCT g2.name, r.sources"
+  },
+  {
+    "question": "Which genes participate in shared pathways with 'AKT1' and also share the same chromosome?",
+    "cypher": "MATCH (g1:Gene {name: 'AKT1'})-[:PARTICIPATES_GpPW]->(:Pathway)<-[:PARTICIPATES_GpPW]-(g2:Gene) WHERE g2.chromosome = g1.chromosome RETURN g2.name, g2.chromosome"
+  },
+  {
+    "question": "In which kinase-related biological processes does the gene 'PTEN' participate in?",
+    "cypher": "MATCH (g:Gene {name: 'PTEN'})-[:PARTICIPATES_GpBP]->(bp:BiologicalProcess) WHERE bp.name CONTAINS 'kinase' RETURN bp.name"
+  },
+  {
+    "question": "Which compounds whose name includes the word 'acid' cause side effects similar to those caused by 'Metformin'?",
+    "cypher": "MATCH (c:Compound {name: 'Metformin'})-[:CAUSES_CcSE]->(se:SideEffect)<-[:CAUSES_CcSE]-(c2:Compound) WHERE c2.name CONTAINS 'acid' RETURN c2.name"
+  },
+  {
+    "question": "Can you find compounds that downregulate genes downregulated also by 'Metformin', having a 'z_score' for the dowregulation with 'Metformin' below -6 (z_score < -6)?",
+    "cypher": "MATCH (c1:Compound {name: 'Metformin'})-[r:DOWNREGULATES_CdG]->(g:Gene)<-[:DOWNREGULATES_CdG]-(c2:Compound) WHERE r.z_score < -6 RETURN c2.name, r.z_score"
+  },
+  {
+    "question": "Which genes are associated with the progression of 'bile duct cancer', when the asociation is characterized by more than one source?",
+    "cypher": "MATCH (d:Disease {name: 'bile duct cancer'})-[r:ASSOCIATES_DaG]->(g:Gene) WHERE SIZE(r.sources) > 1 RETURN g.name, r.sources"
+  },
+  {
+    "question": "Which compounds bind genes and treat cancer-related diseases, when the binding 'affinity_nM' is below 0.5?",
+    "cypher": "MATCH (d:Disease)<-[:TREATS_CtD]-(c:Compound)-[r:BINDS_CbG]->(g:Gene) WHERE d.name CONTAINS 'cancer' AND r.affinity_nM < 0.5 RETURN c.name, g.name, d.name, r.affinity_nM"
+  },
+  {
+    "question": "What diseases have a resemblance to 'alcohol dependence' based on their clinical presentation?",
+    "cypher": "MATCH (d1:Disease {name: 'alcohol dependence'})-[:RESEMBLES_DrD]->(d2:Disease) RETURN d2.name"
+  },
+  {
+    "question": "Which diseases have a resemblance to 'hepatitis B' and what are the sources of resemblance?",
+    "cypher": "MATCH (d1:Disease {name: 'hepatitis B'} )-[r:RESEMBLES_DrD]->(d2:Disease) RETURN d2.name, r.source"
+  },
+  {
+    "question": "Which compounds bind genes and treat 'bone cancer', when the binding is characterized by non-null 'affinity_nM'?",
+    "cypher": "MATCH (d:Disease {name: 'bone cancer'})<-[:TREATS_CtD]-(c:Compound)-[r:BINDS_CbG]->(g:Gene) WHERE r.affinity_nM IS NOT NULL RETURN c.name, g.name, d.name, r.affinity_nM"
+  },
+  {
+    "question": "Which compounds bind genes and treat liver-related diseases, when the binding 'affinity_nM' is not null?",
+    "cypher": "MATCH (d:Disease)<-[:TREATS_CtD]-(c:Compound)-[r:BINDS_CbG]->(g:Gene) WHERE d.name CONTAINS 'liver' AND r.affinity_nM IS NOT NULL RETURN c.name, g.name, d.name, r.affinity_nM"
+  },
+  {
+    "question": "Which compounds whose name ends with 'sone' are known to cause either the side effect 'Aggression' or 'Feeling abnormal' ?",
+    "cypher": "MATCH (se:SideEffect)<-[:CAUSES_CcSE]-(c:Compound) WHERE se.name IN ['Aggression', 'Feeling abnormal'] AND c.name ENDS WITH 'sone' RETURN c.name"
+  },
+  {
+    "question": "Which diseases present both 'Abdominal Pain' and 'Vomiting' as symptoms?",
+    "cypher": "MATCH (s1:Symptom {name: 'Abdominal Pain'})<-[:PRESENTS_DpS]-(d:Disease)-[:PRESENTS_DpS]->(s2:Symptom {name: 'Vomiting'}) RETURN d.name"
+  },
+  {
+    "question": "List the genes that are characterized by non-null binding affinities with the compound 'Lisinopril'.",
+    "cypher": "MATCH (g:Gene)-[r:BINDS_CbG]-(c:Compound {name: 'Lisinopril'}) WHERE r.affinity_nM IS NOT NULL RETURN g.name, r.affinity_nM"
+  },
+  {
+    "question": "List the genes that are characterized by high binding affinities (let's say 100) with a compound.",
+    "cypher": "MATCH (g:Gene)-[b:BINDS_CbG {affinity_nM: 100}]-(c:Compound) RETURN g.name, c.name"
+  },
+  {
+    "question": "Provide the chromosome of genes that interact with the compound 'Ruxolitinib' and are characterized by a binding 'affinity_nM' above 2.",
+    "cypher": "MATCH (c:Compound {name: 'Ruxolitinib'})-[r:BINDS_CbG]->(g:Gene) WHERE r.affinity_nM > 2 RETURN g.name, g.chromosome, r.affinity_nM"
+  },
+  {
+    "question": "List diseases that commonly present 'Dizziness'. For each disease, specify its list of anatomical localizations.",
+    "cypher": "MATCH (s:Symptom {name: 'Dizziness'})<-[:PRESENTS_DpS]-(d:Disease)-[:LOCALIZES_DlA]->(a:Anatomy) RETURN d.name, COLLECT(a.name)"
+  },
+  {
+    "question": "Which diseases commonly present 'Bulimia' as symptom?",
+    "cypher": "MATCH (s:Symptom {name: 'Bulimia'})<-[:PRESENTS_DpS]-(d:Disease) RETURN d.name"
+  },
+  {
+    "question": "Which genes are downregulated in 'hypertension'?",
+    "cypher": "MATCH (d:Disease {name: 'hypertension'})-[:DOWNREGULATES_DdG]->(g:Gene) RETURN g.name"
+  },
+  {
+    "question": "Which diseases localize in the 'immune system'?",
+    "cypher": "MATCH (a:Anatomy {name: 'immune system'})<-[:LOCALIZES_DlA]-(d:Disease) RETURN d.name"
+  },
+  {
+    "question": "Which compounds treat or palliate 'rheumatoid arthritis'? Include the type of relationship in the output.",
+    "cypher": "MATCH (d:Disease {name: 'rheumatoid arthritis'})<-[r1:TREATS_CtD|PALLIATES_CpD]-(c:Compound) RETURN c.name, TYPE(r1)"
+  },
+  {
+    "question": "What are the compounds that palliate both 'endogenous depression' and 'multiple sclerosis'?",
+    "cypher": "MATCH (d1:Disease {name: 'endogenous depression'})<-[:PALLIATES_CpD]-(c:Compound), (d2:Disease {name:'multiple sclerosis'} )<-[:PALLIATES_CpD]-(c) RETURN c.name"
+  },
+  {
+    "question": "Can you provide a list of compounds that bind with genes belonging to the PDE family such that binding interactions are associated with 'inhibitor' actions?",
+    "cypher": "MATCH (c:Compound)-[r:BINDS_CbG]->(g:Gene) WHERE 'inhibitor' IN r.actions AND g.name CONTAINS 'PDE' RETURN c.name, g.name, r.actions"
+  },
+  {
+    "question": "What are the actions associated with the binding of genes to the compound 'L-Serine'?",
+    "cypher": "MATCH (c:Compound {name: 'L-Serine'})-[r:BINDS_CbG]->(g:Gene) RETURN g.name, r.actions"
+  },
+  {
+    "question": "Which compounds have a binding relationship with the gene 'TP53'?",
+    "cypher": "MATCH (g:Gene {name: 'TP53'})<-[:BINDS_CbG]-(c:Compound) RETURN c.name"
+  },
+  {
+    "question": "Which compounds have a similar effect to the compound 'Azelastine'?",
+    "cypher": "MATCH (c1:Compound {name: 'Azelastine'})-[:RESEMBLES_CrC]->(c2:Compound) RETURN c2.name"
+  },
+  {
+    "question": "Which compounds treat or palliate in patients with 'systemic scleroderma'? Include the type of relationship in the output.",
+    "cypher": "MATCH (d:Disease {name: 'systemic scleroderma'})<-[r:TREATS_CtD|PALLIATES_CpD]-(c:Compound) RETURN c.name, TYPE(r)"
+  },
+  {
+    "question": "Which 5 compound-binds-gene interactions have the highest non-null binding affinities? To avoid ties, order them alphabetically by compound name and gene name.",
+    "cypher": "MATCH (c:Compound)-[r:BINDS_CbG]->(g:Gene) WHERE r.affinity_nM IS NOT NULL RETURN c.name, g.name, r.affinity_nM ORDER BY r.affinity_nM DESC, c.name ASC, g.name ASC LIMIT 5"
+  },
+  {
+    "question": "Which 5 compound-binds-gene interactions have the lowest non-null binding affinities? To avoid ties, order them alphabetically by compound name and gene name.",
+    "cypher": "MATCH (c:Compound)-[r:BINDS_CbG]->(g:Gene) WHERE r.affinity_nM IS NOT NULL RETURN c.name, g.name, r.affinity_nM ORDER BY r.affinity_nM ASC, c.name ASC, g.name ASC LIMIT 5"
+  },
+  {
+    "question": "List the genes that are downregulated by compounds in the context of treating 'osteoporosis', when the downregulation 'z_score' is low (let's say < -10).",
+    "cypher": "MATCH (d:Disease {name: 'osteoporosis'})<-[:TREATS_CtD]-(c:Compound)-[r:DOWNREGULATES_CdG]->(g:Gene) WHERE r.z_score < -10 RETURN g.name, r.z_score"
+  },
+  {
+    "question": "Which are the top 5 genes with the highest downregulation 'z_score' in response to compounds that treat osteoporosis, considering only 'z_score' > -5? In case of ties, order alphabetically by gene name.",
+    "cypher": "MATCH (:Disease {name: 'osteoporosis'})<-[:TREATS_CtD]-(c:Compound)-[r:DOWNREGULATES_CdG]->(g:Gene) WHERE r.z_score > -5 WITH g, MAX(r.z_score) AS max_z_score RETURN g.name, max_z_score ORDER BY max_z_score DESC, g.name ASC LIMIT 5"
+  },
+  {
+    "question": "Which are the top 5 genes with the lowest downregulation 'z_score' in response to compounds that treat 'systemic scleroderma', considering only 'z_score' > -5? In case of ties, order alphabetically by gene name.",
+    "cypher": "MATCH (:Disease {name: 'systemic scleroderma'})<-[:TREATS_CtD]-(c:Compound)-[r:DOWNREGULATES_CdG]->(g:Gene) WHERE r.z_score > -5 WITH g, MIN(r.z_score) AS min_z_score RETURN g.name, min_z_score ORDER BY min_z_score ASC, g.name ASC LIMIT 5"
+  },
+  {
+    "question": "List the genes that regulate the gene 'EGFR' and for each gene propose the list of the associated molecular functions in which it participates.",
+    "cypher": "MATCH (g1:Gene {name: 'EGFR'})<-[:REGULATES_GrG]-(g2:Gene)-[:PARTICIPATES_GpMF]->(mf:MolecularFunction) RETURN g2.name, COLLECT(DISTINCT mf.name) AS molecular_functions"
+  },
+  {
+    "question": "Which genes have the maximum binding affinities with compounds and what are the affinities? Consider only high affinities (> 900).",
+    "cypher": "MATCH (c:Compound)-[b:BINDS_CbG]->(g:Gene) WHERE b.affinity_nM > 900 RETURN g.name, MAX(b.affinity_nM) AS max_affinity"
+  },
+  {
+    "question": "Which genes have the minimum binding affinities with compounds and what are the affinities? Consider only low affinities (< 0.3).",
+    "cypher": "MATCH (c:Compound)-[b:BINDS_CbG]->(g:Gene) WHERE b.affinity_nM < 0.3  RETURN g.name, MIN(b.affinity_nM) AS min_affinity"
+  },
+  {
+    "question": "Which genes co-vary with each other and participate in the same cellular component named 'mitotic spindle'?",
+    "cypher": "MATCH (g1:Gene)-[:COVARIES_GcG]->(g2:Gene)-[:PARTICIPATES_GpCC]->(:CellularComponent {name: 'mitotic spindle'})<-[:PARTICIPATES_GpCC]-(g1) RETURN g1.name, g2.name"
+  },
+  {
+    "question": "What genes are associated with 'asthma' and 'hepatitis B'?",
+    "cypher": "MATCH (d1:Disease {name:'asthma'})-[:ASSOCIATES_DaG]->(g:Gene), (d2:Disease {name: 'hepatitis B'})-[:ASSOCIATES_DaG]->(g) RETURN g.name"
+  },
+  {
+    "question": "List the compounds that bind with genes and have multiple associated actions (more than 2).",
+    "cypher": "MATCH (c:Compound)-[b:BINDS_CbG]->(g:Gene) WHERE SIZE(b.actions) > 2 RETURN c.name, g.name, b.actions"
+  },
+  {
+    "question": "Identify compounds that palliate diseases also treated by 'Metformin'.",
+    "cypher": "MATCH (c1:Compound {name: 'Metformin'})-[:TREATS_CtD]->(d:Disease)<-[:PALLIATES_CpD]-(c2:Compound) RETURN c2.name"
+  },
+  {
+    "question": "Whic compounds bind genes and treat 'pancreatitis'?",
+    "cypher": "MATCH (d:Disease {name: 'pancreatitis'})<-[:TREATS_CtD]-(c:Compound)-[:BINDS_CbG]->(g:Gene) RETURN c.name, g.name"
+  },
+  {
+    "question": "What are the compounds that bind the gene 'GABRA3' such that the 'pubmed_ids' for the association include '10209232'?",
+    "cypher": "MATCH (g:Gene {name: 'GABRA3'})<-[r:BINDS_CbG]-(c:Compound) WHERE '10209232' IN r.pubmed_ids RETURN c.name, r.pubmed_ids"
+  },
+  {
+    "question": "Which genes interact with 'GNA12' and participate in the same pathway in which 'GNA12' participates?",
+    "cypher": "MATCH (g1:Gene)-[:INTERACTS_GiG]->(g2:Gene {name:'GNA12'} ) MATCH (g1)-[:PARTICIPATES_GpPW]->(pw:Pathway)<-[:PARTICIPATES_GpPW]-(g2) RETURN g1.name, pw.name"
+  },
+  {
+    "question": "Which genes are characterized by binding relationships with the compound 'Metoprolol' when the latter is involved in downregulation?",
+    "cypher": "MATCH (c:Compound {name: 'Metoprolol'})-[:BINDS_CbG]->(g:Gene),(c)-[:DOWNREGULATES_CdG]->(g2:Gene) RETURN g.name, g2.name"
+  },
+  {
+    "question": "What are the molecular functions participated by genes that participate in the cellular component named 'proteasome accessory complex'?",
+    "cypher": "MATCH (cc:CellularComponent {name: 'proteasome accessory complex'})<-[:PARTICIPATES_GpCC]-(g:Gene)-[:PARTICIPATES_GpMF]->(mf:MolecularFunction) RETURN mf.name, g.name"
+  },
+  {
+    "question": "Return distinct genes that bind compounds included in the pharmacologic class 'Penicillins'.",
+    "cypher": "MATCH (pc:PharmacologicClass {name: 'Penicillins'})-[:INCLUDES_PCiC]->(c:Compound)-[:BINDS_CbG]->(g:Gene) RETURN DISTINCT g.name"
+  },
+  {
+    "question": "Find genes that interact with 'PTEN' and participate in the same biological process named 'heart development' in which also 'PTEN' participates.",
+    "cypher": "MATCH (g1:Gene {name: 'PTEN'})-[:INTERACTS_GiG]->(g2:Gene)-[:PARTICIPATES_GpBP]->(bp:BiologicalProcess {name: 'heart development'})<-[:PARTICIPATES_GpBP]-(g1) RETURN g2.name"
+  },
+  {
+    "question": "Which genes are downregulated by compounds that resemble 'Ziprasidone'?",
+    "cypher": "MATCH (c:Compound {name: 'Ziprasidone'})-[:RESEMBLES_CrC]->(c1:Compound)-[:DOWNREGULATES_CdG]->(g:Gene) RETURN g.name, c1.name"
+  },
+  {
+    "question": "What compounds are effective in treating 'hematologic cancer' without causing significant side effects?",
+    "cypher": "MATCH (d:Disease {name: 'hematologic cancer'})<-[:TREATS_CtD]-(c:Compound) WHERE NOT (c)-[:CAUSES_CcSE]->(:SideEffect) RETURN c.name"
+  },
+  {
+    "question": "Which compounds are used for both treating and palliating cancer-related diseases?",
+    "cypher": "MATCH (d1:Disease )<-[:TREATS_CtD]-(c:Compound)-[:PALLIATES_CpD]->(d2:Disease) WHERE d1.name CONTAINS 'cancer' AND d2.name CONTAINS 'cancer' RETURN c.name, d1.name, d2.name"
+  },
+  {
+    "question": "Which genes interact with gene 'AKT1' and participate in the same pathway named 'Estrogen signaling pathway' in which also 'AKT1' participate?",
+    "cypher": "MATCH (g1:Gene {name: 'AKT1'})-[:INTERACTS_GiG]->(g2:Gene)-[:PARTICIPATES_GpPW]->(pw:Pathway {name: 'Estrogen signaling pathway'})<-[:PARTICIPATES_GpPW]-(g1) RETURN g2.name"
+  },
+  {
+    "question": "Find genes that are downregulated in 'midbrain' and interact with the gene 'HNF4A'.",
+    "cypher": "MATCH (:Anatomy {name: 'midbrain'})-[:DOWNREGULATES_AdG]->(g:Gene)-[:INTERACTS_GiG]->(:Gene {name: 'HNF4A'}) RETURN g.name"
+  },
+  {
+    "question": "Can you provide a list of compounds that have multiple binding interactions (more than 30) with genes?",
+    "cypher": "MATCH (c:Compound)-[:BINDS_CbG]->(g:Gene) WITH c, COUNT(g) AS num_genes WHERE num_genes > 30 RETURN c.name, num_genes"
+  },
+  {
+    "question": "List the genes that interact with the gene 'AKT1', are on the same chromosome of 'AKT1', and participate in the same pathway in which 'AKT1' participates.",
+    "cypher": "MATCH (g1:Gene {name:'AKT1'})-[:INTERACTS_GiG]->(g2:Gene)-[:PARTICIPATES_GpPW]->(p:Pathway)<-[:PARTICIPATES_GpPW]-(g1) WHERE g1.chromosome = g2.chromosome RETURN g2.name, p.name"
+  },
+  {
+    "question": "Can you provide compounds that treat 'atopic dermatitis' without causing drowsiness?",
+    "cypher": "MATCH (d:Disease {name: 'atopic dermatitis'})<-[:TREATS_CtD]-(c:Compound) WHERE NOT (c)-[:CAUSES_CcSE]->(:SideEffect {name: 'Drowsiness'}) RETURN c.name"
+  },
+  {
+    "question": "Can you provide all the compounds whose name ends with the substring 'sone'?",
+    "cypher": "MATCH (c:Compound) WHERE c.name ends with 'sone' RETURN c.name"
+  },
+  {
+    "question": "Can you provide all the nerve-related Anatomy?",
+    "cypher": "MATCH (a:Anatomy) WHERE a.name CONTAINS 'nerve' RETURN a.name"
+  },
+  {
+    "question": "Can you provide all gene on chromosome 'Y' that are described as 'Y-linked'?",
+    "cypher": "MATCH (g:Gene) WHERE g.chromosome = 'Y' AND g.description CONTAINS 'Y-linked' RETURN g.name, g.description"
+  },
+  {
+    "question": "What is the name of the disease whose url is 'http://purl.obolibrary.org/obo/DOID_7693'?",
+    "cypher": "MATCH (d:Disease {url: 'http://purl.obolibrary.org/obo/DOID_7693'}) RETURN d.name"
+  },
+  {
+    "question": "What are the distinct class types that characterize pharmacologic classes?",
+    "cypher": "MATCH (pc:PharmacologicClass) RETURN DISTINCT pc.class_type"
+  },
+  {
+    "question": "What are the identifier and URL of the cellular component named 'sacrolemma'?",
+    "cypher": "MATCH (cc:CellularComponent {name: 'sarcolemma'}) RETURN cc.identifier, cc.url"
+  },
+  {
+    "question": "Provide all the sleep-related symptoms.",
+    "cypher": "MATCH (s:Symptom) WHERE toLower(s.name) CONTAINS 'sleep' RETURN s.name"
+  },
+  {
+    "question": "Provide all the pain-related side effects.",
+    "cypher": "MATCH (se:SideEffect) WHERE toLower(se.name) CONTAINS 'pain' RETURN se.name"
+  }
+]

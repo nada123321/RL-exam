@@ -1,0 +1,12 @@
+numpy
+gymnasium
+scikit-learn
+sentence-transformers
+transformers
+torch
+sentencepiece
+accelerate
+matplotlib
+tqdm
+jupyter
+ipykernel
